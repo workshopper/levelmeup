@@ -33,15 +33,15 @@ function cleanup () {
 
 function setup (run, callback) {
   rimraf.sync(dir1)
-  rimraf.sync(dir2)
+  ;!run && rimraf.sync(dir2)
 
   var db1  = level(dir1)
-    , db2  = level(dir2)
+    , db2  = !run && level(dir2)
     , ops  = []
     , c    = Math.ceil(Math.random() * 10) + 2
     , i    = c
     //, wrap = [ require.resolve('../../lib/track-level'), trackFile, 'level,levelup' ]
-    , done = after(2, function (err) {
+    , done = after(run ? 1 : 2, function (err) {
         if (err)
           return callback(err)
 
@@ -59,7 +59,7 @@ function setup (run, callback) {
     ops.push({ type: 'put', key: 'gibberish' + i, value: gibberish() })
   }
 
-  [ db1, db2 ].forEach(function (db) {
+  (run ? [ db1 ] : [ db1, db2 ]).forEach(function (db) {
     db.batch(ops, function (err) {
       if (err)
         return done(err)
