@@ -4,10 +4,9 @@
 
 [![NPM](https://nodei.co/npm/levelmeup.png)](https://nodei.co/npm/levelmeup/) 
 
-  1. Install [Node.js](http://nodejs.org/)
-  2. Run `npm install levelmeup -g`
-  3. Run `levelmeup`
-  4. **.. profit!**
+  1. Run `npm install levelmeup -g`
+  1. Run `levelmeup`
+  1. **.. profit!**
 
 <b><code>levelmeup</code></b> will run through a series of Node.js databases workshops. Starting with the basic operations of [LevelUP](https://github.com/rvagg/node-levelup) and moving on to more advanced exercises.
 
