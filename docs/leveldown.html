@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LevelDOWN</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style type="text/css">
+/* most of normalize.css */
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}[hidden],template{display:none;}html{font-family:sans-serif;/*1*/-ms-text-size-adjust:100%;/*2*/-webkit-text-size-adjust:100%;/*2*/}body{margin:0;}a{background:transparent;}a:focus{outline:thindotted;}a:active,a:hover{outline:0;}h1{font-size:2em;margin:0.67em0;}abbr[title]{border-bottom:1pxdotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em;}pre{white-space:pre-wrap;}q{quotes:"\201C""\201D""\2018""\2019";}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}table{border-collapse:collapse;border-spacing:0;}
+
+html {
+  font: 14px 'Helvetica Neue', Helvetica, arial, freesans, clean, sans-serif;
+}
+
+.container {
+  line-height: 1.6;
+  color: #333;
+  background: #eee;
+  border-radius: 3px;
+  padding: 3px;
+  width: 790px;
+  margin: 10px auto;
+}
+
+.body-content {
+  background-color: #fff;
+  border: 1px solid #CACACA;
+  padding: 30px;
+}
+
+.body-content > *:first-child {
+  margin-top: 0 !important;
+}
+
+a, a:visited {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+  .markdown-body h1
+, .markdown-body h2
+, .markdown-body h3
+, .markdown-body h4
+, .markdown-body h5
+, .markdown-body h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+}
+
+h2 {
+  font-size: 2em;
+  border-bottom: 1px solid #eee;
+  color: #000;
+}
+
+img {
+  max-width: 100%;
+}
+
+hr {
+  background: transparent url("/img/hr.png") repeat-x 0 0;
+  border: 0 none;
+  color: #ccc;
+  height: 4px;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+td, th {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+th {
+  font-weight: bold;
+}
+
+blockquote {
+  border-left: 4px solid #ddd;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote > :last-child, blockquote > :first-child {
+  margin-bottom: 0px;
+}
+
+pre, code {
+  font-size: 13px;
+  font-family: 'UbuntuMono', monospace;
+  white-space: nowrap;
+  margin: 0 2px;
+  padding: 0px 5px;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre > code {
+  white-space: pre;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre;
+  padding: 10px;
+  line-height: 150%;
+  background-color: #f8f8f8;
+  border-color: #ccc;
+}
+
+pre code, pre tt {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  border: none;
+}
+
+  .highlight .c
+, .highlight .cm
+, .highlight .cp
+, .highlight .c1 {
+    color:#999988;
+    font-style:italic;
+}
+
+.highlight .err {
+  color:#a61717;
+  background-color:#e3d2d2
+}
+
+  .highlight .o
+, .highlight .gs
+, .highlight .kc
+, .highlight .kd
+, .highlight .kn
+, .highlight .kp
+, .highlight .kr {
+    font-weight:bold
+}
+
+.highlight .cs {
+  color:#999999;
+  font-weight:bold;
+  font-style:italic
+}
+
+.highlight .gd {
+  color:#000000;
+  background-color:#ffdddd
+}
+
+.highlight .gd .x {
+  color:#000000;
+  background-color:#ffaaaa
+}
+
+.highlight .ge {
+  font-style:italic
+}
+
+  .highlight .gr
+, .highlight .gt {
+    color:#aa0000
+}
+
+  .highlight .gh
+, .highlight .bp {
+    color:#999999
+}
+
+.highlight .gi {
+  color:#000000;
+  background-color:#ddffdd
+}
+
+.highlight .gi .x {
+  color:#000000;
+  background-color:#aaffaa
+}
+
+.highlight .go {
+  color:#888888
+}
+
+  .highlight .gp
+, .highlight .nn {
+    color:#555555
+}
+
+
+.highlight .gu {
+  color:#800080;
+  font-weight:bold
+}
+
+
+.highlight .kt {
+  color:#445588;
+  font-weight:bold
+}
+
+  .highlight .m
+, .highlight .mf
+, .highlight .mh
+, .highlight .mi
+, .highlight .mo
+, .highlight .il {
+    color:#009999
+}
+
+  .highlight .s
+, .highlight .sb
+, .highlight .sc
+, .highlight .sd
+, .highlight .s2
+, .highlight .se
+, .highlight .sh
+, .highlight .si
+, .highlight .sx
+, .highlight .s1 {
+    color:#d14
+}
+
+.highlight .n {
+  color:#333333
+}
+
+  .highlight .na
+, .highlight .no
+, .highlight .nv
+, .highlight .vc
+, .highlight .vg
+, .highlight .vi
+, .highlight .nb {
+    color:#0086B3
+}
+
+.highlight .nc {
+  color:#445588;
+  font-weight:bold
+}
+
+.highlight .ni {
+  color:#800080
+}
+
+  .highlight .ne
+, .highlight .nf {
+    color:#990000;
+    font-weight:bold
+}
+
+.highlight .nt {
+  color:#000080
+}
+
+.highlight .ow {
+  font-weight:bold
+}
+
+.highlight .w {
+  color:#bbbbbb
+}
+
+.highlight .sr {
+  color:#009926
+}
+
+.highlight .ss {
+  color:#990073
+}
+
+.highlight .gc {
+  color:#999;
+  background-color:#EAF2F5
+}</style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="body-content"><h1>LevelDOWN</h1>
+<p><img src="https://twimg0-a.akamaihd.net/profile_images/3360574989/92fc472928b444980408147e5e5db2fa_bigger.png" alt="LevelDB Logo"></p>
+<h2>A Low-level Node.js LevelDB binding</h2>
+<p><a href="http://travis-ci.org/rvagg/node-leveldown"><img src="https://secure.travis-ci.org/rvagg/node-leveldown.png" alt="Build Status"></a></p>
+<p><a href="https://nodei.co/npm/leveldown/"><img src="https://nodei.co/npm/leveldown.png" alt="NPM"></a></p>
+<p>LevelDOWN was extracted from <a href="https://github.com/rvagg/node-levelup">LevelUP</a> and now serves as a stand-alone binding for LevelDB.</p>
+<p>It is <strong>strongly recommended</strong> that you use LevelUP in preference to LevelDOWN unless you have measurable performance reasons to do so. LevelUP is optimised for usability and safety. Although we are working to improve the safety of the LevelDOWN interface it is still easy to crash your Node process if you don&#39;t do things in just the right way.</p>
+<p>See the section on <a href="#safety">safety</a> below for details of known unsafe operations with LevelDOWN.</p>
+<p><a name="platforms"></a></p>
+<h2>Tested &amp; supported platforms</h2>
+<ul>
+<li><strong>Linux</strong> (including ARM platforms such as Raspberry Pi <em>and Kindle!</em>)</li>
+<li><strong>Mac OS</strong></li>
+<li><strong>Solaris</strong> (SmartOS &amp; Nodejitsu)</li>
+<li><strong>Windows</strong><ul>
+<li>Node 0.10 and above only, see <a href="https://github.com/rvagg/node-levelup/issues/5">issue #5</a> for more info</li>
+<li>See installation instructions for <em>node-gyp</em> dependencies <a href="https://github.com/TooTallNate/node-gyp#installation">here</a>, you&#39;ll need these (free) components from Microsoft to compile and run any native Node add-on in Windows.</li>
+</ul>
+</li>
+</ul>
+<p><a name="api"></a></p>
+<h2>API</h2>
+<ul>
+<li><a href="#ctor"><code><b>leveldown()</b></code></a></li>
+<li><a href="#leveldown_open"><code><b>leveldown#open()</b></code></a></li>
+<li><a href="#leveldown_close"><code><b>leveldown#close()</b></code></a></li>
+<li><a href="#leveldown_put"><code><b>leveldown#put()</b></code></a></li>
+<li><a href="#leveldown_get"><code><b>leveldown#get()</b></code></a></li>
+<li><a href="#leveldown_del"><code><b>leveldown#del()</b></code></a></li>
+<li><a href="#leveldown_batch"><code><b>leveldown#batch()</b></code></a></li>
+<li><a href="#leveldown_approximateSize"><code><b>leveldown#approximateSize()</b></code></a></li>
+<li><a href="#leveldown_getProperty"><code><b>leveldown#getProperty()</b></code></a></li>
+<li><a href="#leveldown_iterator"><code><b>leveldown#iterator()</b></code></a></li>
+<li><a href="#iterator_next"><code><b>iterator#next()</b></code></a></li>
+<li><a href="#iterator_end"><code><b>iterator#end()</b></code></a></li>
+<li><a href="#leveldown_destroy"><code><b>leveldown.destroy()</b></code></a></li>
+<li><a href="#leveldown_repair"><code><b>leveldown.repair()</b></code></a></li>
+</ul>
+<hr>
+<p><a name="ctor"></a></p>
+<h3>leveldown(location)</h3>
+<p><code>leveldown()</code> returns a new <strong>LevelDOWN</strong> instance. <code>location</code> is a String pointing to the LevelDB location to be opened.</p>
+<hr>
+<p><a name="leveldown_open"></a></p>
+<h3>leveldown#open([options, ]callback)</h3>
+<p><code>open()</code> is an instance method on an existing database object.</p>
+<p>The <code>callback</code> function will be called with no arguments when the database has been successfully opened, or with a single <code>error</code> argument if the open operation failed for any reason.</p>
+<h4><code>options</code></h4>
+<p>The optional <code>options</code> argument may contain:</p>
+<ul>
+<li><p><code>&#39;createIfMissing&#39;</code> <em>(boolean, default: <code>true</code>)</em>: If <code>true</code>, will initialise an empty database at the specified location if one doesn&#39;t already exist. If <code>false</code> and a database doesn&#39;t exist you will receive an error in your <code>open()</code> callback and your database won&#39;t open.</p>
+</li>
+<li><p><code>&#39;errorIfExists&#39;</code> <em>(boolean, default: <code>false</code>)</em>: If <code>true</code>, you will receive an error in your <code>open()</code> callback if the database exists at the specified location.</p>
+</li>
+<li><p><code>&#39;compression&#39;</code> <em>(boolean, default: <code>true</code>)</em>: If <code>true</code>, all <em>compressible</em> data will be run through the Snappy compression algorithm before being stored. Snappy is very fast and shouldn&#39;t gain much speed by disabling so leave this on unless you have good reason to turn it off.</p>
+</li>
+<li><p><code>&#39;cacheSize&#39;</code> <em>(number, default: `8 </em> 1024 <em> 1024` = 8MB)</em>: The size (in bytes) of the in-memory <a href="http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used">LRU</a> cache with frequently used uncompressed block contents. </p>
+</li>
+</ul>
+<p><strong>Advanced options</strong></p>
+<p>The following options are for advanced performance tuning. Modify them only if you can prove actual benefit for your particular application.</p>
+<ul>
+<li><code>&#39;writeBufferSize&#39;</code> <em>(number, default: `4 </em> 1024 <em> 1024` = 4MB)</em>: The maximum size (in bytes) of the log (in memory and stored in the .log file on disk). Beyond this size, LevelDB will convert the log data to the first level of sorted table files. From the LevelDB documentation:</li>
+</ul>
+<blockquote>
+<p>Larger values increase performance, especially during bulk loads. Up to two write buffers may be held in memory at the same time, so you may wish to adjust this parameter to control memory usage. Also, a larger write buffer will result in a longer recovery time the next time the database is opened.</p>
+</blockquote>
+<ul>
+<li><p><code>&#39;blockSize&#39;</code> <em>(number, default <code>4096</code> = 4K)</em>: The <em>approximate</em> size of the blocks that make up the table files. The size related to uncompressed data (hence &quot;approximate&quot;). Blocks are indexed in the table file and entry-lookups involve reading an entire block and parsing to discover the required entry.</p>
+</li>
+<li><p><code>&#39;maxOpenFiles&#39;</code> <em>(number, default: <code>1000</code>)</em>: The maximum number of files that LevelDB is allowed to have open at a time. If your data store is likely to have a large working set, you may increase this value to prevent file descriptor churn. To calculate the number of files required for your working set, divide your total data by 2MB, as each table file is a maximum of 2MB. </p>
+</li>
+<li><p><code>&#39;blockRestartInterval&#39;</code> <em>(number, default: <code>16</code>)</em>: The number of entries before restarting the &quot;delta encoding&quot; of keys within blocks. Each &quot;restart&quot; point stores the full key for the entry, between restarts, the common prefix of the keys for those entries is omitted. Restarts are similar to the concept of keyframs in video encoding and are used to minimise the amount of space required to store keys. This is particularly helpful when using deep namespacing / prefixing in your keys.</p>
+</li>
+</ul>
+<hr>
+<p><a name="leveldown_close"></a></p>
+<h3>leveldown#close(callback)</h3>
+<p><code>close()</code> is an instance method on an existing database object. The underlying LevelDB database will be closed and the <code>callback</code> function will be called with no arguments if the operation is successful or with a single <code>error</code> argument if the operation failed for any reason.</p>
+<hr>
+<p><a name="leveldown_put"></a></p>
+<h3>leveldown#put(key, value[, options], callback)</h3>
+<p><code>put()</code> is an instance method on an existing database object, used to store new entries, or overwrite existing entries in the LevelDB store.</p>
+<p>The <code>key</code> and <code>value</code> objects may either be <code>String</code>s or Node.js <code>Buffer</code> objects and cannot be <code>undefined</code> or <code>null</code>. Other object types are converted to JavaScript <code>String</code>s with the <code>toString()</code> method and the resulting <code>String</code> <em>may not</em> be a zero-length. A richer set of data-types are catered for in LevelUP.</p>
+<h4><code>options</code></h4>
+<p>The only property currently available on the <code>options</code> object is <code>&#39;sync&#39;</code> <em>(boolean, default: <code>false</code>)</em>. If you provide a <code>&#39;sync&#39;</code> value of <code>true</code> in your <code>options</code> object, LevelDB will perform a synchronous write of the data; although the operation will be asynchronous as far as Node is concerned. Normally, LevelDB passes the data to the operating system for writing and returns immediately, however a synchronous write will use <code>fsync()</code> or equivalent so your callback won&#39;t be triggered until the data is actually on disk. Synchronous filesystem writes are <strong>significantly</strong> slower than asynchronous writes but if you want to be absolutely sure that the data is flushed then you can use <code>&#39;sync&#39;: true</code>.</p>
+<p>The <code>callback</code> function will be called with no arguments if the operation is successful or with a single <code>error</code> argument if the operation failed for any reason.</p>
+<hr>
+<p><a name="leveldown_get"></a></p>
+<h3>leveldown#get(key[, options], callback)</h3>
+<p><code>get()</code> is an instance method on an existing database object, used to fetch individual entries from the LevelDB store.</p>
+<p>The <code>key</code> object may either be a <code>String</code> or a Node.js <code>Buffer</code> object and cannot be <code>undefined</code> or <code>null</code>. Other object types are converted to JavaScript <code>String</code>s with the <code>toString()</code> method and the resulting <code>String</code> <em>may not</em> be a zero-length. A richer set of data-types are catered for in LevelUP.</p>
+<h4><code>options</code></h4>
+<p>The optional <code>options</code> object may contain:</p>
+<ul>
+<li><p><code>&#39;fillCache&#39;</code> <em>(boolean, default: <code>true</code>)</em>: LevelDB will by default fill the in-memory LRU Cache with data from a call to get. Disabling this is done by setting <code>fillCache</code> to <code>false</code>.</p>
+</li>
+<li><p><code>&#39;asBuffer&#39;</code> <em>(boolean, default: <code>true</code>)</em>: Used to determine whether to return the <code>value</code> of the entry as a <code>String</code> or a Node.js <code>Buffer</code> object. Note that converting from a <code>Buffer</code> to a <code>String</code> incurs a cost so if you need a <code>String</code> (and the <code>value</code> can legitimately become a UFT8 string) then you should fetch it as one with <code>asBuffer: true</code> and you&#39;ll avoid this conversion cost.</p>
+</li>
+</ul>
+<p>The <code>callback</code> function will be called with a single <code>error</code> if the operation failed for any reason. If successful the first argument will be <code>null</code> and the second argument will be the <code>value</code> as a <code>String</code> or <code>Buffer</code> depending on the <code>asBuffer</code> option.</p>
+<hr>
+<p><a name="leveldown_del"></a></p>
+<h3>leveldown#del(key[, options], callback)</h3>
+<p><code>del()</code> is an instance method on an existing database object, used to delete entries from the LevelDB store.</p>
+<p>The <code>key</code> object may either be a <code>String</code> or a Node.js <code>Buffer</code> object and cannot be <code>undefined</code> or <code>null</code>. Other object types are converted to JavaScript <code>String</code>s with the <code>toString()</code> method and the resulting <code>String</code> <em>may not</em> be a zero-length. A richer set of data-types are catered for in LevelUP.</p>
+<h4><code>options</code></h4>
+<p>The only property currently available on the <code>options</code> object is <code>&#39;sync&#39;</code> <em>(boolean, default: <code>false</code>)</em>. See <a href="#leveldown_put">leveldown#put()</a> for details about this option.</p>
+<p>The <code>callback</code> function will be called with no arguments if the operation is successful or with a single <code>error</code> argument if the operation failed for any reason.</p>
+<hr>
+<p><a name="leveldown_batch"></a></p>
+<h3>leveldown#batch(operations[, options], callback)</h3>
+<p><code>batch()</code> is an instance method on an existing database object. Used for very fast bulk-write operations (both <em>put</em> and <em>delete</em>). The <code>operations</code> argument should be an <code>Array</code> containing a list of operations to be executed sequentially, although as a whole they are performed as an atomic operation inside LevelDB. Each operation is contained in an object having the following properties: <code>type</code>, <code>key</code>, <code>value</code>, where the <em>type</em> is either <code>&#39;put&#39;</code> or <code>&#39;del&#39;</code>. In the case of <code>&#39;del&#39;</code> the <code>&#39;value&#39;</code> property is ignored. Any entries with a <code>&#39;key&#39;</code> of <code>null</code> or <code>undefined</code> will cause an error to be returned on the <code>callback</code> and any <code>&#39;type&#39;: &#39;put&#39;</code> entry with a <code>&#39;value&#39;</code> of <code>null</code> or <code>undefined</code> will return an error. See <a href="https://github.com/rvagg/node-levelup#batch">LevelUP</a> for full documentation on how this works in practice.</p>
+<h4><code>options</code></h4>
+<p>The only property currently available on the <code>options</code> object is <code>&#39;sync&#39;</code> <em>(boolean, default: <code>false</code>)</em>. See <a href="#leveldown_put">leveldown#put()</a> for details about this option.</p>
+<p>The <code>callback</code> function will be called with no arguments if the operation is successful or with a single <code>error</code> argument if the operation failed for any reason.</p>
+<hr>
+<p><a name="leveldown_approximateSize"></a></p>
+<h3>leveldown#approximateSize(start, end, callback)</h3>
+<p><code>approximateSize()</code> is an instance method on an existing database object. Used to get the approximate number of bytes of file system space used by the range <code>[start..end)</code>. The result may not include recently written data.</p>
+<p>The <code>start</code> and <code>end</code> parameters may be either <code>String</code> or Node.js <code>Buffer</code> objects representing keys in the LevelDB store.</p>
+<p>The <code>callback</code> function will be called with no arguments if the operation is successful or with a single <code>error</code> argument if the operation failed for any reason.</p>
+<hr>
+<p><a name="leveldown_getProperty"></a></p>
+<h3>leveldown#getProperty(property)</h3>
+<p><code>getProperty</code> can be used to get internal details from LevelDB. When issued with a valid property string, a readable string will be returned (this method is synchronous).</p>
+<p>Currently, the only valid properties are:</p>
+<ul>
+<li><p><b><code>&#39;leveldb.num-files-at-levelN&#39;</code></b>: return the number of files at level <em>N</em>, where N is an integer representing a valid level (e.g. &quot;0&quot;).</p>
+</li>
+<li><p><b><code>&#39;leveldb.stats&#39;</code></b>: returns a multi-line string describing statistics about LevelDB&#39;s internal operation.</p>
+</li>
+<li><p><b><code>&#39;leveldb.sstables&#39;</code></b>: returns a multi-line string describing all of the <em>sstables</em> that make up contents of the current database.</p>
+</li>
+</ul>
+<hr>
+<p><a name="leveldown_iterator"></a></p>
+<h3>leveldown#iterator([options])</h3>
+<p><code>iterator()</code> is an instance method on an existing database object. It returns a new <strong>Iterator</strong> instance.</p>
+<h4><code>options</code></h4>
+<p>The optional <code>options</code> object may contain:</p>
+<ul>
+<li><p><code>&#39;start&#39;</code>: the key you wish to start the read at. By default it will start at the beginning of the store. Note that the <em>start</em> doesn&#39;t have to be an actual key that exists, LevelDB will simply find the <em>next</em> key, greater than the key you provide.</p>
+</li>
+<li><p><code>&#39;end&#39;</code>: the key you wish to end the read on. By default it will continue until the end of the store. Again, the <em>end</em> doesn&#39;t have to be an actual key as an (inclusive) <code>&lt;=</code>-type operation is performed to detect the end. You can also use the <code>destroy()</code> method instead of supplying an <code>&#39;end&#39;</code> parameter to achieve the same effect.</p>
+</li>
+<li><p><code>&#39;reverse&#39;</code> <em>(boolean, default: <code>false</code>)</em>: a boolean, set to true if you want the stream to go in reverse order. Beware that due to the way LevelDB works, a reverse seek will be slower than a forward seek.</p>
+</li>
+<li><p><code>&#39;keys&#39;</code> <em>(boolean, default: <code>true</code>)</em>: whether the callback to the <code>next()</code> method should receive a non-null <code>key</code>. There is a small efficiency gain if you ultimately don&#39;t care what the keys are as they don&#39;t need to be converted and copied into JavaScript.</p>
+</li>
+<li><p><code>&#39;values&#39;</code> <em>(boolean, default: <code>true</code>)</em>: whether the callback to the <code>next()</code> method should receive a non-null <code>value</code>. There is a small efficiency gain if you ultimately don&#39;t care what the values are as they don&#39;t need to be converted and copied into JavaScript.</p>
+</li>
+<li><p><code>&#39;limit&#39;</code> <em>(number, default: <code>-1</code>)</em>: limit the number of results collected by this iterator. This number represents a <em>maximum</em> number of results and may not be reached if you get to the end of the store or your <code>&#39;end&#39;</code> value first. A value of <code>-1</code> means there is no limit.</p>
+</li>
+<li><p><code>&#39;fillCache&#39;</code> <em>(boolean, default: <code>false</code>)</em>: wheather LevelDB&#39;s LRU-cache should be filled with data read.</p>
+</li>
+<li><p><code>&#39;keyAsBuffer&#39;</code> <em>(boolean, default: <code>true</code>)</em>: Used to determine whether to return the <code>key</code> of each entry as a <code>String</code> or a Node.js <code>Buffer</code> object. Note that converting from a <code>Buffer</code> to a <code>String</code> incurs a cost so if you need a <code>String</code> (and the <code>value</code> can legitimately become a UFT8 string) then you should fetch it as one.</p>
+</li>
+<li><p><code>&#39;valueAsBuffer&#39;</code> <em>(boolean, default: <code>true</code>)</em>: Used to determine whether to return the <code>value</code> of each entry as a <code>String</code> or a Node.js <code>Buffer</code> object.</p>
+</li>
+</ul>
+<hr>
+<p><a name="iterator_next"></a></p>
+<h3>iterator#next(callback)</h3>
+<p><code>next()</code> is an instance method on an existing iterator object, used to increment the underlying LevelDB iterator and return the entry at that location.</p>
+<p>the <code>callback</code> function will be called with no arguments in any of the following situations:</p>
+<ul>
+<li>the iterator comes to the end of the store</li>
+<li>the <code>end</code> key has been reached; or</li>
+<li>the <code>limit</code> has been reached</li>
+</ul>
+<p>Otherwise, the <code>callback</code> function will be called with the following 3 arguments:</p>
+<ul>
+<li><code>error</code> - any error that occurs while incrementing the iterator.</li>
+<li><code>key</code> - either a <code>String</code> or a Node.js <code>Buffer</code> object depending on the <code>keyAsBuffer</code> argument when the <code>iterator()</code> was called.</li>
+<li><code>value</code> - either a <code>String</code> or a Node.js <code>Buffer</code> object depending on the <code>valueAsBuffer</code> argument when the <code>iterator()</code> was called.</li>
+</ul>
+<hr>
+<p><a name="iterator_end"></a></p>
+<h3>iterator#end(callback)</h3>
+<p><code>end()</code> is an instance method on an existing iterator object. The underlying LevelDB iterator will be deleted and the <code>callback</code> function will be called with no arguments if the operation is successful or with a single <code>error</code> argument if the operation failed for any reason.</p>
+<hr>
+<p><a name="leveldown_destroy"></a></p>
+<h3>leveldown.destroy(location, callback)</h3>
+<p><code>destroy()</code> is used to completely remove an existing LevelDB database directory. You can use this function in place of a full directory <em>rm</em> if you want to be sure to only remove LevelDB-related files. If the directory only contains LevelDB files, the directory itself will be removed as well. If there are additional, non-LevelDB files in the directory, those files, and the directory, will be left alone.</p>
+<p>The callback will be called when the destroy operation is complete, with a possible <code>error</code> argument.</p>
+<p><a name="leveldown_repair"></a></p>
+<h3>leveldown.repair(location, callback)</h3>
+<p><code>repair()</code> can be used to attempt a restoration of a damaged LevelDB store. From the LevelDB documentation:</p>
+<blockquote>
+<p>If a DB cannot be opened, you may attempt to call this method to resurrect as much of the contents of the database as possible. Some data may be lost, so be careful when calling this function on a database that contains important information.</p>
+</blockquote>
+<p>You will find information on the <em>repair</em> operation in the <em>LOG</em> file inside the store directory. </p>
+<p>A <code>repair()</code> can also be used to perform a compaction of the LevelDB log into table files.</p>
+<p>The callback will be called when the repair operation is complete, with a possible <code>error</code> argument.</p>
+<p><a name="safety"></a></p>
+<h2>Safety</h2>
+<h3>Database state</h3>
+<p>Currently LevelDOWN does not track the state of the underlying LevelDB instance. This means that calling <code>open()</code> on an already open database may result in an error. Likewise, calling any other operation on a non-open database may result in an error.</p>
+<p>LevelUP currently tracks and manages state and will prevent out-of-state operations from being send to LevelDOWN. If you use LevelDOWN directly then you must track and manage state for yourself.</p>
+<p><a name="support"></a></p>
+<h2>Getting support</h2>
+<p>There are multiple ways you can find help in using LevelDB in Node.js:</p>
+<ul>
+<li><strong>IRC:</strong> you&#39;ll find an active group of LevelUP users in the <strong>##leveldb</strong> channel on Freenode, including most of the contributors to this project.</li>
+<li><strong>Mailing list:</strong> there is an active <a href="https://groups.google.com/forum/#!forum/node-levelup">Node.js LevelDB</a> Google Group.</li>
+<li><strong>GitHub:</strong> you&#39;re welcome to open an issue here on this GitHub repository if you have a question.</li>
+</ul>
+<p><a name="contributing"></a></p>
+<h2>Contributing</h2>
+<p>LevelDOWN is an <strong>OPEN Open Source Project</strong>. This means that:</p>
+<blockquote>
+<p>Individuals making significant and valuable contributions are given commit-access to the project to contribute as they see fit. This project is more like an open wiki than a standard guarded open source project.</p>
+</blockquote>
+<p>See the <a href="https://github.com/rvagg/node-leveldown/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> file for more details.</p>
+<h3>Contributors</h3>
+<p>LevelDOWN is only possible due to the excellent work of the following contributors:</p>
+<table><tbody>
+<tr><th align="left">Rod Vagg</th><td><a href="https://github.com/rvagg">GitHub/rvagg</a></td><td><a href="http://twitter.com/rvagg">Twitter/@rvagg</a></td></tr>
+<tr><th align="left">John Chesley</th><td><a href="https://github.com/chesles/">GitHub/chesles</a></td><td><a href="http://twitter.com/chesles">Twitter/@chesles</a></td></tr>
+<tr><th align="left">Jake Verbaten</th><td><a href="https://github.com/raynos">GitHub/raynos</a></td><td><a href="http://twitter.com/raynos2">Twitter/@raynos2</a></td></tr>
+<tr><th align="left">Dominic Tarr</th><td><a href="https://github.com/dominictarr">GitHub/dominictarr</a></td><td><a href="http://twitter.com/dominictarr">Twitter/@dominictarr</a></td></tr>
+<tr><th align="left">Max Ogden</th><td><a href="https://github.com/maxogden">GitHub/maxogden</a></td><td><a href="http://twitter.com/maxogden">Twitter/@maxogden</a></td></tr>
+<tr><th align="left">Lars-Magnus Skog</th><td><a href="https://github.com/ralphtheninja">GitHub/ralphtheninja</a></td><td><a href="http://twitter.com/ralphtheninja">Twitter/@ralphtheninja</a></td></tr>
+<tr><th align="left">David Björklund</th><td><a href="https://github.com/kesla">GitHub/kesla</a></td><td><a href="http://twitter.com/david_bjorklund">Twitter/@david_bjorklund</a></td></tr>
+<tr><th align="left">Julian Gruber</th><td><a href="https://github.com/juliangruber">GitHub/juliangruber</a></td><td><a href="http://twitter.com/juliangruber">Twitter/@juliangruber</a></td></tr>
+<tr><th align="left">Paolo Fragomeni</th><td><a href="https://github.com/hij1nx">GitHub/hij1nx</a></td><td><a href="http://twitter.com/hij1nx">Twitter/@hij1nx</a></td></tr>
+<tr><th align="left">Anton Whalley</th><td><a href="https://github.com/No9">GitHub/No9</a></td><td><a href="https://twitter.com/antonwhalley">Twitter/@antonwhalley</a></td></tr>
+<tr><th align="left">Matteo Collina</th><td><a href="https://github.com/mcollina">GitHub/mcollina</a></td><td><a href="https://twitter.com/matteocollina">Twitter/@matteocollina</a></td></tr>
+<tr><th align="left">Pedro Teixeira</th><td><a href="https://github.com/pgte">GitHub/pgte</a></td><td><a href="https://twitter.com/pgte">Twitter/@pgte</a></td></tr>
+</tbody></table>
+
+<h3>Windows</h3>
+<p>A large portion of the Windows support comes from code by <a href="http://blog.kowalczyk.info/">Krzysztof Kowalczyk</a> <a href="https://twitter.com/kjk">@kjk</a>, see his Windows LevelDB port <a href="http://code.google.com/r/kkowalczyk-leveldb/">here</a>. If you&#39;re using LevelUP on Windows, you should give him your thanks!</p>
+<p><a name="licence"></a></p>
+<h2>Licence &amp; copyright</h2>
+<p>Copyright (c) 2012-2013 LevelDOWN contributors (listed above).</p>
+<p>LevelDOWN is licensed under an MIT +no-false-attribs license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.</p>
+<p><em>LevelDOWN builds on the excellent work of the LevelDB and Snappy teams from Google and additional contributors. LevelDB and Snappy are both issued under the <a href="http://opensource.org/licenses/BSD-3-Clause">New BSD Licence</a>.</em></p>
+</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+Write a program that opens a LevelDB data-store using `{bold}level{/bold}`. Read and
+print to the console the values of all the entries in the store with a
+key of the form 'gibberish{italic}X{/italic}', where '{italic}X{/italic}' is an integer starting at {bold}1{/bold} and
+ending at some random number {bold}>1{/bold}.
+
+The full path to the data-store will be provided to your program as
+the first command-line argument.
+
+----------------------------------------------------------------------
+HINTS:
+
+`{bold}level{/bold}` is a package that bundles both `{bold}levelup{/bold}`, the high-level data-
+store API and `{bold}leveldown{/bold}`, the low-level LevelDB binding.
+
+Read more about Level, LevelUP and LevelDOWN here:
+  http://npm.im/level
+  http://npm.im/levelup
+  http://npm.im/leveldown
+Or off-line on your local filesystem:
+  {rootdir}/docs/level.html
+  {rootdir}/docs/levelup.html
+  {rootdir}/docs/leveldown.html
+
+You simply need to `npm install level` to get all three packages.
+
+If you don't have an Internet connection, simply make a `node_modules`
+directory and copy the entirety of the following folder into it:
+  {rootdir}/node_modules/level
+
+Open a data-store by invoking `level()` and passing in the directory
+containing the data. The function returns a new {italic}LevelUP{/italic} instance.
+
+All {italic}LevelUP{/italic} methods are asynchronous. To {italic}get{/italic} a value out of the
+data-store, use the `.get(key, callback)` method:
+
+  var db = level('/path/to/db/')
+  db.get('foo', function (err, value) {
+    console.log('foo =', value)
+  })
+
+Errors can include I/O errors but also `NotFoundError`, which you can
+check for with `err.name == 'NotFoundError'`.

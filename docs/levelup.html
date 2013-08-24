@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LevelUP</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style type="text/css">
+/* most of normalize.css */
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}[hidden],template{display:none;}html{font-family:sans-serif;/*1*/-ms-text-size-adjust:100%;/*2*/-webkit-text-size-adjust:100%;/*2*/}body{margin:0;}a{background:transparent;}a:focus{outline:thindotted;}a:active,a:hover{outline:0;}h1{font-size:2em;margin:0.67em0;}abbr[title]{border-bottom:1pxdotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em;}pre{white-space:pre-wrap;}q{quotes:"\201C""\201D""\2018""\2019";}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}table{border-collapse:collapse;border-spacing:0;}
+
+html {
+  font: 14px 'Helvetica Neue', Helvetica, arial, freesans, clean, sans-serif;
+}
+
+.container {
+  line-height: 1.6;
+  color: #333;
+  background: #eee;
+  border-radius: 3px;
+  padding: 3px;
+  width: 790px;
+  margin: 10px auto;
+}
+
+.body-content {
+  background-color: #fff;
+  border: 1px solid #CACACA;
+  padding: 30px;
+}
+
+.body-content > *:first-child {
+  margin-top: 0 !important;
+}
+
+a, a:visited {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+  .markdown-body h1
+, .markdown-body h2
+, .markdown-body h3
+, .markdown-body h4
+, .markdown-body h5
+, .markdown-body h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+}
+
+h2 {
+  font-size: 2em;
+  border-bottom: 1px solid #eee;
+  color: #000;
+}
+
+img {
+  max-width: 100%;
+}
+
+hr {
+  background: transparent url("/img/hr.png") repeat-x 0 0;
+  border: 0 none;
+  color: #ccc;
+  height: 4px;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+td, th {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+th {
+  font-weight: bold;
+}
+
+blockquote {
+  border-left: 4px solid #ddd;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote > :last-child, blockquote > :first-child {
+  margin-bottom: 0px;
+}
+
+pre, code {
+  font-size: 13px;
+  font-family: 'UbuntuMono', monospace;
+  white-space: nowrap;
+  margin: 0 2px;
+  padding: 0px 5px;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre > code {
+  white-space: pre;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre;
+  padding: 10px;
+  line-height: 150%;
+  background-color: #f8f8f8;
+  border-color: #ccc;
+}
+
+pre code, pre tt {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  border: none;
+}
+
+  .highlight .c
+, .highlight .cm
+, .highlight .cp
+, .highlight .c1 {
+    color:#999988;
+    font-style:italic;
+}
+
+.highlight .err {
+  color:#a61717;
+  background-color:#e3d2d2
+}
+
+  .highlight .o
+, .highlight .gs
+, .highlight .kc
+, .highlight .kd
+, .highlight .kn
+, .highlight .kp
+, .highlight .kr {
+    font-weight:bold
+}
+
+.highlight .cs {
+  color:#999999;
+  font-weight:bold;
+  font-style:italic
+}
+
+.highlight .gd {
+  color:#000000;
+  background-color:#ffdddd
+}
+
+.highlight .gd .x {
+  color:#000000;
+  background-color:#ffaaaa
+}
+
+.highlight .ge {
+  font-style:italic
+}
+
+  .highlight .gr
+, .highlight .gt {
+    color:#aa0000
+}
+
+  .highlight .gh
+, .highlight .bp {
+    color:#999999
+}
+
+.highlight .gi {
+  color:#000000;
+  background-color:#ddffdd
+}
+
+.highlight .gi .x {
+  color:#000000;
+  background-color:#aaffaa
+}
+
+.highlight .go {
+  color:#888888
+}
+
+  .highlight .gp
+, .highlight .nn {
+    color:#555555
+}
+
+
+.highlight .gu {
+  color:#800080;
+  font-weight:bold
+}
+
+
+.highlight .kt {
+  color:#445588;
+  font-weight:bold
+}
+
+  .highlight .m
+, .highlight .mf
+, .highlight .mh
+, .highlight .mi
+, .highlight .mo
+, .highlight .il {
+    color:#009999
+}
+
+  .highlight .s
+, .highlight .sb
+, .highlight .sc
+, .highlight .sd
+, .highlight .s2
+, .highlight .se
+, .highlight .sh
+, .highlight .si
+, .highlight .sx
+, .highlight .s1 {
+    color:#d14
+}
+
+.highlight .n {
+  color:#333333
+}
+
+  .highlight .na
+, .highlight .no
+, .highlight .nv
+, .highlight .vc
+, .highlight .vg
+, .highlight .vi
+, .highlight .nb {
+    color:#0086B3
+}
+
+.highlight .nc {
+  color:#445588;
+  font-weight:bold
+}
+
+.highlight .ni {
+  color:#800080
+}
+
+  .highlight .ne
+, .highlight .nf {
+    color:#990000;
+    font-weight:bold
+}
+
+.highlight .nt {
+  color:#000080
+}
+
+.highlight .ow {
+  font-weight:bold
+}
+
+.highlight .w {
+  color:#bbbbbb
+}
+
+.highlight .sr {
+  color:#009926
+}
+
+.highlight .ss {
+  color:#990073
+}
+
+.highlight .gc {
+  color:#999;
+  background-color:#EAF2F5
+}</style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="body-content"><h1>LevelUP</h1>
+<p><img src="https://twimg0-a.akamaihd.net/profile_images/3360574989/92fc472928b444980408147e5e5db2fa_bigger.png" alt="LevelDB Logo"></p>
+<h2>Fast &amp; simple storage - a Node.js-style LevelDB wrapper</h2>
+<p><a href="http://travis-ci.org/rvagg/node-levelup"><img src="https://secure.travis-ci.org/rvagg/node-levelup.png" alt="Build Status"></a></p>
+<p><a href="https://nodei.co/npm/levelup/"><img src="https://nodei.co/npm/levelup.png?stars&amp;downloads" alt="NPM"></a> <a href="https://nodei.co/npm/levelup/"><img src="https://nodei.co/npm-dl/levelup.png" alt="NPM"></a></p>
+<ul>
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#leveldown">Relationship to LevelDOWN</a></li>
+<li><a href="#platforms">Tested &amp; supported platforms</a></li>
+<li><a href="#basic">Basic usage</a></li>
+<li><a href="#api">API</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#json">JSON data</a></li>
+<li><a href="#custom_encodings">Custom encodings</a></li>
+<li><a href="#extending">Extending LevelUP</a></li>
+<li><a href="#multiproc">Multi-process access</a></li>
+<li><a href="#support">Getting support</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#licence">Licence &amp; copyright</a></li>
+</ul>
+<p><a name="intro"></a></p>
+<h2>Introduction</h2>
+<p><strong><a href="http://code.google.com/p/leveldb/">LevelDB</a></strong> is a simple key/value data store built by Google, inspired by BigTable. It&#39;s used in Google Chrome and many other products. LevelDB supports arbitrary byte arrays as both keys and values, singular <em>get</em>, <em>put</em> and <em>delete</em> operations, <em>batched put and delete</em>, bi-directional iterators and simple compression using the very fast <a href="http://code.google.com/p/snappy/">Snappy</a> algorithm.</p>
+<p><strong>LevelUP</strong> aims to expose the features of LevelDB in a <strong>Node.js-friendly way</strong>. All standard <code>Buffer</code> encoding types are supported, as is a special JSON encoding. LevelDB&#39;s iterators are exposed as a Node.js-style <strong>readable stream</strong> a matching <strong>writeable stream</strong> converts writes to <em>batch</em> operations.</p>
+<p>LevelDB stores entries <strong>sorted lexicographically by keys</strong>. This makes LevelUP&#39;s <a href="#createReadStream"><code>ReadStream</code></a> interface a very powerful query mechanism.</p>
+<p><strong>LevelUP</strong> is an <strong>OPEN Open Source Project</strong>, see the <a href="#contributing">Contributing</a> section to find out what this means.</p>
+<p><a name="leveldown"></a></p>
+<h2>Relationship to LevelDOWN</h2>
+<p>LevelUP is designed to be backed by <strong><a href="https://github.com/rvagg/node-leveldown/">LevelDOWN</a></strong> which provides a pure C++ binding to LevelDB and can be used as a stand-alone package if required.</p>
+<p><strong>As of version 0.9, LevelUP no longer requires LevelDOWN as a dependency so you must <code>npm install leveldown</code> when you install LevelUP.</strong></p>
+<p>LevelDOWN is now optional because LevelUP can be used with alternative backends, such as <strong><a href="https://github.com/maxogden/level.js">level.js</a></strong> in the browser or <a href="https://github.com/rvagg/node-memdown">MemDOWN</a> for a pure in-memory store.</p>
+<p>LevelUP will look for LevelDOWN and throw an error if it can&#39;t find it in its Node <code>require()</code> path. It will also tell you if the installed version of LevelDOWN is incompatible.</p>
+<p><strong>The <a href="https://github.com/level/level">level</a> package is available as an alternative installation mechanism.</strong> Install it instead to automatically get both LevelUP &amp; LevelDOWN. It exposes LevelUP on its export (i.e. you can <code>var leveldb = require(&#39;level&#39;)</code>).</p>
+<p><a name="platforms"></a></p>
+<h2>Tested &amp; supported platforms</h2>
+<ul>
+<li><strong>Linux</strong>: including ARM platforms such as Raspberry Pi <em>and Kindle!</em></li>
+<li><strong>Mac OS</strong></li>
+<li><strong>Solaris</strong>: including Joyent&#39;s SmartOS &amp; Nodejitsu</li>
+<li><strong>Windows</strong>: Node 0.10 and above only. See installation instructions for <em>node-gyp&#39;s</em> dependencies <a href="https://github.com/TooTallNate/node-gyp#installation">here</a>, you&#39;ll need these (free) components from Microsoft to compile and run any native Node add-on in Windows.</li>
+</ul>
+<p><a name="basic"></a></p>
+<h2>Basic usage</h2>
+<p>First you need to install LevelUP!</p>
+<div class="highlight"><pre><span class="nv">$ </span>npm install levelup leveldown
+</pre></div>
+
+<p>Or</p>
+<div class="highlight"><pre><span class="nv">$ </span>npm install level
+</pre></div>
+
+<p><em>(this second option requires you to use LevelUP by calling <code>var levelup = require(&#39;level&#39;)</code>)</em></p>
+<p>All operations are asynchronous although they don&#39;t necessarily require a callback if you don&#39;t need to know when the operation was performed.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">levelup</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;levelup&#39;</span><span class="p">)</span>
+
+<span class="c1">// 1) Create our database, supply location and options.</span>
+<span class="c1">//    This will create or open the underlying LevelDB store.</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">levelup</span><span class="p">(</span><span class="s1">&#39;./mydb&#39;</span><span class="p">)</span>
+
+<span class="c1">// 2) put a key &amp; value</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;LevelUP&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Ooops!&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="c1">// some kind of I/O error</span>
+
+  <span class="c1">// 3) fetch by key</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Ooops!&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="c1">// likely the key was not found</span>
+
+    <span class="c1">// ta da!</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;name=&#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</pre></div>
+
+<p><a name="api"></a></p>
+<h2>API</h2>
+<ul>
+<li><a href="#ctor"><code><b>levelup()</b></code></a></li>
+<li><a href="#open"><code>db.<b>open()</b></code></a></li>
+<li><a href="#close"><code>db.<b>close()</b></code></a></li>
+<li><a href="#put"><code>db.<b>put()</b></code></a></li>
+<li><a href="#get"><code>db.<b>get()</b></code></a></li>
+<li><a href="#del"><code>db.<b>del()</b></code></a></li>
+<li><a href="#batch"><code>db.<b>batch()</b></code> <em>(array form)</em></a></li>
+<li><a href="#batch_chained"><code>db.<b>batch()</b></code> <em>(chained form)</em></a></li>
+<li><a href="#isOpen"><code>db.<b>isOpen()</b></code></a></li>
+<li><a href="#isClosed"><code>db.<b>isClosed()</b></code></a></li>
+<li><a href="#createReadStream"><code>db.<b>createReadStream()</b></code></a></li>
+<li><a href="#createKeyStream"><code>db.<b>createKeyStream()</b></code></a></li>
+<li><a href="#createValueStream"><code>db.<b>createValueStream()</b></code></a></li>
+<li><a href="#createWriteStream"><code>db.<b>createWriteStream()</b></code></a></li>
+</ul>
+<h3>Special operations exposed by LevelDOWN</h3>
+<ul>
+<li><a href="#approximateSize"><code>db.db.<b>approximateSize()</b></code></a></li>
+<li><a href="#getProperty"><code>db.db.<b>getProperty()</b></code></a></li>
+<li><a href="#destroy"><code><b>leveldown.destroy()</b></code></a></li>
+<li><a href="#repair"><code><b>leveldown.repair()</b></code></a></li>
+</ul>
+<hr>
+<p><a name="ctor"></a></p>
+<h3>levelup(location[, options[, callback]])</h3>
+<p><code>levelup()</code> is the main entry point for creating a new LevelUP instance and opening the underlying store with LevelDB.</p>
+<p>This function returns a new instance of LevelUP and will also initiate an <a href="#open"><code>open()</code></a> operation. Opening the database is an asynchronous operation which will trigger your callback if you provide one. The callback should take the form: <code>function (err, db) {}</code> where the <code>db</code> is the LevelUP instance. If you don&#39;t provide a callback, any read &amp; write operations are simply queued internally until the database is fully opened.</p>
+<p>This leads to two alternative ways of managing a new LevelUP instance:</p>
+<div class="highlight"><pre><span class="nx">levelup</span><span class="p">(</span><span class="nx">location</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">db</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;foo does not exist&#39;</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;got foo =&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+
+<span class="c1">// vs the equivalent:</span>
+
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">levelup</span><span class="p">(</span><span class="nx">location</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="c1">// will throw if an error occurs</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;foo does not exist&#39;</span><span class="p">)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;got foo =&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+
+<p>The <code>location</code> argument is available as a read-only property on the returned LevelUP instance.</p>
+<h4><code>options</code></h4>
+<p><code>levelup()</code> takes an optional options object as its second argument; the following properties are accepted:</p>
+<ul>
+<li><p><code>&#39;createIfMissing&#39;</code> <em>(boolean, default: <code>true</code>)</em>: If <code>true</code>, will initialise an empty database at the specified location if one doesn&#39;t already exist. If <code>false</code> and a database doesn&#39;t exist you will receive an error in your <code>open()</code> callback and your database won&#39;t open.</p>
+</li>
+<li><p><code>&#39;errorIfExists&#39;</code> <em>(boolean, default: <code>false</code>)</em>: If <code>true</code>, you will receive an error in your <code>open()</code> callback if the database exists at the specified location.</p>
+</li>
+<li><p><code>&#39;compression&#39;</code> <em>(boolean, default: <code>true</code>)</em>: If <code>true</code>, all <em>compressible</em> data will be run through the Snappy compression algorithm before being stored. Snappy is very fast and shouldn&#39;t gain much speed by disabling so leave this on unless you have good reason to turn it off.</p>
+</li>
+<li><p><code>&#39;cacheSize&#39;</code> <em>(number, default: `8 </em> 1024 <em> 1024`)</em>: The size (in bytes) of the in-memory <a href="http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used">LRU</a> cache with frequently used uncompressed block contents. </p>
+</li>
+<li><p><code>&#39;keyEncoding&#39;</code> and <code>&#39;valueEncoding&#39;</code> <em>(string, default: <code>&#39;utf8&#39;</code>)</em>: The encoding of the keys and values passed through Node.js&#39; <code>Buffer</code> implementation (see <a href="http://nodejs.org/docs/latest/api/buffer.html#buffer_buf_tostring_encoding_start_end">Buffer#toString()</a>).</p>
+<p><code>&#39;utf8&#39;</code> is the default encoding for both keys and values so you can simply pass in strings and expect strings from your <code>get()</code> operations. You can also pass <code>Buffer</code> objects as keys and/or values and conversion will be performed.</p>
+<p>Supported encodings are: hex, utf8, ascii, binary, base64, ucs2, utf16le.</p>
+<p><code>&#39;json&#39;</code> encoding is also supported, see below.</p>
+</li>
+<li><p><code>&#39;db&#39;</code> <em>(object, default: LevelDOWN)</em>: LevelUP is backed by <a href="https://github.com/rvagg/node-leveldown/">LevelDOWN</a> to provide an interface to LevelDB. You can completely replace the use of LevelDOWN by providing a &quot;factory&quot; function that will return a LevelDOWN API compatible object given a <code>location</code> argument. For further information, see <a href="https://github.com/rvagg/node-memdown/">MemDOWN</a>, a fully LevelDOWN API compatible replacement that uses a memory store rather than LevelDB. Also see <a href="http://github.com/rvagg/node-abstract-leveldown">Abstract LevelDOWN</a>, a partial implementation of the LevelDOWN API that can be used as a base prototype for a LevelDOWN substitute.</p>
+</li>
+</ul>
+<p>Additionally, each of the main interface methods accept an optional options object that can be used to override <code>&#39;keyEncoding&#39;</code> and <code>&#39;valueEncoding&#39;</code>.</p>
+<hr>
+<p><a name="open"></a></p>
+<h3>db.open([callback])</h3>
+<p><code>open()</code> opens the underlying LevelDB store. In general <strong>you should never need to call this method directly</strong> as it&#39;s automatically called by <a href="#ctor"><code>levelup()</code></a>.</p>
+<p>However, it is possible to <em>reopen</em> a database after it has been closed with <a href="#close"><code>close()</code></a>, although this is not generally advised.</p>
+<hr>
+<p><a name="close"></a></p>
+<h3>db.close([callback])</h3>
+<p><code>close()</code> closes the underlying LevelDB store. The callback will receive any error encountered during closing as the first argument.</p>
+<p>You should always clean up your LevelUP instance by calling <code>close()</code> when you no longer need it to free up resources. A LevelDB store cannot be opened by multiple instances of LevelDB/LevelUP simultaneously.</p>
+<hr>
+<p><a name="put"></a></p>
+<h3>db.put(key, value[, options][, callback])</h3>
+<p><code>put()</code> is the primary method for inserting data into the store. Both the <code>key</code> and <code>value</code> can be arbitrary data objects.</p>
+<p>The callback argument is optional but if you don&#39;t provide one and an error occurs then expect the error to be thrown.</p>
+<h4><code>options</code></h4>
+<p>Encoding of the <code>key</code> and <code>value</code> objects will adhere to <code>&#39;keyEncoding&#39;</code> and <code>&#39;valueEncoding&#39;</code> options provided to <a href="#ctor"><code>levelup()</code></a>, although you can provide alternative encoding settings in the options for <code>put()</code> (it&#39;s recommended that you stay consistent in your encoding of keys and values in a single store).</p>
+<p>If you provide a <code>&#39;sync&#39;</code> value of <code>true</code> in your <code>options</code> object, LevelDB will perform a synchronous write of the data; although the operation will be asynchronous as far as Node is concerned. Normally, LevelDB passes the data to the operating system for writing and returns immediately, however a synchronous write will use <code>fsync()</code> or equivalent so your callback won&#39;t be triggered until the data is actually on disk. Synchronous filesystem writes are <strong>significantly</strong> slower than asynchronous writes but if you want to be absolutely sure that the data is flushed then you can use <code>&#39;sync&#39;: true</code>.</p>
+<hr>
+<p><a name="get"></a></p>
+<h3>db.get(key[, options][, callback])</h3>
+<p><code>get()</code> is the primary method for fetching data from the store. The <code>key</code> can be an arbitrary data object but if it doesn&#39;t exist in the store then the callback will receive an error as its first argument.</p>
+<h4><code>options</code></h4>
+<p>Encoding of the <code>key</code> object will adhere to the <code>&#39;keyEncoding&#39;</code> option provided to <a href="#ctor"><code>levelup()</code></a>, although you can provide alternative encoding settings in the options for <code>get()</code> (it&#39;s recommended that you stay consistent in your encoding of keys and values in a single store).</p>
+<p>LevelDB will by default fill the in-memory LRU Cache with data from a call to get. Disabling this is done by setting <code>fillCache</code> to <code>false</code>. </p>
+<hr>
+<p><a name="del"></a></p>
+<h3>db.del(key[, options][, callback])</h3>
+<p><code>del()</code> is the primary method for removing data from the store.</p>
+<h4><code>options</code></h4>
+<p>Encoding of the <code>key</code> object will adhere to the <code>&#39;keyEncoding&#39;</code> option provided to <a href="#ctor"><code>levelup()</code></a>, although you can provide alternative encoding settings in the options for <code>del()</code> (it&#39;s recommended that you stay consistent in your encoding of keys and values in a single store).</p>
+<p>A <code>&#39;sync&#39;</code> option can also be passed, see <a href="#put"><code>put()</code></a> for details on how this works.</p>
+<hr>
+<p><a name="batch"></a></p>
+<h3>db.batch(array[, options][, callback]) <em>(array form)</em></h3>
+<p><code>batch()</code> can be used for very fast bulk-write operations (both <em>put</em> and <em>delete</em>). The <code>array</code> argument should contain a list of operations to be executed sequentially, although as a whole they are performed as an atomic operation inside LevelDB. Each operation is contained in an object having the following properties: <code>type</code>, <code>key</code>, <code>value</code>, where the <em>type</em> is either <code>&#39;put&#39;</code> or <code>&#39;del&#39;</code>. In the case of <code>&#39;del&#39;</code> the <code>&#39;value&#39;</code> property is ignored. Any entries with a <code>&#39;key&#39;</code> of <code>null</code> or <code>undefined</code> will cause an error to be returned on the <code>callback</code> and any <code>&#39;type&#39;: &#39;put&#39;</code> entry with a <code>&#39;value&#39;</code> of <code>null</code> or <code>undefined</code> will return an error.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">ops</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;del&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;father&#39;</span> <span class="p">}</span>
+  <span class="p">,</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Yuri Irsenovich Kim&#39;</span> <span class="p">}</span>
+  <span class="p">,</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;dob&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;16 February 1941&#39;</span> <span class="p">}</span>
+  <span class="p">,</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;spouse&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Kim Young-sook&#39;</span> <span class="p">}</span>
+  <span class="p">,</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;occupation&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Clown&#39;</span> <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">batch</span><span class="p">(</span><span class="nx">ops</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Ooops!&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Great success dear leader!&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+
+<h4><code>options</code></h4>
+<p>See <a href="#put"><code>put()</code></a> for a discussion on the <code>options</code> object. You can overwrite default <code>&#39;keyEncoding&#39;</code> and <code>&#39;valueEncoding&#39;</code> and also specify the use of <code>sync</code> filesystem operations.</p>
+<p>In addition to encoding options for the whole batch you can also overwrite the encoding per operation, like:</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">ops</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="nx">type</span>          <span class="o">:</span> <span class="s1">&#39;put&#39;</span>
+  <span class="p">,</span> <span class="nx">key</span>           <span class="o">:</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+  <span class="p">,</span> <span class="nx">value</span>         <span class="o">:</span> <span class="p">{</span> <span class="nx">some</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span> <span class="p">}</span>
+  <span class="p">,</span> <span class="nx">keyEncoding</span>   <span class="o">:</span> <span class="s1">&#39;binary&#39;</span>
+  <span class="p">,</span> <span class="nx">valueEncoding</span> <span class="o">:</span> <span class="s1">&#39;json&#39;</span>
+<span class="p">}]</span>
+</pre></div>
+
+<hr>
+<p><a name="batch_chained"></a></p>
+<h3>db.batch() <em>(chained form)</em></h3>
+<p><code>batch()</code>, when called with no arguments will return a <code>Batch</code> object which can be used to build, and eventually commit, an atomic LevelDB batch operation. Depending on how it&#39;s used, it is possible to obtain greater performance when using the chained form of <code>batch()</code> over the array form.</p>
+<div class="highlight"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">batch</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s1">&#39;father&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Yuri Irsenovich Kim&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;dob&#39;</span><span class="p">,</span> <span class="s1">&#39;16 February 1941&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;spouse&#39;</span><span class="p">,</span> <span class="s1">&#39;Kim Young-sook&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;occupation&#39;</span><span class="p">,</span> <span class="s1">&#39;Clown&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Done!&#39;</span><span class="p">)</span> <span class="p">})</span>
+</pre></div>
+
+<p><b><code>batch.put(key, value[, options])</code></b></p>
+<p>Queue a <em>put</em> operation on the current batch, not committed until a <code>write()</code> is called on the batch.</p>
+<p>The optional <code>options</code> argument can be used to override the default <code>&#39;keyEncoding&#39;</code> and/or <code>&#39;valueEncoding&#39;</code>.</p>
+<p><b><code>batch.del(key[, options])</code></b></p>
+<p>Queue a <em>del</em> operation on the current batch, not committed until a <code>write()</code> is called on the batch.</p>
+<p>The optional <code>options</code> argument can be used to override the default <code>&#39;keyEncoding&#39;</code>.</p>
+<p><b><code>batch.clear()</code></b></p>
+<p>Clear all queued operations on the current batch, any previous operations will be discarded.</p>
+<p><b><code>batch.write([callback])</code></b></p>
+<p>Commit the queued operations for this batch. All operations not <em>cleared</em> will be written to the database atomically, that is, they will either all succeed or fail with no partial commits. The optional <code>callback</code> will be called when the operation has completed with an <em>error</em> argument if an error has occurred.</p>
+<hr>
+<p><a name="isOpen"></a></p>
+<h3>db.isOpen()</h3>
+<p>A LevelUP object can be in one of the following states:</p>
+<ul>
+<li><em>&quot;new&quot;</em>     - newly created, not opened or closed</li>
+<li><em>&quot;opening&quot;</em> - waiting for the database to be opened</li>
+<li><em>&quot;open&quot;</em>    - successfully opened the database, available for use</li>
+<li><em>&quot;closing&quot;</em> - waiting for the database to be closed</li>
+<li><em>&quot;closed&quot;</em>  - database has been successfully closed, should not be used</li>
+</ul>
+<p><code>isOpen()</code> will return <code>true</code> only when the state is &quot;open&quot;.</p>
+<hr>
+<p><a name="isClosed"></a></p>
+<h3>db.isClosed()</h3>
+<p><em>See <a href="#put"><code>isOpen()</code></a></em></p>
+<p><code>isClosed()</code> will return <code>true</code> only when the state is &quot;closing&quot; <em>or</em> &quot;closed&quot;, it can be useful for determining if read and write operations are permissible.</p>
+<hr>
+<p><a name="createReadStream"></a></p>
+<h3>db.createReadStream([options])</h3>
+<p>You can obtain a <strong>ReadStream</strong> of the full database by calling the <code>createReadStream()</code> method. The resulting stream is a complete Node.js-style <a href="http://nodejs.org/docs/latest/api/stream.html#stream_readable_stream">Readable Stream</a> where <code>&#39;data&#39;</code> events emit objects with <code>&#39;key&#39;</code> and <code>&#39;value&#39;</code> pairs.</p>
+<div class="highlight"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">key</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Oh my!&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Stream closed&#39;</span><span class="p">)</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Stream closed&#39;</span><span class="p">)</span>
+  <span class="p">})</span>
+</pre></div>
+
+<p>The standard <code>pause()</code>, <code>resume()</code> and <code>destroy()</code> methods are implemented on the ReadStream, as is <code>pipe()</code> (see below). <code>&#39;data&#39;</code>, &#39;<code>error&#39;</code>, <code>&#39;end&#39;</code> and <code>&#39;close&#39;</code> events are emitted.</p>
+<p>Additionally, you can supply an options object as the first parameter to <code>createReadStream()</code> with the following options:</p>
+<ul>
+<li><p><code>&#39;start&#39;</code>: the key you wish to start the read at. By default it will start at the beginning of the store. Note that the <em>start</em> doesn&#39;t have to be an actual key that exists, LevelDB will simply find the <em>next</em> key, greater than the key you provide.</p>
+</li>
+<li><p><code>&#39;end&#39;</code>: the key you wish to end the read on. By default it will continue until the end of the store. Again, the <em>end</em> doesn&#39;t have to be an actual key as an (inclusive) <code>&lt;=</code>-type operation is performed to detect the end. You can also use the <code>destroy()</code> method instead of supplying an <code>&#39;end&#39;</code> parameter to achieve the same effect.</p>
+</li>
+<li><p><code>&#39;reverse&#39;</code> <em>(boolean, default: <code>false</code>)</em>: a boolean, set to true if you want the stream to go in reverse order. Beware that due to the way LevelDB works, a reverse seek will be slower than a forward seek.</p>
+</li>
+<li><p><code>&#39;keys&#39;</code> <em>(boolean, default: <code>true</code>)</em>: whether the <code>&#39;data&#39;</code> event should contain keys. If set to <code>true</code> and <code>&#39;values&#39;</code> set to <code>false</code> then <code>&#39;data&#39;</code> events will simply be keys, rather than objects with a <code>&#39;key&#39;</code> property. Used internally by the <code>createKeyStream()</code> method.</p>
+</li>
+<li><p><code>&#39;values&#39;</code> <em>(boolean, default: <code>true</code>)</em>: whether the <code>&#39;data&#39;</code> event should contain values. If set to <code>true</code> and <code>&#39;keys&#39;</code> set to <code>false</code> then <code>&#39;data&#39;</code> events will simply be values, rather than objects with a <code>&#39;value&#39;</code> property. Used internally by the <code>createValueStream()</code> method.</p>
+</li>
+<li><p><code>&#39;limit&#39;</code> <em>(number, default: <code>-1</code>)</em>: limit the number of results collected by this stream. This number represents a <em>maximum</em> number of results and may not be reached if you get to the end of the store or your <code>&#39;end&#39;</code> value first. A value of <code>-1</code> means there is no limit.</p>
+</li>
+<li><p><code>&#39;fillCache&#39;</code> <em>(boolean, default: <code>false</code>)</em>: wheather LevelDB&#39;s LRU-cache should be filled with data read.</p>
+</li>
+<li><p><code>&#39;keyEncoding&#39;</code> / <code>&#39;valueEncoding&#39;</code> <em>(string)</em>: the encoding applied to each read piece of data.</p>
+</li>
+</ul>
+<hr>
+<p><a name="createKeyStream"></a></p>
+<h3>db.createKeyStream([options])</h3>
+<p>A <strong>KeyStream</strong> is a <strong>ReadStream</strong> where the <code>&#39;data&#39;</code> events are simply the keys from the database so it can be used like a traditional stream rather than an object stream.</p>
+<p>You can obtain a KeyStream either by calling the <code>createKeyStream()</code> method on a LevelUP object or by passing passing an options object to <code>createReadStream()</code> with <code>keys</code> set to <code>true</code> and <code>values</code> set to <code>false</code>.</p>
+<div class="highlight"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">createKeyStream</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;key=&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">})</span>
+
+<span class="c1">// same as:</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">({</span> <span class="nx">keys</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">values</span><span class="o">:</span> <span class="kc">false</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;key=&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">})</span>
+</pre></div>
+
+<hr>
+<p><a name="createValueStream"></a></p>
+<h3>db.createValueStream([options])</h3>
+<p>A <strong>ValueStream</strong> is a <strong>ReadStream</strong> where the <code>&#39;data&#39;</code> events are simply the values from the database so it can be used like a traditional stream rather than an object stream.</p>
+<p>You can obtain a ValueStream either by calling the <code>createValueStream()</code> method on a LevelUP object or by passing passing an options object to <code>createReadStream()</code> with <code>values</code> set to <code>true</code> and <code>keys</code> set to <code>false</code>.</p>
+<div class="highlight"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">createValueStream</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;value=&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">})</span>
+
+<span class="c1">// same as:</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">({</span> <span class="nx">keys</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">values</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;value=&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+  <span class="p">})</span>
+</pre></div>
+
+<hr>
+<p><a name="createWriteStream"></a></p>
+<h3>db.createWriteStream([options])</h3>
+<p>A <strong>WriteStream</strong> can be obtained by calling the <code>createWriteStream()</code> method. The resulting stream is a complete Node.js-style <a href="http://nodejs.org/docs/latest/api/stream.html#stream_writable_stream">Writable Stream</a> which accepts objects with <code>&#39;key&#39;</code> and <code>&#39;value&#39;</code> pairs on its <code>write()</code> method.</p>
+<p>The WriteStream will buffer writes and submit them as a <code>batch()</code> operations where writes occur <em>within the same tick</em>.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">ws</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">()</span>
+
+<span class="nx">ws</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Oh my!&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Stream closed&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Yuri Irsenovich Kim&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;dob&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;16 February 1941&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;spouse&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Kim Young-sook&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;occupation&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Clown&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+</pre></div>
+
+<p>The standard <code>write()</code>, <code>end()</code>, <code>destroy()</code> and <code>destroySoon()</code> methods are implemented on the WriteStream. <code>&#39;drain&#39;</code>, <code>&#39;error&#39;</code>, <code>&#39;close&#39;</code> and <code>&#39;pipe&#39;</code> events are emitted.</p>
+<p>You can specify encodings both for the whole stream and individual entries:</p>
+<p>To set the encoding for the whole stream, provide an options object as the first parameter to <code>createWriteStream()</code> with <code>&#39;keyEncoding&#39;</code> and/or <code>&#39;valueEncoding&#39;</code>.</p>
+<p>To set the encoding for an individual entry:</p>
+<div class="highlight"><pre><span class="nx">writeStream</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span>
+    <span class="nx">key</span>           <span class="o">:</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+  <span class="p">,</span> <span class="nx">value</span>         <span class="o">:</span> <span class="p">{</span> <span class="nx">some</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span> <span class="p">}</span>
+  <span class="p">,</span> <span class="nx">keyEncoding</span>   <span class="o">:</span> <span class="s1">&#39;binary&#39;</span>
+  <span class="p">,</span> <span class="nx">valueEncoding</span> <span class="o">:</span> <span class="s1">&#39;json&#39;</span>
+<span class="p">})</span>
+</pre></div>
+
+<h4>write({ type: &#39;put&#39; })</h4>
+<p>If individual <code>write()</code> operations are performed with a <code>&#39;type&#39;</code> property of <code>&#39;del&#39;</code>, they will be passed on as <code>&#39;del&#39;</code> operations to the batch.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">ws</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">()</span>
+
+<span class="nx">ws</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Oh my!&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Stream closed&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;del&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;name&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;del&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;dob&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;spouse&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;del&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;occupation&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+</pre></div>
+
+<h4>db.createWriteStream({ type: &#39;put&#39; })</h4>
+<p>If the <em>WriteStream</em> is created a <code>&#39;type&#39;</code> option of <code>&#39;del&#39;</code>, all <code>write()</code> operations will be interpreted as <code>&#39;del&#39;</code>, unless explicitly specified as <code>&#39;put&#39;</code>.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">ws</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;del&#39;</span> <span class="p">})</span>
+
+<span class="nx">ws</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Oh my!&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Stream closed&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;name&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;dob&#39;</span> <span class="p">})</span>
+<span class="c1">// but it can be overridden</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;spouse&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Ri Sol-ju&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">write</span><span class="p">({</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;occupation&#39;</span> <span class="p">})</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+</pre></div>
+
+<h4>Pipes and Node Stream compatibility</h4>
+<p>A ReadStream can be piped directly to a WriteStream, allowing for easy copying of an entire database. A simple <code>copy()</code> operation is included in LevelUP that performs exactly this on two open databases:</p>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">copy</span> <span class="p">(</span><span class="nx">srcdb</span><span class="p">,</span> <span class="nx">dstdb</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">srcdb</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">().</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">dstdb</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">()).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The ReadStream is also <a href="https://github.com/isaacs/fstream">fstream</a>-compatible which means you should be able to pipe to and from fstreams. So you can serialize and deserialize an entire database to a directory where keys are filenames and values are their contents, or even into a <em>tar</em> file using <a href="https://github.com/isaacs/node-tar">node-tar</a>. See the <a href="https://github.com/rvagg/node-levelup/blob/master/test/functional/fstream-test.js">fstream functional test</a> for an example. <em>(Note: I&#39;m not really sure there&#39;s a great use-case for this but it&#39;s a fun example and it helps to harden the stream implementations.)</em></p>
+<p>KeyStreams and ValueStreams can be treated like standard streams of raw data. If <code>&#39;keyEncoding&#39;</code> or <code>&#39;valueEncoding&#39;</code> is set to <code>&#39;binary&#39;</code> the <code>&#39;data&#39;</code> events will simply be standard Node <code>Buffer</code> objects straight out of the data store.</p>
+<hr>
+<p><a name='approximateSize'></a></p>
+<h3>db.db.approximateSize(start, end, callback)</h3>
+<p><code>approximateSize()</code> can used to get the approximate number of bytes of file system space used by the range <code>[start..end)</code>. The result may not include recently written data.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">)(</span><span class="s1">&#39;./huge.db&#39;</span><span class="p">)</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">approximateSize</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Ooops!&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Approximate size of range is %d&#39;</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+
+<p><strong>Note:</strong> <code>approximateSize()</code> is available via <a href="https://github.com/rvagg/node-leveldown/">LevelDOWN</a>, which by default is accessible as the <code>db</code> property of your LevelUP instance. This is a specific LevelDB operation and is not likely to be available where you replace LevelDOWN with an alternative back-end via the <code>&#39;db&#39;</code> option.</p>
+<hr>
+<p><a name='getProperty'></a></p>
+<h3>db.db.getProperty(property)</h3>
+<p><code>getProperty</code> can be used to get internal details from LevelDB. When issued with a valid property string, a readable string will be returned (this method is synchronous).</p>
+<p>Currently, the only valid properties are:</p>
+<ul>
+<li><p><b><code>&#39;leveldb.num-files-at-levelN&#39;</code></b>: returns the number of files at level <em>N</em>, where N is an integer representing a valid level (e.g. &quot;0&quot;).</p>
+</li>
+<li><p><b><code>&#39;leveldb.stats&#39;</code></b>: returns a multi-line string describing statistics about LevelDB&#39;s internal operation.</p>
+</li>
+<li><p><b><code>&#39;leveldb.sstables&#39;</code></b>: returns a multi-line string describing all of the <em>sstables</em> that make up contents of the current database.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">)(</span><span class="s1">&#39;./huge.db&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s1">&#39;leveldb.num-files-at-level3&#39;</span><span class="p">))</span>
+<span class="c1">// → &#39;243&#39;</span>
+</pre></div>
+
+<p><strong>Note:</strong> <code>getProperty()</code> is available via <a href="https://github.com/rvagg/node-leveldown/">LevelDOWN</a>, which by default is accessible as the <code>db</code> property of your LevelUP instance. This is a specific LevelDB operation and is not likely to be available where you replace LevelDOWN with an alternative back-end via the <code>&#39;db&#39;</code> option.</p>
+<hr>
+<p><a name="destroy"></a></p>
+<h3>leveldown.destroy(location, callback)</h3>
+<p><code>destroy()</code> is used to completely remove an existing LevelDB database directory. You can use this function in place of a full directory <em>rm</em> if you want to be sure to only remove LevelDB-related files. If the directory only contains LevelDB files, the directory itself will be removed as well. If there are additional, non-LevelDB files in the directory, those files, and the directory, will be left alone.</p>
+<p>The callback will be called when the destroy operation is complete, with a possible <code>error</code> argument.</p>
+<p><strong>Note:</strong> <code>destroy()</code> is available via <a href="https://github.com/rvagg/node-leveldown/">LevelDOWN</a> which you will have to have available to <code>require()</code>, e.g.:</p>
+<div class="highlight"><pre><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;leveldown&#39;</span><span class="p">).</span><span class="nx">destroy</span><span class="p">(</span><span class="s1">&#39;./huge.db&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;done!&#39;</span><span class="p">)</span> <span class="p">})</span>
+</pre></div>
+
+<hr>
+<p><a name="repair"></a></p>
+<h3>leveldown.repair(location, callback)</h3>
+<p><code>repair()</code> can be used to attempt a restoration of a damaged LevelDB store. From the LevelDB documentation:</p>
+<blockquote>
+<p>If a DB cannot be opened, you may attempt to call this method to resurrect as much of the contents of the database as possible. Some data may be lost, so be careful when calling this function on a database that contains important information.</p>
+</blockquote>
+<p>You will find information on the <em>repair</em> operation in the <em>LOG</em> file inside the store directory. </p>
+<p>A <code>repair()</code> can also be used to perform a compaction of the LevelDB log into table files.</p>
+<p>The callback will be called when the repair operation is complete, with a possible <code>error</code> argument.</p>
+<p><strong>Note:</strong> <code>destroy()</code> is available via <a href="https://github.com/rvagg/node-leveldown/">LevelDOWN</a> which you will have to have available to <code>require()</code>, e.g.:</p>
+<div class="highlight"><pre><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;leveldown&#39;</span><span class="p">).</span><span class="nx">repair</span><span class="p">(</span><span class="s1">&#39;./huge.db&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;done!&#39;</span><span class="p">)</span> <span class="p">})</span>
+</pre></div>
+
+<hr>
+<p><a name="events"></a></p>
+<h2>Events</h2>
+<p>LevelUP emits events when the callbacks to the corresponding methods are called.</p>
+<ul>
+<li><code>db.emit(&#39;put&#39;, key, value)</code> emitted when a new value is <code>&#39;put&#39;</code></li>
+<li><code>db.emit(&#39;del&#39;, key)</code> emitted when a value is deleted</li>
+<li><code>db.emit(&#39;batch&#39;, ary)</code> emitted when a batch operation has executed</li>
+<li><code>db.emit(&#39;ready&#39;)</code> emitted when the database has opened (<code>&#39;open&#39;</code> is synonym)</li>
+<li><code>db.emit(&#39;closed&#39;)</code> emitted when the database has closed</li>
+<li><code>db.emit(&#39;opening&#39;)</code> emitted when the database is opening</li>
+<li><code>db.emit(&#39;closing&#39;)</code> emitted when the database is closing</li>
+</ul>
+<p>If you do not pass a callback to an async function, and there is an error, LevelUP will <code>emit(&#39;error&#39;, err)</code> instead.</p>
+<p><a name="json"></a></p>
+<h2>JSON data</h2>
+<p>You specify <code>&#39;json&#39;</code> encoding for both keys and/or values, you can then supply JavaScript objects to LevelUP and receive them from all fetch operations, including ReadStreams. LevelUP will automatically <em>stringify</em> your objects and store them as <em>utf8</em> and parse the strings back into objects before passing them back to you.</p>
+<p><a name="custom_encodings"></a></p>
+<h2>Custom encodings</h2>
+<p>A custom encoding may be provided by passing in an object as an value for <code>keyEncoding</code> or <code>valueEncoding</code> (wherever accepted), it must have the following properties:</p>
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="nx">encode</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+  <span class="p">,</span> <span class="nx">decode</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+  <span class="p">,</span> <span class="nx">buffer</span> <span class="o">:</span> <span class="kr">boolean</span> <span class="c1">// encode returns a buffer-like and decode accepts a buffer</span>
+  <span class="p">,</span> <span class="nx">type</span>   <span class="o">:</span> <span class="nb">String</span>  <span class="c1">// name of this encoding type.</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><em>&quot;buffer-like&quot;</em> means either a <code>Buffer</code> if running in Node, or a Uint8Array if in a browser. Use <a href="https://github.com/chrisdickinson/bops">bops</a> to get portable binary operations.</p>
+<p><a name="extending"></a></p>
+<h2>Extending LevelUP</h2>
+<p>A list of <a href="https://github.com/rvagg/node-levelup/wiki/Modules"><b>Node.js LevelDB modules and projects</b></a> can be found in the wiki.</p>
+<p>When attempting to extend the functionality of LevelUP, it is recommended that you consider using <a href="https://github.com/dominictarr/level-hooks">level-hooks</a> and/or <a href="https://github.com/dominictarr/level-sublevel">level-sublevel</a>. <strong>level-sublevel</strong> is particularly helpful for keeping additional, extension-specific, data in a LevelDB store. It allows you to partition a LevelUP instance into multiple sub-instances that each correspond to discrete namespaced key ranges.</p>
+<p><a name="multiproc"></a></p>
+<h2>Multi-process access</h2>
+<p>LevelDB is thread-safe but is <strong>not</strong> suitable for accessing with multiple processes. You should only ever have a LevelDB database open from a single Node.js process. Node.js clusters are made up of multiple processes so a LevelUP instance cannot be shared between them either.</p>
+<p>See the <a href="https://github.com/rvagg/node-levelup/wiki/Modules"><b>wiki</b></a> for some LevelUP extensions, including <a href="https://github.com/juliangruber/multilevel">multilevel</a>, that may help if you require a single data store to be shared across processes.</p>
+<p><a name="support"></a></p>
+<h2>Getting support</h2>
+<p>There are multiple ways you can find help in using LevelDB in Node.js:</p>
+<ul>
+<li><strong>IRC:</strong> you&#39;ll find an active group of LevelUP users in the <strong>##leveldb</strong> channel on Freenode, including most of the contributors to this project.</li>
+<li><strong>Mailing list:</strong> there is an active <a href="https://groups.google.com/forum/#!forum/node-levelup">Node.js LevelDB</a> Google Group.</li>
+<li><strong>GitHub:</strong> you&#39;re welcome to open an issue here on this GitHub repository if you have a question.</li>
+</ul>
+<p><a name="contributing"></a></p>
+<h2>Contributing</h2>
+<p>LevelUP is an <strong>OPEN Open Source Project</strong>. This means that:</p>
+<blockquote>
+<p>Individuals making significant and valuable contributions are given commit-access to the project to contribute as they see fit. This project is more like an open wiki than a standard guarded open source project.</p>
+</blockquote>
+<p>See the <a href="https://github.com/rvagg/node-levelup/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> file for more details.</p>
+<h3>Contributors</h3>
+<p>LevelUP is only possible due to the excellent work of the following contributors:</p>
+<table><tbody>
+<tr><th align="left">Rod Vagg</th><td><a href="https://github.com/rvagg">GitHub/rvagg</a></td><td><a href="http://twitter.com/rvagg">Twitter/@rvagg</a></td></tr>
+<tr><th align="left">John Chesley</th><td><a href="https://github.com/chesles/">GitHub/chesles</a></td><td><a href="http://twitter.com/chesles">Twitter/@chesles</a></td></tr>
+<tr><th align="left">Jake Verbaten</th><td><a href="https://github.com/raynos">GitHub/raynos</a></td><td><a href="http://twitter.com/raynos2">Twitter/@raynos2</a></td></tr>
+<tr><th align="left">Dominic Tarr</th><td><a href="https://github.com/dominictarr">GitHub/dominictarr</a></td><td><a href="http://twitter.com/dominictarr">Twitter/@dominictarr</a></td></tr>
+<tr><th align="left">Max Ogden</th><td><a href="https://github.com/maxogden">GitHub/maxogden</a></td><td><a href="http://twitter.com/maxogden">Twitter/@maxogden</a></td></tr>
+<tr><th align="left">Lars-Magnus Skog</th><td><a href="https://github.com/ralphtheninja">GitHub/ralphtheninja</a></td><td><a href="http://twitter.com/ralphtheninja">Twitter/@ralphtheninja</a></td></tr>
+<tr><th align="left">David Björklund</th><td><a href="https://github.com/kesla">GitHub/kesla</a></td><td><a href="http://twitter.com/david_bjorklund">Twitter/@david_bjorklund</a></td></tr>
+<tr><th align="left">Julian Gruber</th><td><a href="https://github.com/juliangruber">GitHub/juliangruber</a></td><td><a href="http://twitter.com/juliangruber">Twitter/@juliangruber</a></td></tr>
+<tr><th align="left">Paolo Fragomeni</th><td><a href="https://github.com/hij1nx">GitHub/hij1nx</a></td><td><a href="http://twitter.com/hij1nx">Twitter/@hij1nx</a></td></tr>
+<tr><th align="left">Anton Whalley</th><td><a href="https://github.com/No9">GitHub/No9</a></td><td><a href="https://twitter.com/antonwhalley">Twitter/@antonwhalley</a></td></tr>
+<tr><th align="left">Matteo Collina</th><td><a href="https://github.com/mcollina">GitHub/mcollina</a></td><td><a href="https://twitter.com/matteocollina">Twitter/@matteocollina</a></td></tr>
+<tr><th align="left">Pedro Teixeira</th><td><a href="https://github.com/pgte">GitHub/pgte</a></td><td><a href="https://twitter.com/pgte">Twitter/@pgte</a></td></tr>
+</tbody></table>
+
+<h3>Windows</h3>
+<p>A large portion of the Windows support comes from code by <a href="http://blog.kowalczyk.info/">Krzysztof Kowalczyk</a> <a href="https://twitter.com/kjk">@kjk</a>, see his Windows LevelDB port <a href="http://code.google.com/r/kkowalczyk-leveldb/">here</a>. If you&#39;re using LevelUP on Windows, you should give him your thanks!</p>
+<p><a name="licence"></a></p>
+<h2>Licence &amp; copyright</h2>
+<p>Copyright (c) 2012-2013 LevelUP contributors (listed above).</p>
+<p>LevelUP is licensed under an MIT +no-false-attribs license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.</p>
+<p>=======
+<em>LevelUP builds on the excellent work of the LevelDB and Snappy teams from Google and additional contributors. LevelDB and Snappy are both issued under the <a href="http://opensource.org/licenses/BSD-3-Clause">New BSD Licence</a>.</em></p>
+</div>
+    </div>
+  </body>
+</html>
