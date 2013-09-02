@@ -1,7 +1,8 @@
-Write a program that opens a LevelDB data-store using `{bold}level{/bold}`. Read and
-print to the console the values of all the entries in the store with a
-key of the form 'gibberish{italic}X{/italic}', where '{italic}X{/italic}' is an integer starting at {bold}1{/bold} and
-ending at some random number {bold}>1{/bold}.
+Write a program that opens a LevelDB data-store using `{bold}level{/bold}`.
+
+Read and print to the console the values of all the entries in the
+store with a key of the form 'gibberish{italic}X{/italic}', where '{italic}X{/italic}' is an integer
+starting at {bold}1{/bold} and ending at some random number {bold}>1{/bold}.
 
 The full path to the data-store will be provided to your program as
 the first command-line argument.
