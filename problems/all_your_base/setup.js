@@ -1,4 +1,4 @@
-// array for substitution in: 'ALL YOUR X ARE BELONG TO Y' where 
+// array for substitution in: 'ALL YOUR X ARE BELONG TO Y'
 const inputs = [
     [ 'BASE', 'US' ]
   , [ 'LANDS AND POSESSIONS', 'VIKINGS OF WESTERN NORWAY' ]
@@ -7,5 +7,5 @@ const inputs = [
 
 module.exports = function () {
   var i = Math.floor(Math.random() * inputs.length)
-  return { args: inputs[i], stdin: null }
+  return { args: inputs[i], stdin: null, long: true }
 }
