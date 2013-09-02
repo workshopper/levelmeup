@@ -3,6 +3,7 @@ const inputs = [
     [ 'BASE', 'US' ]
   , [ 'LANDS AND POSESSIONS', 'VIKINGS OF WESTERN NORWAY' ]
   , [ 'INDEPENDENCE', 'KING HENRY VIII' ]
+  , [ 'INTERNET COMMUNICATIONS', 'THE NSA' ]
 ]
 
 module.exports = function () {
