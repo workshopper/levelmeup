@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "workshopper": "~0.1.1",
+    "workshopper": "~0.1.2",
     "level": "~0.14.0",
     "rimraf": "~2.2.2",
     "after": "~0.8.1",
