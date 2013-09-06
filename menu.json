@@ -4,5 +4,6 @@
   , "Basics: PUT"
   , "Basics: BATCH"
   , "Streaming"
-  , "@horse_js"
+  , "@horse_js_counts"
+  , "@horse_js_tweets"
 ]
