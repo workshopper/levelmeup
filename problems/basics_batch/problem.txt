@@ -16,12 +16,12 @@ For example:
   PUT,@mrbruning,Max Bruning
   DEL,@darachennis
 
-In this case, you have 3 new entries to add mapping twitter handles
-to names and one entry to remove.
+In this case, you have 3 new entries to add, mapping twitter handles
+to real names, and one entry to remove.
 
 You are encouraged to use the `batch()` method for this exercise. A
-{italic}batch{/italic} operation is an atomic, and efficient mechanism
-for performing multiple writes (put and delete).
+{italic}batch{/italic} operation is an atomic, and efficient mechanism for performing
+multiple writes (put and delete).
 
 ----------------------------------------------------------------------
 HINTS:
@@ -30,8 +30,11 @@ The `batch()` method has two forms:
 
  * The {italic}`Array` form{/italic} lets you provide an array containing your
    operations followed by an optional callback. The array must contain
-   objects of the form: `{ type: 'put', key: 'foo', value: 'bar' }` or
-   `{ type: 'del', key: 'foo' }`.
+   objects of the form:
+
+     { type: 'put', key: 'foo', value: 'bar' }
+     or:
+     { type: 'del', key: 'foo' }
 
  * The {italic}chained form{/italic} is closer to the way that LevelDB exposes its
    batch operation. Calling `batch()` with no arguments returns a
