@@ -2,16 +2,17 @@ var level = require('level')
 var db = level(process.argv[2])
 
 function fetchNext (i) {
-  db.get('gibberish' + i, function (err, data) {
+  var key = 'gibberish' + i
+  db.get(key, function (err, data) {
     if (err) {
-      if (err.name == 'NotFoundError')
-        return
-      throw err
-    }
+      if (err.name != 'NotFoundError')
+        throw err
+    } else
+      console.log(key + '=' + data)
 
-    console.log(data)
-    fetchNext(i + 1)
+    if (i < 100)
+      fetchNext(i + 1)
   })
 }
 
-fetchNext(1)
+fetchNext(0)
