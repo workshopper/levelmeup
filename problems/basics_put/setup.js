@@ -1,18 +1,9 @@
 const path        = require('path')
-    , os          = require('os')
     , level       = require('level')
-    , rimraf      = require('rimraf')
-    , after       = require('after')
-    , dir1        = path.join(os.tmpDir(), '~levelmeup_1_' + process.pid)
-    , dir2        = path.join(os.tmpDir(), '~levelmeup_2_' + process.pid)
     , gibberish   = require('echomunge/dir2gibberish').bind(null, path.join(__dirname, '../..'))
+    , existing    = require('../../lib/setup-existing')
     , PassThrough = require('stream').PassThrough || require('readable-stream/passthrough')
     , through2map = require('through2-map')
-
-function cleanup () {
-  dir1 && rimraf(dir1, function () {})
-  dir2 && rimraf(dir2, function () {})
-}
 
 function streamTo (dir, out) {
   var db = level(dir)
@@ -24,9 +15,8 @@ function streamTo (dir, out) {
     .pipe(out)
 }
 
-function setup (run) {
-  rimraf.sync(dir1)
-  ;!run && rimraf.sync(dir2)
+function setup (run, callback) {
+  existing.setup(run, false)
 
   var c             = Math.ceil(Math.random() * 10) + 2
     , i             = c
@@ -40,17 +30,18 @@ function setup (run) {
 
   jsonobj = JSON.stringify(obj)
 
-  setTimeout(streamTo.bind(null, dir1, submissionOut), 500)
-  ;!run && setTimeout(streamTo.bind(null, dir2, solutionOut), 500)
+  setTimeout(streamTo.bind(null, existing.dir1, submissionOut), 500)
+  ;!run && setTimeout(streamTo.bind(null, existing.dir2, solutionOut), 500)
 
-  return {
-      submissionArgs : [ dir1, jsonobj ]
-    , solutionArgs   : [ dir2, jsonobj ]
+  callback(null, {
+      submissionArgs : [ existing.dir1, jsonobj ]
+    , solutionArgs   : [ existing.dir2, jsonobj ]
     , long           : true
-    , close          : cleanup
+    , close          : existing.cleanup
     , a              : submissionOut
     , b              : !run && solutionOut
-  }
+  })
 }
 
-module.exports = setup
+module.exports       = setup
+module.exports.async = true
