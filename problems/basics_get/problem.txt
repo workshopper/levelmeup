@@ -21,7 +21,7 @@ When you perform a `.get()` operation, if the entry does not exist
 your callback will receive an error object as the first argument.
 
 It is also possible to receive I/O errors but you can differentiate
-a `NotFoundError` by checking `err.type == 'NotFoundError'`.
+a `NotFoundError` by checking `err.name == 'NotFoundError'`.
 
 Using `.get()` is recommended for this exercise but if you're tempted
 to use a ReadStream to solve this problem, beware that the sorting
