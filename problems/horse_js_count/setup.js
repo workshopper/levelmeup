@@ -2,6 +2,16 @@ const path     = require('path')
     , existing = require('../../lib/setup-existing')
     , horsejs  = require('../../data/horse_js.json')
 
+
+function newDate () {
+  var start = new Date(horsejs[0].date)
+    , end   = new Date(horsejs[horsejs.length - 1].date)
+    , mark  = new Date(start.getTime() + Math.floor(Math.random() * (end.getTime() - start.getTime())))
+    , marks = mark.getFullYear() + '-' + (mark.getUTCMonth() < 9 ? '0' : '') + (mark.getUTCMonth() + 1) + '-' + (mark.getUTCDate() < 9 ? '0' : '') + (mark.getUTCDate() + 1)
+
+  return marks
+}
+
 function setup (run, callback) {
   existing.setup(run)
 
@@ -13,11 +23,6 @@ function setup (run, callback) {
     }
   })
 
-  var start = new Date(horsejs[0].date)
-    , end   = new Date(horsejs[horsejs.length - 1].date)
-    , mark  = new Date(start.getTime() + Math.floor(Math.random() * (end.getTime() - start.getTime())))
-    , marks = mark.getFullYear() + '-' + (mark.getUTCMonth() < 9 ? '0' : '') + (mark.getUTCMonth() + 1) + '-' + (mark.getUTCDate() < 9 ? '0' : '') + (mark.getUTCDate() + 1)
-
   existing.writeAndClose(
       function (db, callback) {
         db.batch(ops, callback)
@@ -26,11 +31,15 @@ function setup (run, callback) {
         if (err)
           return callback(err)
 
+        var dates = [ newDate(), newDate(), newDate(), newDate() ]
+
         callback(null, {
-            submissionArgs : [ existing.dir1, marks ]
-          , solutionArgs   : [ existing.dir2, marks ]
-          , long           : true
-          , close          : existing.cleanup
+            submissionArgs   : [ existing.dir1 ].concat(dates)
+          , solutionArgs     : [ existing.dir2 ].concat(dates)
+          , long             : true
+          , close            : existing.cleanup
+          , execWrap         : require.resolve('./exec-wrap')
+          , solutionExecWrap : require.resolve('./exec-wrap')
         })
       }
   )

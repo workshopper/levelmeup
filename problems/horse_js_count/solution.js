@@ -1,11 +1,19 @@
-var level = require('level')
-var db = level(process.argv[2])
-var tweets = 0
-
-db.createReadStream({ start: process.argv[3] })
-  .on('data', function (data) {
-    tweets++
-  })
-  .on('end', function () {
-    console.log(tweets)
-  })
+module.exports = function (db, date, callback) {
+  var tweets = 0
+  db.createReadStream({ start: date })
+    .on('data', function () {
+      tweets++
+    })
+    .on('error', function (err) {
+      if (callback) {
+        callback(err)
+        callback = null
+      }
+    })
+    .on('end', function () {
+      if (callback) {
+        callback(null, tweets)
+        callback = null
+      }
+    })
+}
