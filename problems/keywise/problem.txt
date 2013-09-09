@@ -1,0 +1,35 @@
+Sometimes you might want keys to appear in a specific order but don't want to
+bother with picking delimiters and a key format that will sort well.
+The {bold}bytewise{/bold} module can help with this.
+
+You will be given the path to a json file on `process.argv[3]`
+
+The json file is an array with rows of the form
+
+    {"type":"user","name":"maxogden"}
+
+for users and
+
+    {"type":"repo","name":"mux-demux","user":"dominictarr"}
+
+for repositories.
+
+You should open the database path given by `process.argV[2]` and write data to
+the database using `"!"` as a delimiter such that the verify script will be able
+to read the repos for each user by doing:
+
+    db.createReadStream({ start: 'rvagg!', end: 'rvagg~' })
+
+
+
+When you have completed your program, you can run it in the test
+environment with:
+
+  {bold}{appname} run program.js{/bold}
+
+And once you are happy that it is correct then run:
+
+  {bold}{appname} verify program.js{/bold}
+
+And your submission will be verified for correctness. After you have
+a correct solution, run `{bold}{appname}{/bold}` again and select the next problem!
