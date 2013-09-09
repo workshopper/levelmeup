@@ -5,11 +5,13 @@ module.exports = function (db, day, callback) {
       tweets.push(data.value)
     })
     .on('error', function (err) {
-      if (callback) callback(err)
+      if (callback)
+        callback(err)
       callback = null
     })
     .on('end', function () {
-      if (callback) callback(null, tweets)
+      if (callback)
+        callback(null, tweets)
       callback = null
     })
 }

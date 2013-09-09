@@ -2,7 +2,6 @@ const path     = require('path')
     , existing = require('../../lib/setup-existing')
     , horsejs  = require('../../data/horse_js.json')
 
-
 function newDate () {
   var start = new Date(horsejs[0].date)
     , end   = new Date(horsejs[horsejs.length - 1].date)

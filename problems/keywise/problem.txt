@@ -1,0 +1,23 @@
+Write a program that reads in a JSON file containing mappings of users
+to GitHub repositories and store them in the database such that they
+can be searched.
+
+You will be given the path to a JSON file on the second command-line
+argument, you can use `require(process.argv[3])` to load it.
+
+The JSON file is an array with rows of the form
+
+    {"type":"user","name":"maxogden"}
+
+for users and
+
+    {"type":"repo","name":"mux-demux","user":"dominictarr"}
+
+for repositories.
+
+You should open the database path given by the first command-line
+argument and write data to the database using '!' as a delimiter such
+that the verify script will be able to read the repos for each user by
+doing the following range query:
+
+    db.createReadStream({ start: 'rvagg!', end: 'rvagg~' })
