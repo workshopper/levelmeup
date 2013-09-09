@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>level-sublevel</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style type="text/css">
+/* most of normalize.css */
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}[hidden],template{display:none;}html{font-family:sans-serif;/*1*/-ms-text-size-adjust:100%;/*2*/-webkit-text-size-adjust:100%;/*2*/}body{margin:0;}a{background:transparent;}a:focus{outline:thindotted;}a:active,a:hover{outline:0;}h1{font-size:2em;margin:0.67em0;}abbr[title]{border-bottom:1pxdotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em;}pre{white-space:pre-wrap;}q{quotes:"\201C""\201D""\2018""\2019";}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}table{border-collapse:collapse;border-spacing:0;}
+
+html {
+  font: 14px 'Helvetica Neue', Helvetica, arial, freesans, clean, sans-serif;
+}
+
+.container {
+  line-height: 1.6;
+  color: #333;
+  background: #eee;
+  border-radius: 3px;
+  padding: 3px;
+  width: 790px;
+  margin: 10px auto;
+}
+
+.body-content {
+  background-color: #fff;
+  border: 1px solid #CACACA;
+  padding: 30px;
+}
+
+.body-content > *:first-child {
+  margin-top: 0 !important;
+}
+
+a, a:visited {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+  .markdown-body h1
+, .markdown-body h2
+, .markdown-body h3
+, .markdown-body h4
+, .markdown-body h5
+, .markdown-body h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+}
+
+h2 {
+  font-size: 2em;
+  border-bottom: 1px solid #eee;
+  color: #000;
+}
+
+img {
+  max-width: 100%;
+}
+
+hr {
+  background: transparent url("/img/hr.png") repeat-x 0 0;
+  border: 0 none;
+  color: #ccc;
+  height: 4px;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+td, th {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+th {
+  font-weight: bold;
+}
+
+blockquote {
+  border-left: 4px solid #ddd;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote > :last-child, blockquote > :first-child {
+  margin-bottom: 0px;
+}
+
+pre, code {
+  font-size: 13px;
+  font-family: 'UbuntuMono', monospace;
+  white-space: nowrap;
+  margin: 0 2px;
+  padding: 0px 5px;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre > code {
+  white-space: pre;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre;
+  padding: 10px;
+  line-height: 150%;
+  background-color: #f8f8f8;
+  border-color: #ccc;
+}
+
+pre code, pre tt {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  border: none;
+}
+
+  .highlight .c
+, .highlight .cm
+, .highlight .cp
+, .highlight .c1 {
+    color:#999988;
+    font-style:italic;
+}
+
+.highlight .err {
+  color:#a61717;
+  background-color:#e3d2d2
+}
+
+  .highlight .o
+, .highlight .gs
+, .highlight .kc
+, .highlight .kd
+, .highlight .kn
+, .highlight .kp
+, .highlight .kr {
+    font-weight:bold
+}
+
+.highlight .cs {
+  color:#999999;
+  font-weight:bold;
+  font-style:italic
+}
+
+.highlight .gd {
+  color:#000000;
+  background-color:#ffdddd
+}
+
+.highlight .gd .x {
+  color:#000000;
+  background-color:#ffaaaa
+}
+
+.highlight .ge {
+  font-style:italic
+}
+
+  .highlight .gr
+, .highlight .gt {
+    color:#aa0000
+}
+
+  .highlight .gh
+, .highlight .bp {
+    color:#999999
+}
+
+.highlight .gi {
+  color:#000000;
+  background-color:#ddffdd
+}
+
+.highlight .gi .x {
+  color:#000000;
+  background-color:#aaffaa
+}
+
+.highlight .go {
+  color:#888888
+}
+
+  .highlight .gp
+, .highlight .nn {
+    color:#555555
+}
+
+
+.highlight .gu {
+  color:#800080;
+  font-weight:bold
+}
+
+
+.highlight .kt {
+  color:#445588;
+  font-weight:bold
+}
+
+  .highlight .m
+, .highlight .mf
+, .highlight .mh
+, .highlight .mi
+, .highlight .mo
+, .highlight .il {
+    color:#009999
+}
+
+  .highlight .s
+, .highlight .sb
+, .highlight .sc
+, .highlight .sd
+, .highlight .s2
+, .highlight .se
+, .highlight .sh
+, .highlight .si
+, .highlight .sx
+, .highlight .s1 {
+    color:#d14
+}
+
+.highlight .n {
+  color:#333333
+}
+
+  .highlight .na
+, .highlight .no
+, .highlight .nv
+, .highlight .vc
+, .highlight .vg
+, .highlight .vi
+, .highlight .nb {
+    color:#0086B3
+}
+
+.highlight .nc {
+  color:#445588;
+  font-weight:bold
+}
+
+.highlight .ni {
+  color:#800080
+}
+
+  .highlight .ne
+, .highlight .nf {
+    color:#990000;
+    font-weight:bold
+}
+
+.highlight .nt {
+  color:#000080
+}
+
+.highlight .ow {
+  font-weight:bold
+}
+
+.highlight .w {
+  color:#bbbbbb
+}
+
+.highlight .sr {
+  color:#009926
+}
+
+.highlight .ss {
+  color:#990073
+}
+
+.highlight .gc {
+  color:#999;
+  background-color:#EAF2F5
+}</style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="body-content"><h1>level-sublevel</h1>
+<p>Separate sections of levelup, with hooks!</p>
+<p><a href="http://travis-ci.org/dominictarr/level-sublevel"><img src="https://secure.travis-ci.org/dominictarr/level-sublevel.png" alt="build status"></a></p>
+<p>This module allows you to create seperate sections of a
+<a href="https://github.com/rvagg/node-levelup">levelup</a> database,
+kinda like tables in an sql database, but evented, and ranged,
+for real-time changing data.</p>
+<h2>Stability</h2>
+<p>Unstable: Expect patches and features, possible api changes.</p>
+<p>This is module is working well, but may change in the future as it&#39;s use is futher explored.</p>
+<h2>Example</h2>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">LevelUp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;levelup&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">Sublevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;level-sublevel&#39;</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">Sublevel</span><span class="p">(</span><span class="nx">LevelUp</span><span class="p">(</span><span class="s1">&#39;/tmp/sublevel-example&#39;</span><span class="p">))</span>
+<span class="kd">var</span> <span class="nx">sub</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">sublevel</span><span class="p">(</span><span class="s1">&#39;stuff&#39;</span><span class="p">)</span>
+
+<span class="c1">//put a key into the main levelup</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+<span class="p">})</span>
+
+<span class="c1">//put a key into the sub-section!</span>
+<span class="nx">sub</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="nx">key2</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+<span class="p">})</span>
+</pre></div>
+
+<p>Sublevel prefixes each subsection so that it will not collide
+with the outer db when saving or reading!</p>
+<h2>Hooks</h2>
+<p>Hooks are specially built into Sublevel so that you can 
+do all sorts of clever stuff, like generating views or
+logs when records are inserted!</p>
+<p>Records added via hooks will be atomically with the triggering change.</p>
+<h3>Hooks Example</h3>
+<p>Whenever a record is inserted,
+save an index to it by the time it was inserted.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">sub</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">sublevel</span><span class="p">(</span><span class="s1">&#39;SEQ&#39;</span><span class="p">)</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">pre</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">ch</span><span class="p">,</span> <span class="nx">add</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">add</span><span class="p">({</span>
+    <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="o">+</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">(),</span> 
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">ch</span><span class="p">.</span><span class="nx">key</span><span class="p">,</span> 
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;put&#39;</span><span class="p">,</span>
+    <span class="nx">prefix</span><span class="o">:</span> <span class="nx">sub</span> <span class="c1">//NOTE pass the destination db to add</span>
+               <span class="c1">//and the value will end up in that subsection!</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;VALUE&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">//read all the records inserted by the hook!</span>
+
+  <span class="nx">sub</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+
+<span class="p">})</span>
+</pre></div>
+
+<p>Notice that <code>sub</code> is the second argument to <code>add</code>,
+which tells the hook to save the new record in the <code>sub</code> section.</p>
+<h2>Batches</h2>
+<p>In <code>sublevel</code> batches also support a <code>prefix: subdb</code> property,
+if set, this row will be inserted into that database section,
+instead of the current section.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">sub1</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">sublevel</span><span class="p">(</span><span class="s1">&#39;SUB_1&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">sub2</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">sublevel</span><span class="p">(</span><span class="s1">&#39;SUM_2&#39;</span><span class="p">)</span>
+
+<span class="nx">sub</span><span class="p">.</span><span class="nx">batch</span><span class="p">([</span>
+  <span class="p">{</span><span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;put&#39;</span><span class="p">},</span>
+  <span class="p">{</span><span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="nx">prefix</span><span class="o">:</span> <span class="nx">sub2</span><span class="p">},</span>
+<span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{...})</span>
+</pre></div>
+
+<h2>License</h2>
+<p>MIT</p>
+</div>
+    </div>
+  </body>
+</html>
