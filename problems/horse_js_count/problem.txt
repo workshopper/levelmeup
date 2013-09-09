@@ -17,7 +17,7 @@ a date string, of the form YYYY-DD-MM and a callback function.
 
 The first argument returned on the callback should be an Error if one
 occurred or null. The second argument, if there was no error, should
-be an Array where each element is simply the String text of a tweet.
+be a number that is amount of tweets.
 
 Your solution will be checked against the official solution to ensure
 that your query is targeting the exact range (see details below).
