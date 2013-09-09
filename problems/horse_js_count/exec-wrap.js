@@ -17,7 +17,7 @@ if (typeof solution != 'function')
   return console.log(process.argv[3], 'does not export a single function')
 
 function methodUsed (db, methodName, method, args) {
-  if (!/create\w+Stream/.test(methodName))
+  if (!/Stream/.test(methodName))
     return
 
   return method.apply(db, args).pipe(through2({ objectMode: true },
