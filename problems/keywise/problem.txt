@@ -2,28 +2,25 @@ Sometimes you might want keys to appear in a specific order but don't want to
 bother with picking delimiters and a key format that will sort well.
 The {bold}bytewise{/bold} module can help with this.
 
-For example, suppose we have a list of npm users and projects. For each user
-page, we'll want to show the list of projects written by that user.
+You will be given the path to a json file on `process.argv[3]`
 
-You could pick a delimiter but this is a bit messy when there are a lot of
-fields and is tricky to get right if you allow key names to come from external
-user input.
+The json file is an array with rows of the form
 
+    {"type":"user","name":"maxogden"}
 
+for users and
 
+    {"type":"repo","name":"mux-demux","user":"dominictarr"}
 
-substack/project/browserify
-substack/stars
+for repositories.
 
-[  ]
+You should open the database path given by `process.argV[2]` and write data to
+the database using `"!"` as a delimiter such that the verify script will be able
+to read the repos for each user by doing:
 
-
-But what if we also want to list `npm star` data for each project?
-
-
+    db.createReadStream({ start: 'rvagg!', end: 'rvagg~' })
 
 
-  ALL YOUR {bold}{italic}X{/italic}{/bold} ARE BELONG TO {bold}{italic}Y{/italic}{/bold}
 
 When you have completed your program, you can run it in the test
 environment with:

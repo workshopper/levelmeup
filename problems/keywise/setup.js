@@ -32,7 +32,7 @@ function streamTo (dir, out) {
 
   function reposFor (user, next) {
     var cur = {}
-    db.readStream({ start: user, end: user + '\xff' })
+    db.readStream({ start: user, end: user + '~' })
       .pipe(through(write, end))
 
     function write (row) {
@@ -58,8 +58,8 @@ module.exports = function (run) {
   a.on('data', function () {})
   b.on('data', function () {})
 
-  setTimeout(streamTo.bind(null, dba, a), 500)
-  ;!run && setTimeout(streamTo.bind(null, dbb, b), 500)
+  setTimeout(streamTo.bind(null, dba, a), 1500)
+  ;!run && setTimeout(streamTo.bind(null, dbb, b), 1500)
 
   return {
       submissionArgs: [ dba, datafile ]
