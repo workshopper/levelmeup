@@ -20,4 +20,4 @@ argument and write data to the database using '!' as a delimiter such
 that the verify script will be able to read the repos for each user by
 doing the following range query:
 
-    db.createReadStream({ start: 'rvagg!', end: 'rvagg~' })
+    db.createReadStream({ start: 'rvagg!', end: 'rvagg!~' })
