@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>multilevel</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style type="text/css">
+/* most of normalize.css */
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}[hidden],template{display:none;}html{font-family:sans-serif;/*1*/-ms-text-size-adjust:100%;/*2*/-webkit-text-size-adjust:100%;/*2*/}body{margin:0;}a{background:transparent;}a:focus{outline:thindotted;}a:active,a:hover{outline:0;}h1{font-size:2em;margin:0.67em0;}abbr[title]{border-bottom:1pxdotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em;}pre{white-space:pre-wrap;}q{quotes:"\201C""\201D""\2018""\2019";}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}table{border-collapse:collapse;border-spacing:0;}
+
+html {
+  font: 14px 'Helvetica Neue', Helvetica, arial, freesans, clean, sans-serif;
+}
+
+.container {
+  line-height: 1.6;
+  color: #333;
+  background: #eee;
+  border-radius: 3px;
+  padding: 3px;
+  width: 790px;
+  margin: 10px auto;
+}
+
+.body-content {
+  background-color: #fff;
+  border: 1px solid #CACACA;
+  padding: 30px;
+}
+
+.body-content > *:first-child {
+  margin-top: 0 !important;
+}
+
+a, a:visited {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+  .markdown-body h1
+, .markdown-body h2
+, .markdown-body h3
+, .markdown-body h4
+, .markdown-body h5
+, .markdown-body h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+}
+
+h2 {
+  font-size: 2em;
+  border-bottom: 1px solid #eee;
+  color: #000;
+}
+
+img {
+  max-width: 100%;
+}
+
+hr {
+  background: transparent url("/img/hr.png") repeat-x 0 0;
+  border: 0 none;
+  color: #ccc;
+  height: 4px;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+td, th {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+th {
+  font-weight: bold;
+}
+
+blockquote {
+  border-left: 4px solid #ddd;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote > :last-child, blockquote > :first-child {
+  margin-bottom: 0px;
+}
+
+pre, code {
+  font-size: 13px;
+  font-family: 'UbuntuMono', monospace;
+  white-space: nowrap;
+  margin: 0 2px;
+  padding: 0px 5px;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre > code {
+  white-space: pre;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre;
+  padding: 10px;
+  line-height: 150%;
+  background-color: #f8f8f8;
+  border-color: #ccc;
+}
+
+pre code, pre tt {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  border: none;
+}
+
+  .highlight .c
+, .highlight .cm
+, .highlight .cp
+, .highlight .c1 {
+    color:#999988;
+    font-style:italic;
+}
+
+.highlight .err {
+  color:#a61717;
+  background-color:#e3d2d2
+}
+
+  .highlight .o
+, .highlight .gs
+, .highlight .kc
+, .highlight .kd
+, .highlight .kn
+, .highlight .kp
+, .highlight .kr {
+    font-weight:bold
+}
+
+.highlight .cs {
+  color:#999999;
+  font-weight:bold;
+  font-style:italic
+}
+
+.highlight .gd {
+  color:#000000;
+  background-color:#ffdddd
+}
+
+.highlight .gd .x {
+  color:#000000;
+  background-color:#ffaaaa
+}
+
+.highlight .ge {
+  font-style:italic
+}
+
+  .highlight .gr
+, .highlight .gt {
+    color:#aa0000
+}
+
+  .highlight .gh
+, .highlight .bp {
+    color:#999999
+}
+
+.highlight .gi {
+  color:#000000;
+  background-color:#ddffdd
+}
+
+.highlight .gi .x {
+  color:#000000;
+  background-color:#aaffaa
+}
+
+.highlight .go {
+  color:#888888
+}
+
+  .highlight .gp
+, .highlight .nn {
+    color:#555555
+}
+
+
+.highlight .gu {
+  color:#800080;
+  font-weight:bold
+}
+
+
+.highlight .kt {
+  color:#445588;
+  font-weight:bold
+}
+
+  .highlight .m
+, .highlight .mf
+, .highlight .mh
+, .highlight .mi
+, .highlight .mo
+, .highlight .il {
+    color:#009999
+}
+
+  .highlight .s
+, .highlight .sb
+, .highlight .sc
+, .highlight .sd
+, .highlight .s2
+, .highlight .se
+, .highlight .sh
+, .highlight .si
+, .highlight .sx
+, .highlight .s1 {
+    color:#d14
+}
+
+.highlight .n {
+  color:#333333
+}
+
+  .highlight .na
+, .highlight .no
+, .highlight .nv
+, .highlight .vc
+, .highlight .vg
+, .highlight .vi
+, .highlight .nb {
+    color:#0086B3
+}
+
+.highlight .nc {
+  color:#445588;
+  font-weight:bold
+}
+
+.highlight .ni {
+  color:#800080
+}
+
+  .highlight .ne
+, .highlight .nf {
+    color:#990000;
+    font-weight:bold
+}
+
+.highlight .nt {
+  color:#000080
+}
+
+.highlight .ow {
+  font-weight:bold
+}
+
+.highlight .w {
+  color:#bbbbbb
+}
+
+.highlight .sr {
+  color:#009926
+}
+
+.highlight .ss {
+  color:#990073
+}
+
+.highlight .gc {
+  color:#999;
+  background-color:#EAF2F5
+}</style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="body-content"><h1>multilevel</h1>
+<p>Expose a levelDB over the network, to be used by multiple processes,
+with <a href="https://github.com/rvagg/node-levelup">levelUp</a>&#39;s API.</p>
+<p><a href="https://travis-ci.org/juliangruber/multilevel"><img src="https://travis-ci.org/juliangruber/multilevel.png?branch=master" alt="Build Status"></a></p>
+<p><a href="https://nodei.co/npm/multilevel/"><img src="https://nodei.co/npm/multilevel.png" alt="NPM"></a></p>
+<h2>Usage</h2>
+<p>Expose a db on the server:</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">multilevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multilevel&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">net</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;net&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">level</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">level</span><span class="p">(</span><span class="s1">&#39;/my/db&#39;</span><span class="p">);</span>
+
+<span class="nx">net</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">con</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">con</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">multilevel</span><span class="p">.</span><span class="nx">server</span><span class="p">(</span><span class="nx">db</span><span class="p">)).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">con</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+</pre></div>
+
+<p>And connect to it from the client:</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">multilevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multilevel&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">net</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;net&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">multilevel</span><span class="p">.</span><span class="nx">client</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">con</span> <span class="o">=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+<span class="nx">con</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nx">createRpcStream</span><span class="p">()).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">con</span><span class="p">);</span>
+
+<span class="c1">// asynchronous methods</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="cm">/* */</span> <span class="p">});</span>
+
+<span class="c1">// streams</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">().</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="cm">/* */</span> <span class="p">});</span>
+</pre></div>
+
+<h2>Compatibility and binary data</h2>
+<p>multilevel works in the browser too - via
+<a href="https://github.com/substack/node-browserify">browserify</a> - and has full
+support for binary data. For getting a connection between browser and server I
+recommend either
+<a href="https://github.com/maxogden/websocket-stream">websocket-stream</a>, which treats
+binary data well, or
+<a href="https://github.com/Raynos/engine.io-stream">engine.io-stream</a>, which has
+websocket fallbacks.</p>
+<p>When using a binary capable transport, require multilevel like this:</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">multilevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multilevel/msgpack&#39;</span><span class="p">);</span>
+</pre></div>
+
+<p>This way it uses <a href="https://github.com/dominictarr/msgpack-stream">msgpack-stream</a>
+instead of <a href="https://github.com/dominictarr/json-buffer">json-buffer</a> which uses
+way less bandwidth - but needs a binary capable transport.</p>
+<h2>Plugins</h2>
+<p>You can also expose custom methods and <a href="https://github.com/dominictarr/level-sublevel">sublevels</a>
+with <code>multilevel</code>!</p>
+<p>When using plugins, you must generate a manifest and require it in the client.</p>
+<p>Here&#39;s an example:</p>
+<div class="highlight"><pre><span class="c1">// server.js</span>
+<span class="c1">// create `db`</span>
+<span class="kd">var</span> <span class="nx">level</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">multilevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multilevel&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">level</span><span class="p">(</span><span class="nx">PATH</span><span class="p">);</span>
+
+<span class="c1">// extend `db` with a foo(cb) method</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">methods</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">methods</span> <span class="o">||</span> <span class="p">{};</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">methods</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;async&#39;</span> <span class="p">};</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// now write the manifest to a file</span>
+<span class="nx">multilevel</span><span class="p">.</span><span class="nx">writeManifest</span><span class="p">(</span><span class="nx">db</span><span class="p">,</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/manifest.json&#39;</span><span class="p">);</span>
+
+<span class="c1">// then expose `db` via shoe or any other streaming transport.</span>
+<span class="kd">var</span> <span class="nx">shoe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;shoe&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">sock</span> <span class="o">=</span> <span class="nx">shoe</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">stream</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">stream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">multilevel</span><span class="p">.</span><span class="nx">server</span><span class="p">(</span><span class="nx">db</span><span class="p">)).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">sock</span><span class="p">.</span><span class="nx">install</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">),</span> <span class="s1">&#39;/websocket&#39;</span><span class="p">);</span>
+</pre></div>
+
+<p>Manifests are generated using
+<a href="https://github.com/dominictarr/level-manifest">level-manifest</a>, which doesn&#39;t
+only support async functions but e.g. streams as well. For more, check its README.</p>
+<p>Then require the manifest on the client when bundling with browserify or in
+any other nodejs compatible environment.</p>
+<div class="highlight"><pre><span class="c1">// client.js</span>
+<span class="c1">// instantiate a multilevel client with the `manifest.json` we just generated</span>
+<span class="kd">var</span> <span class="nx">multilevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multilevel&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">manifest</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./manifest.json&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">multilevel</span><span class="p">.</span><span class="nx">client</span><span class="p">(</span><span class="nx">manifest</span><span class="p">);</span>
+
+<span class="c1">// now pipe the db to the server</span>
+<span class="kd">var</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">shoe</span><span class="p">(</span><span class="s1">&#39;/websocket&#39;</span><span class="p">);</span>
+<span class="nx">stream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nx">createRpcStream</span><span class="p">()).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
+
+<span class="c1">// and you can call the custom `foo` method!</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">foo</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span> <span class="c1">// =&gt; &quot;bar&quot;</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2>Authentication</h2>
+<p>You do not want to expose every database feature to every user, you might e.g.
+only want to provide read-only access to some users.</p>
+<p>Auth controls may be injected when creating the server stream.</p>
+<p>In this example, allow read only access, unless logged in as root.</p>
+<div class="highlight"><pre><span class="c1">//server.js</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./setup-db&#39;</span><span class="p">);</span> <span class="c1">//all your database customizations</span>
+<span class="kd">var</span> <span class="nx">multilevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multilevel&#39;</span><span class="p">);</span>
+
+<span class="c1">//write out manifest</span>
+<span class="nx">multilevel</span><span class="p">.</span><span class="nx">writeManifest</span><span class="p">(</span><span class="nx">db</span><span class="p">,</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/manifest.json&#39;</span><span class="p">);</span>
+
+<span class="nx">shoe</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">stream</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">stream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">multilevel</span><span class="p">.</span><span class="nx">server</span><span class="p">(</span><span class="nx">db</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">auth</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">==</span> <span class="s1">&#39;root&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">pass</span> <span class="o">==</span> <span class="s1">&#39;toor&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//the data returned will be attached to the mulilevel stream</span>
+        <span class="c1">//and passed to `access`</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;root&#39;</span><span class="p">});</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;not authorized&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">access</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">db</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//`user` is the {name: &#39;root&#39;} object that `auth`</span>
+      <span class="c1">//returned. </span>
+
+      <span class="c1">//if not a privliged user...</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span> <span class="o">||</span> <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">!==</span> <span class="s1">&#39;root&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//do not allow any write access</span>
+        <span class="k">if</span> <span class="p">(</span><span class="sr">/^put|^del|^batch|write/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">method</span><span class="p">))</span> <span class="p">{</span>
+          <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;read-only access&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>        
+    <span class="p">})</span>
+  <span class="p">})).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// ...</span>
+</pre></div>
+
+<p>The client authorizes by calling the auth method.</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">multilevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multilevel&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">shoe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;shoe&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">shoe</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">multilevel</span><span class="p">.</span><span class="nx">client</span><span class="p">();</span>
+<span class="nx">stream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nx">createRpcStream</span><span class="p">()).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">stream</span><span class="p">);</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">auth</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="nx">pass</span><span class="o">:</span> <span class="s1">&#39;toor&#39;</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span>
+  <span class="c1">//later, they can sign out, too.</span>
+
+  <span class="nx">db</span><span class="p">.</span><span class="nx">deauth</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//signed out!</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2>API</h2>
+<p>The exposed DB has the exact same API as
+<a href="https://github.com/rvagg/node-levelup">levelUp</a>, except</p>
+<ul>
+<li><code>db#close()</code> closes the connection, instead of the database.</li>
+<li>the synchronous versions of <code>db#isOpen()</code> and <code>db#isClose()</code> tell you if you
+currently have a connection to the remote db.</li>
+<li>events, like <code>db.on(&quot;put&quot;, ...)</code> are not emitted. If you need updates, you
+can use <a href="https://github.com/dominictarr/level-live-stream">level-live-stream</a>.</li>
+</ul>
+<h3>multilevel.server(db[, authOpts])</h3>
+<p>Returns a server-stream that exposes <code>db</code>, an instance of levelUp.
+<code>authOpts</code> is optional and should be of this form:</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">authOpts</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">auth</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">userData</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//call back an error, if the user is not authorized.</span>
+  <span class="p">},</span>
+  <span class="nx">access</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">userData</span><span class="p">,</span> <span class="nx">db</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//throw if this user is not authorized for this action.</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>multilevel.writeManifest(db, path)</h3>
+<p><strong>Synchronoulsy</strong> write <code>db</code>&#39;s manifest to <code>path</code>.</p>
+<h3>var db = multilevel.client([manifest])</h3>
+<p>Return a new client db. <code>manifest</code> may optionally be provided, which will
+grant the client access to extensions and sublevels.</p>
+<h4>db.createRpcStream()</h4>
+<p>Pipe this into a server stream.</p>
+<h4>db.auth(data, cb)</h4>
+<p>Authorize with the server.</p>
+<h4>db.deauth (cb)</h4>
+<p>Deauthorize with the server.</p>
+<h2>Performance</h2>
+<p>On my macbook pro one multilevel server handles ~15k ops/s over a local tcp
+socket.</p>
+<div class="highlight"><pre> <span class="err">∴</span>  <span class="nx">bench</span> <span class="p">(</span><span class="nx">master</span><span class="p">)</span> <span class="o">:</span> <span class="nx">node</span> <span class="nx">index</span><span class="p">.</span><span class="nx">js</span> 
+
+<span class="nx">writing</span> <span class="s2">&quot;1234567890abcdef&quot;</span> <span class="mi">100</span> <span class="nx">times</span>
+
+ <span class="kr">native</span>             <span class="o">:</span> <span class="mi">2</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">50000</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+ <span class="nx">multilevel</span> <span class="nx">direct</span>  <span class="o">:</span> <span class="mi">21</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">4762</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+ <span class="nx">multilevel</span> <span class="nx">network</span> <span class="o">:</span> <span class="mi">14</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">7143</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+
+<span class="nx">writing</span> <span class="s2">&quot;1234567890abcdef&quot;</span> <span class="mi">1000</span> <span class="nx">times</span>
+
+ <span class="kr">native</span>             <span class="o">:</span> <span class="mi">12</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">83333</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+ <span class="nx">multilevel</span> <span class="nx">direct</span>  <span class="o">:</span> <span class="mi">71</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">14085</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+ <span class="nx">multilevel</span> <span class="nx">network</span> <span class="o">:</span> <span class="mi">77</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">12987</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+
+<span class="nx">writing</span> <span class="s2">&quot;1234567890abcdef&quot;</span> <span class="mi">10000</span> <span class="nx">times</span>
+
+ <span class="kr">native</span>             <span class="o">:</span> <span class="mi">88</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">113636</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+ <span class="nx">multilevel</span> <span class="nx">direct</span>  <span class="o">:</span> <span class="mi">594</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">16835</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+ <span class="nx">multilevel</span> <span class="nx">network</span> <span class="o">:</span> <span class="mi">590</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">16949</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+
+<span class="nx">writing</span> <span class="s2">&quot;1234567890abcdef&quot;</span> <span class="mi">100000</span> <span class="nx">times</span>
+
+ <span class="kr">native</span>             <span class="o">:</span> <span class="mi">927</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">107875</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+ <span class="nx">multilevel</span> <span class="nx">direct</span>  <span class="o">:</span> <span class="mi">10925</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">9153</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+ <span class="nx">multilevel</span> <span class="nx">network</span> <span class="o">:</span> <span class="mi">9839</span><span class="nx">ms</span> <span class="p">(</span><span class="mi">10164</span> <span class="nx">ops</span><span class="o">/</span><span class="nx">s</span><span class="p">)</span>
+</pre></div>
+
+<h2>Installation</h2>
+<p>With <a href="http://npmjs.org">npm</a> do:</p>
+<div class="highlight"><pre><span class="nv">$ </span>npm install multilevel
+</pre></div>
+
+<h2>Contributing</h2>
+<div class="highlight"><pre><span class="nv">$ </span>npm install
+<span class="nv">$ </span>npm <span class="nb">test</span>
+<span class="nv">$ </span>npm run <span class="nb">test</span>-browser
+</pre></div>
+
+<h2>Contributors</h2>
+<ul>
+<li><a href="https://github.com/juliangruber">@juliangruber</a></li>
+<li><a href="https://github.com/dominictarr">@dominictarr</a></li>
+</ul>
+<h2>License</h2>
+<p>(MIT)</p>
+<p>Copyright (c) 2013 Julian Gruber &lt;julian@juliangruber.com&gt;</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</div>
+    </div>
+  </body>
+</html>

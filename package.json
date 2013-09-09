@@ -17,7 +17,8 @@
     "readable-stream": "~1.0.15",
     "through2-map": "~1.1.0",
     "through2": "~0.2.1",
-    "level-sublevel": "~5.1.1"
+    "level-sublevel": "~5.1.1",
+    "multilevel": "~5.5.0"
   },
   "bin": "./levelmeup.js",
   "preferGlobal": true
