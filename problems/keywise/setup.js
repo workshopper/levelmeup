@@ -1,17 +1,17 @@
 var level = require('level')
 var os = require('os')
 var path = require('path')
-var through = require('through')
+var through = require('through2')
 var fs = require('fs')
 var PassThrough = require('stream').PassThrough
   || require('readable-stream/passthrough')
 
-var datafile = path.join(__dirname, 'data.json')
-var users = require('./data.json').map(function (row) {
+var datafile = path.join(__dirname, '../../data/keywise.json')
+var users = require('../../data/keywise.json').map(function (row) {
   return row.type === 'user' && row.name
 }).filter(Boolean)
 
-function streamTo (dir, out) {
+function streamTo (dir, out, users) {
   var db = level(dir, { valueEncoding: 'json' })
 
   ;(function next () {
@@ -33,19 +33,16 @@ function streamTo (dir, out) {
   function reposFor (user, next) {
     var cur = {}
     db.readStream({ start: user, end: user + '~' })
-      .pipe(through(write, end))
-
-    function write (row) {
-      if (row.value.type === 'user') {
-        if (cur.user) next(null, cur)
-        cur.user = row.value
-        cur.repos = []
-      } else if (row.value.type === 'repo') {
-        cur.repos.push(row.value)
-      } else next('unexpected row type ' + row.value.type)
-    }
-
-    function end () { next(null, cur) }
+      .on('data', function (row) {
+        if (row.value.type === 'user') {
+          if (cur.user) next(null, cur)
+          cur.user = row.value
+          cur.repos = []
+        } else if (row.value.type === 'repo') {
+          cur.repos.push(row.value)
+        } else next('unexpected row type ' + row.value.type)
+      })
+      .on('end', function () { next(null, cur) })
   }
 }
 
@@ -53,19 +50,17 @@ module.exports = function (run) {
   var dba = path.join(os.tmpDir(), 'keywise-' + Math.random() + '.db')
   var dbb = path.join(os.tmpDir(), 'keywise-' + Math.random() + '.db')
 
-  var a = new PassThrough
-  var b = new PassThrough
-  a.on('data', function () {})
-  b.on('data', function () {})
+  var a = new PassThrough()
+  var b = !run && new PassThrough()
 
-  setTimeout(streamTo.bind(null, dba, a), 1500)
-  ;!run && setTimeout(streamTo.bind(null, dbb, b), 1500)
+  setTimeout(streamTo.bind(null, dba, a, users.slice()), 500)
+  ;!run && setTimeout(streamTo.bind(null, dbb, b, users.slice()), 500)
 
   return {
       submissionArgs: [ dba, datafile ]
     , solutionArgs: [ dbb, datafile ]
     , long: true
     , a: a
-    , b: b
+    , b: !run && b
   }
 }
