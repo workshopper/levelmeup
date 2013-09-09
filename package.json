@@ -1,6 +1,6 @@
 {
   "name": "levelmeup",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Level Me Up Scotty! An intro to Node.js databases via a set of self-guided workshops.",
   "author": "Rod Vagg <rod@vagg.org> (https://github.com/rvagg)",
   "repository": {
@@ -15,7 +15,8 @@
     "after": "~0.8.1",
     "echomunge": "~0.2.0",
     "readable-stream": "~1.0.15",
-    "through2-map": "~1.1.0"
+    "through2-map": "~1.1.0",
+    "through2": "~0.2.1"
   },
   "bin": "./levelmeup.js",
   "preferGlobal": true

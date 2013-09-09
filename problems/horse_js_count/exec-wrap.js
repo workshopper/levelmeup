@@ -2,26 +2,56 @@
 module.exports.init = function () {}
 module.exports.args = -1
 
-const path  = require('path')
-    , level = require('level')
-    , db    = level(process.argv[4])
-    , file  = process.argv[3]
+const path     = require('path')
+    , level    = require('level')
+    , wrapped  = require('../../lib/wrapped-level')
+    , db       = level(process.argv[4])
+    , file     = process.argv[3]
+    , horsejs  = require('../../data/horse_js.json')
+    , solution = require(path.resolve(process.cwd(), file))
+    , through2 = require('through2')
 
-var solution = require(path.resolve(process.cwd(), file))
+var streamedEntries
 
 if (typeof solution != 'function')
   return console.log(process.argv[3], 'does not export a single function')
 
-solution(db, '2013-06-01', function (err, tweets) {
-  if (err) throw err
-  tweets.forEach(function (tweet) {
-    console.log('<@horse_js 2013-06-01>', tweet)
-  })
+function methodUsed (db, methodName, method, args) {
+  if (!/create\w+Stream/.test(methodName))
+    return
 
-  solution(db, '2013-07-11', function (err, tweets) {
+  return method.apply(db, args).pipe(through2({ objectMode: true },
+      function (chunk, enc, callback) {
+        streamedEntries++
+        callback(null, chunk)
+      }
+    , function (callback) {
+        callback()
+      })
+  )
+}
+
+function out (date, count) {
+  console.log('@horse_js tweets since %s: %s [streamed %s entries]', date, count, streamedEntries)
+}
+
+db.on('ready', function () {
+  db = wrapped(db, methodUsed)
+  streamedEntries = 0
+  solution(db, process.argv[4], function (err, count) {
     if (err) throw err
-    tweets.forEach(function (tweet) {
-      console.log('<@horse_js 2013-07-11>', tweet)
+    out(process.argv[4], count)
+
+    streamedEntries = 0
+    solution(db, process.argv[5], function (err, count) {
+      if (err) throw err
+      out(process.argv[5], count)
+
+      streamedEntries = 0
+      solution(db, process.argv[6], function (err, count) {
+        if (err) throw err
+        out(process.argv[6], count)
+      })
     })
   })
 })
