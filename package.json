@@ -15,7 +15,8 @@
     "after": "~0.8.1",
     "echomunge": "~0.2.0",
     "readable-stream": "~1.0.15",
-    "through2-map": "~1.1.0"
+    "through2-map": "~1.1.0",
+    "through2": "~0.2.1"
   },
   "bin": "./levelmeup.js",
   "preferGlobal": true

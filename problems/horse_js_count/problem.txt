@@ -20,7 +20,8 @@ occurred or null. The second argument, if there was no error, should
 be an Array where each element is simply the String text of a tweet.
 
 Your solution will be checked against the official solution to ensure
-that your query is targeting the exact range (see details below.)
+that your query is targeting the exact range (see details below).
+The output will include the number of "streamed entries".
 
 ---------------------------------------------------------------------
 HINTS:
