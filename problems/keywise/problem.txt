@@ -39,3 +39,6 @@ with the option: `valueEncoding: 'json'`, i.e.
 You can then write values as objects directly to the store without
 having to do a JSON conversion yourself. This also means that read
 operations will receive a recomposed object.
+
+To get output for debugging when running `levelmeup run program.js`
+you should use console.error instead of console.log.
