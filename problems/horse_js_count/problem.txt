@@ -13,7 +13,7 @@ of the entry is simply a String representing the tweet's content.
 
 Write a {bold}module{/bold} (not a program) that exports a single function that
 accepts three arguments: an instance of an existing LevelUP database,
-a date string, of the form YYYY-DD-MM and a callback function.
+a date string, of the form YYYY-MM-DD and a callback function.
 
 The first argument returned on the callback should be an Error if one
 occurred or null. The second argument, if there was no error, should
