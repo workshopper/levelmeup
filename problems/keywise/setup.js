@@ -6,22 +6,32 @@ var fs = require('fs')
 var PassThrough = require('stream').PassThrough
   || require('readable-stream/passthrough')
 
-var datafile = path.join(__dirname, '../../data/keywise.json')
-var users = require('../../data/keywise.json').map(function (row) {
+var datafile = require.resolve('../../data/keywise.json')
+var users = require(datafile).map(function (row) {
   return row.type === 'user' && row.name
 }).filter(Boolean)
 
 function streamTo (dir, out, users) {
-  var db = level(dir, { valueEncoding: 'json' })
+  var db = level(dir)
 
   ;(function next () {
-    if (users.length === 0) return out.end()
+    if (users.length === 0)
+      return out.end()
+
     var user = users.shift()
 
     reposFor(user, function (err, c) {
-      if (err) return out.write('ERROR: ' + err + '\n')
+      if (err) {
+        out.write('ERROR: ' + err + '\n')
+        out.end()
+      }
+
       out.write('repos for ' + user + ':\n')
 
+      if (!c.repos || !Array.isArray(c.repos)) {
+        out.write('ERROR: no `repos` property ' + user + '\'s entry value\n')
+        return out.end()
+      }
       c.repos.forEach(function (repo) {
         out.write('  ' + repo.name + '\n')
       })
@@ -33,16 +43,27 @@ function streamTo (dir, out, users) {
   function reposFor (user, next) {
     var cur = {}
     db.readStream({ start: user, end: user + '~' })
-      .on('data', function (row) {
-        if (row.value.type === 'user') {
-          if (cur.user) next(null, cur)
-          cur.user = row.value
+      .on('data', function (data) {
+        var value
+        try {
+          value = JSON.parse(data.value)
+        } catch (e) {
+          next('entry not stored as JSON: ' + data.key + '=' + data.value)
+        }
+        if (value.type === 'user') {
+          if (cur.user)
+            next(null, cur)
+          cur.user = value
           cur.repos = []
-        } else if (row.value.type === 'repo') {
-          cur.repos.push(row.value)
-        } else next('unexpected row type ' + row.value.type)
+        } else if (value.type === 'repo') {
+          cur.repos.push(value)
+        } else {
+          next('unexpected row type in entry: ' + data.key + '=' + data.value)
+        }
       })
-      .on('end', function () { next(null, cur) })
+      .on('end', function () {
+        next(null, cur)
+      })
   }
 }
 
