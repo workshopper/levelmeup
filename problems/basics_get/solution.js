@@ -5,7 +5,7 @@ function fetchNext (i) {
   var key = 'gibberish' + i
   db.get(key, function (err, data) {
     if (err) {
-      if (err.name != 'NotFoundError')
+      if (!err.notFound)
         throw err
     } else
       console.log(key + '=' + data)
