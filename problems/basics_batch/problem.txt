@@ -58,3 +58,6 @@ assume that your whole batch failed.
 The lines in the file can be safely split with:
 
   var arr = line.split(',')
+
+To get output for debugging when running `levelmeup run program.js`
+you should use console.error instead of console.log.
