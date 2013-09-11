@@ -25,6 +25,11 @@ doing the following range query:
 
     db.createReadStream({ start: 'rvagg!', end: 'rvagg!~' })
 
+and the verify script should be able to read the data for the user using
+the following lookup:
+
+    db.get('rvagg', callback)
+
 The value of each entry of the data-store should be the same as the
 original JSON object from the data file.
 
