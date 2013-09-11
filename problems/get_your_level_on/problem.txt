@@ -13,7 +13,7 @@ HINTS:
 data-store API and `{bold}leveldown{/bold}`, the low-level LevelDB binding.
 
 Read more about Level and LevelUP:
-  http://npm.im/leveldown
+  http://npm.im/levelup
 Or off-line on your local filesystem:
   {rootdir}/docs/levelup.html
 
