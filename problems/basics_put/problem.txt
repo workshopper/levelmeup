@@ -23,10 +23,13 @@ properly catch any errors (otherwise errors will be thrown):
   db.put('foo', 'bar', function (err) {
     if (err)
       return console.error('Error in put():', err)
-    console.log('put foo = bar')
+    console.error('put foo = bar')
   })
 
 You may also call `db.close()` after all your callbacks have returned,
 however this is optional as the data-store will be automatically
 closed when your program exits. An open LevelDB store will not keep
 your program running indefinitely.
+
+To get output for debugging when running `levelmeup run program.js`
+you should use console.error instead of console.log.

@@ -36,3 +36,6 @@ exercise.
 If you don't have an Internet connection, simply make a `node_modules`
 directory and copy the following directory into it:
   {rootdir}/node_modules/level-sublevel/
+
+To get output for debugging when running `levelmeup run program.js`
+you should use console.error instead of console.log.
