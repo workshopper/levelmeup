@@ -24,6 +24,7 @@
 <tr><th align="left">James Halliday</th><td><a href="https://github.com/substack">GitHub/substack</a></td><td><a href="http://twitter.com/substack">Twitter/@substack</a></td></tr>
 <tr><th align="left">Jake Verbaten</th><td><a href="https://github.com/raynos">GitHub/raynos</a></td><td><a href="http://twitter.com/raynos2">Twitter/@raynos2</a></td></tr>
 <tr><th align="left">Julian Gruber</th><td><a href="https://github.com/juliangruber">GitHub/juliangruber</a></td><td><a href="http://twitter.com/juliangruber">Twitter/@juliangruber</a></td></tr>
+<tr><th align="left">Robert Kowalski</th><td><a href="https://github.com/robertkowalski">GitHub/robertkowalski</a></td><td><a href="http://twitter.com/robinson_k">Twitter/@robinson_k</a></td></tr>
 </tbody></table>
 
 **levelmeup** builds on the **[workshopper](https://github.com/rvagg/workshopper)** framework which is also used by **[learnyounode](https://github.com/rvagg/learnyounode)** (Learn You Node.js For Much Win), a basic introduction to Node.js workshop application.
