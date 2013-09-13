@@ -4,7 +4,7 @@
 
 [![NPM](https://nodei.co/npm/levelmeup.png?downloads=true&stars=true)](https://nodei.co/npm/levelmeup/) [![NPM](https://nodei.co/npm-dl/levelmeup.png?months=3)](https://nodei.co/npm/levelmeup/)
 
-![Level Me Up Scotty!](./levelmeup.png)
+![Level Me Up Scotty!](https://github.com/rvagg/levelmeup/raw/master/levelmeup.png)
 
   1. Run `npm install levelmeup -g`
   1. Run `levelmeup`
