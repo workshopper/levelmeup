@@ -6,15 +6,15 @@ the first command-line argument.
 The second command-line argument will be a full path to a file
 containing some data you must load in to the data-store. Each {bold}line{/bold}
 of the file will contain two or three strings separated by commas. The
-first string will either be {italic}"PUT"{/italic} or {italic}"DEL"{/italic}, the second string will be
-a {italic}key{/italic} and in the case of a "PUT", the third string will be a {italic}value{/italic}.
+first string will either be {italic}"put"{/italic} or {italic}"del"{/italic}, the second string will be
+a {italic}key{/italic} and in the case of a "put", the third string will be a {italic}value{/italic}.
 
 For example:
 
-  PUT,@izs,Isaac Z. Schlueter
-  PUT,@tmpvar,Elijah Insua
-  PUT,@mrbruning,Max Bruning
-  DEL,@darachennis
+  put,@izs,Isaac Z. Schlueter
+  put,@tmpvar,Elijah Insua
+  put,@mrbruning,Max Bruning
+  del,@darachennis
 
 In this case, you have 3 new entries to add, mapping twitter handles
 to real names, and one entry to remove.

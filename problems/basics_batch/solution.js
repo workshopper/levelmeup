@@ -12,7 +12,7 @@ level(process.argv[2], function (err, db) {
   var batch = db.batch()
   data.forEach(function (line) {
     var d = line.split(',')
-    if (d[0] == 'DEL')
+    if (d[0] == 'del')
       return batch.del(d[1])
     batch.put(d[1], d[2])
   })
@@ -24,10 +24,8 @@ level(process.argv[2], function (err, db) {
 
   var operations = data.map(function (line) {
     var d = line.split(',')
-
-    if (d[0] == 'DEL')
-      return { type: 'del', key: d[1] }
-    return { type: 'put', key: d[1], value: d[2] }
+    // 'value' is ignored for del
+    return { type: d[0], key: d[1], value: d[2] }
   })
 
   db.batch(operations, function (err) {

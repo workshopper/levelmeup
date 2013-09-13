@@ -22,7 +22,7 @@ function setup (run, callback) {
   existing.setup(run)
 
   var i             = Math.ceil(Math.random() * 10) + 5
-    , fileContents  = 'DEL,!existing1\n'
+    , fileContents  = 'del,!existing1\n'
     , submissionOut = new PassThrough()
     , solutionOut   = !run && new PassThrough()
     , ops           = [
@@ -32,14 +32,14 @@ function setup (run, callback) {
 
   while (i-- >= 1) {
     fileContents +=
-        'PUT,batchable'
+        'put,batchable'
         + Math.floor(Math.random() * 100)
         + ','
         + gibberish().replace(/,/g, '')
         + '\n'
   }
 
-  fileContents += 'DEL,~existing2'
+  fileContents += 'del,~existing2'
 
   fs.writeFileSync(dataFile, fileContents, 'utf8')
 
@@ -48,8 +48,8 @@ function setup (run, callback) {
         db.batch(ops, callback)
       }
     , function (err) {
-        setTimeout(streamTo.bind(null, existing.dir1, submissionOut), 1000)
-        ;!run && setTimeout(streamTo.bind(null, existing.dir2, solutionOut), 1000)
+        setTimeout(streamTo.bind(null, existing.dir1, submissionOut), 500)
+        ;!run && setTimeout(streamTo.bind(null, existing.dir2, solutionOut), 500)
 
         callback(null, {
             submissionArgs : [ existing.dir1, dataFile ]
