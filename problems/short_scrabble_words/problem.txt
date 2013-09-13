@@ -12,6 +12,18 @@ initialised with `init()`), a `word` string containing the query, and
 a callback that you must call with either an error object as the first
 argument or an array of strings matching the `word` query.
 
+Here is a boilerplate module that you can extend for your solution:
+
+    module.exports.init = function (db, words, callback) {
+      // insert each word in the words array here
+      // then call `callback()` when you are done inserting words
+    }
+
+    module.exports.query = function (db, word, callback) {
+      // `word` may have '*' chars to denote single-letter wildcards
+      // call callback(err, results) with an array of matching words
+    }
+
 The `word` query may be a complete word, e.g. 'RUN', or a prefix of a
 word with '*' characters filling in the blanks, e.g. 'RU*' or 'R**'.
 The `.length` will tell you how long the word should be, your results
