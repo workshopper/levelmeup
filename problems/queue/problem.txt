@@ -1,6 +1,6 @@
 Write a module (not a program) that provides a FIFO queue on top
 of a `{bold}level{/bold}` database. Your module should expose a function
-that build a named queue and accept a `{bold}levelup{/bold}` instance.
+that build a queue and accept a `{bold}levelup{/bold}` instance.
 This function should return an object that has the following methods:
  * `push`: add an element to the end of the queue.
  * `shift`: shifts an element from the front of the queue.
@@ -29,8 +29,8 @@ HINTS:
 
 Use this boilerplate to get started with your module file:
 
-  function Queue(db, name) {
-    if (!(this instanceof Queue)) return new Queue(db, name)
+  function Queue(db) {
+    if (!(this instanceof Queue)) return new Queue(db)
 
     // ...
   }

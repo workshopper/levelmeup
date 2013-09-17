@@ -1,19 +1,16 @@
-var sublevel = require('level-sublevel')
 
-function Queue(db, name) {
-  if (!(this instanceof Queue)) return new Queue(db, name)
+function Queue(db) {
+  if (!(this instanceof Queue)) return new Queue(db)
 
-  this._db = sublevel(db).sublevel(name)
+  this._db = db
 }
-
-module.exports = Queue
 
 Queue.prototype.push = function(element, callback) {
   var key = (new Date()).toISOString()
 
   this._db.put(key, element, callback)
 
-  return this;
+  return this
 }
 
 Queue.prototype.shift = function(callback) {
@@ -31,7 +28,7 @@ Queue.prototype.shift = function(callback) {
 
   stream.once('error', callback)
 
-  return this;
+  return this
 }
 
 Queue.prototype.clear = function(callback) {
@@ -41,5 +38,9 @@ Queue.prototype.clear = function(callback) {
             }))
       .on('close', callback)
 
-  return this;
+  return this
 }
+
+module.exports = Queue
+// you can find an alternative implementation
+// with more features in https://github.com/mcollina/level-queue-type
