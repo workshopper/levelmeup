@@ -6,7 +6,7 @@
 
 ![Level Me Up Scotty!](https://github.com/rvagg/levelmeup/raw/master/levelmeup.png)
 
-  1. Run `npm install levelmeup -g`
+  1. Run `sudo npm install levelmeup -g`
   1. Run `levelmeup`
   1. **.. profit!**
 
