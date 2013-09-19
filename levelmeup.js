@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
-require('workshopper')({
+const workshopper = require('workshopper')
+    , path        = require('path')
+
+workshopper({
     name     : 'levelmeup'
   , title    : 'LEVEL ME UP SCOTTY!'
   , subtitle : 'Learn You Some Node.js Databases'
@@ -8,4 +11,5 @@ require('workshopper')({
   , menu     : {
         bg : 'green'
     }
+  , helpFile : path.join(__dirname, 'help.txt')
 }).init()
