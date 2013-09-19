@@ -37,7 +37,10 @@ function booya (i) {
     return
   streamedEntries = 0
   solution(db, d, function (err, tweets) {
-    if (err) throw err
+    if (err)
+      throw err
+    if (!Array.isArray(tweets))
+      return console.log('ERROR: module must return an array of tweets on the callback')
     tweets.forEach(function (tweet) {
       console.log('<@horse_js ' + d + '>', tweet)
     })

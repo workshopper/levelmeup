@@ -34,8 +34,8 @@ function setup (run, callback) {
   submissionOut.resume()
   if (solutionOut) solutionOut.resume()
 
-  setTimeout(streamTo.bind(null, existing.dir1, submissionOut), 1500)
-  ;!run && setTimeout(streamTo.bind(null, existing.dir2, solutionOut), 1500)
+  setTimeout(streamTo.bind(null, existing.dir1, submissionOut), 500)
+  ;!run && setTimeout(streamTo.bind(null, existing.dir2, solutionOut), 500)
 
   callback(null, {
       submissionArgs : [ existing.dir1 ]
