@@ -56,6 +56,6 @@ level `put`, and `shift` into a limited ranged query.
 
 All pushed element must be stored in separate keys, by using a growing
 monotonic identifier. What problems will you encounter if you use a counter?
-Instead, try using `Date.now` and `process.hrtime()`.
+Instead, try using `Date.now()`. Is this the perfect solution?
 
 You can also use sublevel to handle the naming of the queues!

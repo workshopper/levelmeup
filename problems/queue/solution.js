@@ -3,11 +3,10 @@ function Queue(db) {
   if (!(this instanceof Queue)) return new Queue(db)
 
   this._db = db
-  this._db._startTime = Date.now()
 }
 
 Queue.prototype.push = function(element, callback) {
-  var key = [this._db._startTime].concat(process.hrtime()).join(';')
+  var key = Date.now() + '!' + Math.random().toString(16).slice(2);
 
   this._db.put(key, element, callback)
 
