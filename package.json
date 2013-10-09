@@ -1,6 +1,6 @@
 {
   "name": "levelmeup",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Level Me Up Scotty! An intro to Node.js databases via a set of self-guided workshops.",
   "author": "Rod Vagg <rod@vagg.org> (https://github.com/rvagg)",
   "repository": {
