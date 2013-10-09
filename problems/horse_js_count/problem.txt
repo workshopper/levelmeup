@@ -1,7 +1,7 @@
 You have been provided with a rich and valuable data-set that you
 need to provide a simple query interface to.
 
-In this exercise you will be given a a LevelDB store that contains
+In this exercise you will be given a LevelDB store that contains
 over 2,000 tweets from @horse_js. Your job is to query this data-
 set and return the number of tweets that occur from a given date
 to the {italic}end{/italic} of the data set.
@@ -34,10 +34,10 @@ Use this boilerplate to get started with your module file:
 
 The ISO date format will always sort lexicographically, which means
 that our tweets appear in date/time order in our data store without
-any special work required onb your part.
+any special work required on your part.
 
 In this exercise, you will need to use the `createReadStream()`
-method but you will need restrict the range of entries to just the
+method but you will need to restrict the range of entries to just the
 data you need, i.e. you must perform a "range query".
 
 By default, the range is the whole store, but you can narrow it down
