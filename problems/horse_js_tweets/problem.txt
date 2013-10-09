@@ -18,7 +18,7 @@ The second argument, if there was no error, should be an
 {bold}array where each element is the String text of a tweet{/bold}.
 
 The array should contain ordered tweets for the {bold}single day{/bold} given
-as the first argument to your function. You must not return tweets on
+as the first argument to your function. You must not return tweets
 for any other day.
 
 Your solution will be checked against the official solution to ensure
@@ -33,7 +33,7 @@ that our tweets appear in date/time order in our data store without
 any special work on our part.
 
 In this exercise, you will need to use the `createReadStream()`
-method but you will need restrict the range of entries to just the
+method but you will need to restrict the range of entries to just the
 data you need, i.e. you must perform a "range query".
 
 By default the range is the whole store, but you can narrow it down
@@ -61,7 +61,7 @@ matching '2010-09-04T03:51:30.929Z'.
 
 Because the 'end' key of your range will be inclusive, you will need
 to create a pseudo-key that would match only the keys you want.
-Consider that if used 'start' of '2010' and 'end' of '2011' you would
+Consider that if you used a 'start' of '2010' and 'end' of '2011' you would
 get all entries that start with both '2010' and '2011'. The idiomatic
 way (but not the only way) to do this with LevelUP is to append '\xff'
 to the end of your key, this is the last ASCII charcater. So, 'start'
