@@ -17,7 +17,10 @@ if (typeof solution != 'function')
   return console.log(process.argv[3], 'does not export a single function')
 
 function methodUsed (db, methodName, method, args) {
-  if (!/Stream/.test(methodName))
+  // only check readStream & createReadStream as both
+  // *valueStream and *keyStream use createReadStream internally
+  // anyway so we'll get double-counts
+  if (!(/readstream/i).test(methodName))
     return
 
   return method.apply(db, args).pipe(through2({ objectMode: true },

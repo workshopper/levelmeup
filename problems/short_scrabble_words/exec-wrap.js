@@ -10,11 +10,12 @@ const path     = require('path')
     , solution = require(path.resolve(process.cwd(), file))
     , through2 = require('through2')
 
-var words = fs.readFileSync(path.join(__dirname, '../../data/sowpods_2.dat'), 'utf8')
-  .split(/(?:\+| ) .+$\n?/m)
-  .concat(fs.readFileSync(path.join(__dirname, '../../data/sowpods_3.dat'), 'utf8').split(/\s|\n/g))
-  .concat(fs.readFileSync(path.join(__dirname, '../../data/sowpods_4.dat'), 'utf8').split(/\s|\n/g))
-  .filter(Boolean)
+var streamedEntries
+  , words = fs.readFileSync(path.join(__dirname, '../../data/sowpods_2.dat'), 'utf8')
+      .split(/(?:\+| ) .+$\n?/m)
+      .concat(fs.readFileSync(path.join(__dirname, '../../data/sowpods_3.dat'), 'utf8').split(/\s|\n/g))
+      .concat(fs.readFileSync(path.join(__dirname, '../../data/sowpods_4.dat'), 'utf8').split(/\s|\n/g))
+      .filter(Boolean)
 
 if (typeof solution.init != 'function')
   return console.log(file, 'does not export an init() function')
@@ -23,7 +24,10 @@ if (typeof solution.query != 'function')
   return console.log(file, 'does not export an query() function')
 
 function methodUsed (db, methodName, method, args) {
-  if (!/Stream/.test(methodName))
+  // only check readStream & createReadStream as both
+  // *valueStream and *keyStream use createReadStream internally
+  // anyway so we'll get double-counts
+  if (!(/readstream/i).test(methodName))
     return
 
   return method.apply(db, args).pipe(through2({ objectMode: true },
