@@ -9,8 +9,10 @@ once you have finished initialising the database.
 Your module should also export a `query()` method that also accepts
 3 arguments: a LevelUP `db` object (the same store that you
 initialised with `init()`), a `word` string containing the query, and
-a callback that you must call with either an error object as the first
-argument or an array of strings matching the `word` query.
+a callback that you must call with two arguments. The first argument
+should be null, or an error object if one occurred. The second
+argument should be an array of all the words in the database which
+match the query.
 
 Here is a boilerplate module that you can extend for your solution:
 
