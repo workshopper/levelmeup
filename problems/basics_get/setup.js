@@ -11,7 +11,7 @@ function setup (run, callback) {
 
   while (i-- > 0) {
     k = Math.floor(Math.random() * (i == 1 ? 10 : 100))
-    ops.push({ type: 'put', key: 'gibberish' + k, value: gibberish() })
+    ops.push({ type: 'put', key: 'key' + k, value: gibberish() })
   }
 
   existing.writeAndClose(

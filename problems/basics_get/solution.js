@@ -2,7 +2,7 @@ var level = require('level')
 var db = level(process.argv[2])
 
 function fetchNext (i) {
-  var key = 'gibberish' + i
+  var key = 'key' + i
   db.get(key, function (err, data) {
     if (err) {
       if (!err.notFound)
