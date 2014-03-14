@@ -64,6 +64,6 @@ to create a pseudo-key that would match only the keys you want.
 Consider that if you used a 'start' of '2010' and 'end' of '2011' you would
 get all entries that start with both '2010' and '2011'. The idiomatic
 way (but not the only way) to do this with LevelUP is to append '\xff'
-to the end of your key, this is the last ASCII charcater. So, 'start'
+to the end of your key, this is the last ASCII character. So, 'start'
 of '2010' and 'end' of '2010\xff' would only match keys starting with
 '2010'.
