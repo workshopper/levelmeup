@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "workshopper": "~0.3.1",
-    "level": "~0.17.0",
+    "level": "~0.18.2",
     "rimraf": "~2.2.2",
     "after": "~0.8.1",
     "echomunge": "~0.2.0",
