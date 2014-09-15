@@ -1,10 +1,10 @@
-Write a program that opens a LevelDB data-store using `{bold}level{/bold}`.
+Write a program that opens a `{bold}level{/bold}` directory and reads a key from it.
 
-Fetch and print to the console the value associated with the key
-'levelmeup'.
+Your program should take two arguments, a LevelDB directory, and a key.
+your program should then retrive the value of that key, and write it to the console.
 
-The first command-line argument to your program will be the full path
-to the directory containing the LevelDB store.
+for example, if `database_dir` contains a record `foo => bar` then the command
+`node levelread.js database_dir foo` should output `bar`.
 
 ----------------------------------------------------------------------
 HINTS:
