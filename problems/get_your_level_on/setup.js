@@ -12,8 +12,8 @@ function setup (run, callback) {
         if (err)
           return callback(err)
         callback(null, {
-            submissionArgs : [ existing.dir1 ]
-          , solutionArgs   : [ existing.dir2 ]
+            submissionArgs : [ existing.dir1, 'levelmeup' ]
+          , solutionArgs   : [ existing.dir2, 'levelmeup' ]
           , long           : true
           , close          : existing.cleanup
         })
