@@ -1,0 +1,1 @@
+console.log("ALL YOUR " + process.argv[3] + " ARE BELONG TO " + process.argv[2])
