@@ -50,11 +50,11 @@ then your query will end at the entry with a key that would come
 before your end key in sorted order.
 
 To target a range, you supply an options object to
-`createReadStream()` with `start` and/or `end` properties that
-define your range keys:
+`createReadStream()` with `gte` (greater than or equal) and/or `lte` (less than
+or equal) properties that define your range keys:
 
 ```javascript
-db.createReadStream({ start: 'bar', end: 'foo' })...
+db.createReadStream({ gte: 'bar', lte: 'foo' })...
 ```
 
 Keep in mind that since your range keys need not exist you only need
@@ -62,11 +62,11 @@ to supply any prefix of the keys you are looking for, e.g. `2010`
 will jump to the first key starting with `2010`, which might end up
 matching `2010-09-04T03:51:30.929Z`.
 
-Because the `end` key of your range will be inclusive, you will need
+Because the `lte` key of your range will be inclusive, you will need
 to create a pseudo-key that would match only the keys you want.
-Consider that if you used a `start` of `2010` and `end` of `2011` you would
+Consider that if you used a `gte` of `2010` and `lte` of `2011` you would
 get all entries that start with both `2010` and `2011`. The idiomatic
 way _(but not the only way)_ to do this with LevelUP is to append `'\xff'`
-to the end of your key, this is the last ASCII character. So, `'start'`
-of `2010` and `end` of `2010\xff` would only match keys starting with
+to the end of your key, this is the last ASCII character. So, `gte`
+of `2010` and `lte` of `2010\xff` would only match keys starting with
 `2010`.

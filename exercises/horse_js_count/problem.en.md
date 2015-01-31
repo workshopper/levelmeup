@@ -54,13 +54,13 @@ exist then the data will start from the entry with a key that
 would come next in the sorted order.
 
 When you call `createReadStream()`, provide an options object with
-the property 'start'. The value of this property can simply be the
+the property 'gte' (greater than or equal). The value of this property can simply be the
 original date string since YYYY-MM-DD is how the ISO format starts
 and this will make the ReadStream jump to the first key that begins
 with that prefix, i.e. the first tweet on that day.
 
 ```javascript
-db.createReadStream({ start: '...' })...
+db.createReadStream({ gte: '...' })...
 ```
 
 The rest of the solution will involve incrementing a counter for each
