@@ -9,16 +9,17 @@
   },
   "license": "MIT",
   "dependencies": {
-    "workshopper": "~0.3.1",
-    "level": "~0.18.0",
-    "rimraf": "~2.2.2",
     "after": "~0.8.1",
     "echomunge": "~0.2.0",
-    "readable-stream": "~1.0.15",
-    "through2-map": "~1.1.0",
-    "through2": "~0.2.1",
+    "level": "~0.18.0",
     "level-sublevel": "~6.2.1",
-    "multilevel": "~5.5.0"
+    "multilevel": "~5.5.0",
+    "readable-stream": "~1.0.15",
+    "rimraf": "~2.2.2",
+    "through2": "~0.2.1",
+    "through2-map": "~1.1.0",
+    "workshopper": "^1.3.3",
+    "workshopper-exercise": "^0.2.3"
   },
   "bin": "./levelmeup.js",
   "preferGlobal": true
