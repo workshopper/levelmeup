@@ -1,7 +1,7 @@
 Write a program that opens a `{bold}level{/bold}` directory and reads a key from it.
 
 Your program should take two arguments, a LevelDB directory, and a key.
-your program should then retrive the value of that key, and write it to the console.
+your program should then retrieve the value of that key, and write it to the console.
 
 for example, if `database_dir` contains a record `foo => bar` then the command
 `node levelread.js database_dir foo` should output `bar`.
