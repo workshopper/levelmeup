@@ -11,7 +11,7 @@ exercise = filecheck(exercise)
 exercise = execute(exercise)
 
 // compare stdout of solution and submission
-exercise = comparestdout(exercise)
+//exercise = comparestdout(exercise)
 
 var path        = require('path')
   , fs          = require('fs')
@@ -28,6 +28,9 @@ var path        = require('path')
 function streamTo (dir, out, done) {
   return level(dir)
     .readStream()
+    .on("error", function () {
+      console.log("?", arguments)
+    })
     .on("close", done)
     .pipe(through2map({ objectMode: true }, function (data) {
       return data.key + ' = ' + data.value + '\n'
@@ -41,6 +44,7 @@ exercise.addSetup(function setup (mode, callback) {
   var i             = Math.ceil(Math.random() * 10) + 5
     , fileContents  = 'del,!existing1\n'
     , self          = this
+
 
   while (i-- >= 1) {
     fileContents +=
@@ -57,9 +61,9 @@ exercise.addSetup(function setup (mode, callback) {
 
   this.submissionArgs = [ existing.dir1, dataFile ]
   this.solutionArgs = [ existing.dir2, dataFile ]
-  this.submissionOut = new PassThrough()
-  if (mode === 'verify')
-    this.solutionOut   = new PassThrough()
+  //this.submissionOut = new PassThrough()
+  //if (mode === 'verify')
+  //  this.solutionOut   = new PassThrough()
   this.longCompareOutput = true
 
   existing.writeAndClose(
@@ -74,11 +78,11 @@ exercise.addSetup(function setup (mode, callback) {
 })
 
 exercise.addProcessor(function (mode, callback) {
-  this.sub
   var done = after(mode === "verify" ? 2 : 1, setTimeout.bind(null, callback, 10))
-  ;streamTo(existing.dir1, this.submissionOut, done)
+
+  ;streamTo(existing.dir1, this.submissionStdout, done)
   if (mode === "verify")
-    streamTo(existing.dir2, this.solutionOut, done)
+    streamTo(existing.dir2, this.solutionStdout, done)
 })
 
 exercise.addCleanup(existing.cleanup)
