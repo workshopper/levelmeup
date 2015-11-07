@@ -14,18 +14,18 @@ const workshopper = require('workshopper-adventure')
     })
 
 levelMeUp.addAll([
-  "ALL YOUR_BASE",
-  "BASICS BATCH",
-  "BASICS GET",
-  "BASICS PUT",
-  "GET YOUR LEVEL ON",
-  "HORSE JS COUNT",
-  "HORSE JS TWEETS",
-  "KEYWISE",
-  "MULTILEVEL",
-  "SHORT SCRABBLE WORDS",
-  "STREAMING",
-  "SUBLEVEL"
+    "ALL YOUR BASE"
+  , "Get Your Level On!"
+  , "Basics: GET"
+  , "Basics: PUT"
+  , "Basics: BATCH"
+  , "Streaming"
+  , "@horse_js Count"
+  , "@horse_js Tweets"
+  , "Keywise"
+  , "Short Scrabble Words"
+  , "Sublevel"
+  , "Multilevel"
 ])
 
 module.exports = levelMeUp
