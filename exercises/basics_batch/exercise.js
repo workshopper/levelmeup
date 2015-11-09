@@ -11,7 +11,7 @@ exercise = filecheck(exercise)
 exercise = execute(exercise)
 
 // compare stdout of solution and submission
-//exercise = comparestdout(exercise)
+exercise = comparestdout(exercise)
 
 var path        = require('path')
   , fs          = require('fs')
@@ -21,21 +21,20 @@ var path        = require('path')
   , gibberish   = require('echomunge/dir2gibberish').bind(null, path.join(__dirname, '../..'))
   , existing    = require('../../lib/setup-existing')
   , PassThrough = require('stream').PassThrough || require('readable-stream/passthrough')
-  , through2map = require('through2-map')
+  , through2Map = require('through2-map')
   , dataFile    = path.join(os.tmpDir(), '~levelmeup_3_' + process.pid)
 
 
 function streamTo (dir, out, done) {
+  console.log(out)
   return level(dir)
     .readStream()
-    .on("error", function () {
-      console.log("?", arguments)
-    })
-    .on("close", done)
-    .pipe(through2map({ objectMode: true }, function (data) {
+    .on("error", done)
+    .pipe(through2Map({objectMode: true}, function (data) {
       return data.key + ' = ' + data.value + '\n'
-    }))
-    .pipe(out)
+    }) )
+    .on("end", done)
+    .pipe(out, {end: false})
 }
 
 exercise.addSetup(function setup (mode, callback) {
@@ -61,9 +60,11 @@ exercise.addSetup(function setup (mode, callback) {
 
   this.submissionArgs = [ existing.dir1, dataFile ]
   this.solutionArgs = [ existing.dir2, dataFile ]
-  //this.submissionOut = new PassThrough()
-  //if (mode === 'verify')
-  //  this.solutionOut   = new PassThrough()
+  
+  this.submissionOut = new PassThrough()
+  if (mode === 'verify')
+    this.solutionOut   = new PassThrough()
+  
   this.longCompareOutput = true
 
   existing.writeAndClose(
@@ -78,7 +79,10 @@ exercise.addSetup(function setup (mode, callback) {
 })
 
 exercise.addProcessor(function (mode, callback) {
-  var done = after(mode === "verify" ? 2 : 1, setTimeout.bind(null, callback, 10))
+  var done = after(mode === "verify" ? 2 : 1, setTimeout.bind(null, function () {
+    console.log("anyhow")
+    callback()
+  }, 100))
 
   ;streamTo(existing.dir1, this.submissionStdout, done)
   if (mode === "verify")

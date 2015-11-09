@@ -1,0 +1,38 @@
+Write a program that opens a `{bold}level{/bold}` directory and reads a key from it.
+
+Your program should take two arguments, a LevelDB directory, and a key.
+your program should then retrieve the value of that key, and write it to the console.
+
+for example, if `database_dir` contains a record `foo => bar` then the command
+`node levelread.js database_dir foo` should output `bar`.
+
+----------------------------------------------------------------------
+HINTS:
+
+`{bold}level{/bold}` is a package that bundles both `{bold}levelup{/bold}`, the Node-friendly
+data-store API and `{bold}leveldown{/bold}`, the low-level LevelDB binding.
+
+Read more about Level and LevelUP:
+  http://npm.im/levelup
+Or off-line on your local filesystem:
+  {rootdir}/docs/levelup.html
+
+You will need to `npm install level` to get started with this
+exercise.
+
+If you don't have an Internet connection, simply make a `node_modules`
+directory and copy the following directory into it:
+  {rootdir}/node_modules/level/
+
+You can open an existing data-store, or create a new one, by invoking
+`level()` and passing in a path to a directory. The function returns
+a new {italic}LevelUP{/italic} instance.
+
+All LevelUP methods are asynchronous. To {italic}get{/italic} a value out of the
+data-store, use the `.get(key, callback)` method:
+
+  var level = require('level')
+  var db = level('/path/to/db/')
+  db.get('foo', function (err, value) {
+    console.log('foo =', value)
+  })

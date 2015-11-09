@@ -11,9 +11,9 @@ fs.readFile(inputFile, 'utf8', function (error, data) {
 
     var batch = db.batch()
     data.split('\n').forEach(function (line) {
-      var delValue = /^del\,(.*)$/.exec(line)[1]
+      var delValue = /^del\,(.*)$/.exec(line)
       if (delValue !== null)
-        return batch.del(delValue)
+        return batch.del(delValue[1])
       var parts = /^([^,]+)\,(.*)$/.exec(line)
       batch.put(parts[1], parts[2])
     })
