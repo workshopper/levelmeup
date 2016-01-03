@@ -1,0 +1,61 @@
+Write a module (not a program) that provides a FIFO queue on top
+of a `{bold}level{/bold}` database. Your module should expose a function
+that build a queue and accept a `{bold}levelup{/bold}` instance.
+This function should return an object that has the following methods:
+ * `push`: add an element to the end of the queue.
+ * `shift`: shifts an element from the front of the queue.
+ * `clear`: remove all value from the queue.
+
+`{bold}push{\bold}` accept two arguments, the value to push and
+optionally a callback to know when it is finished.
+
+`{bold}shift{\bold}` accept one argument, an optional callback to
+retrieve the value at the front of the queue.
+
+`{bold}clear{\bold}` accept one argument, an optional callback to
+to know when it is finished.
+
+Remember, all callbacks follow the style of node.js:
+
+  function cb(err, value1, value2, value3, ...) {
+    if (err) {
+      // do something
+      return;
+    }
+  }
+
+----------------------------------------------------------------------
+HINTS:
+
+Use this boilerplate to get started with your module file:
+
+  function Queue(db) {
+    if (!(this instanceof Queue)) return new Queue(db)
+
+    // ...
+  }
+
+  module.exports = Queue
+
+  Queue.prototype.push = function(element, callback) {
+    // ...
+  }
+
+  Queue.prototype.shift = function(callback) {
+    // ...
+    // at some point call callback(null, element)
+  }
+
+  Queue.prototype.clear = function(callback) {
+    // ...
+  }
+
+Before coding, think how the queue data structure can be implemented
+on top of LevelUp. In particular, you want to "translate" a `push` into a
+level `put`, and `shift` into a limited ranged query.
+
+All pushed element must be stored in separate keys, by using a growing
+monotonic identifier. What problems will you encounter if you use a counter?
+Instead, try using `Date.now()`. Is this the perfect solution?
+
+You can also use sublevel to handle the naming of the queues!
