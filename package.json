@@ -11,7 +11,7 @@
   "dependencies": {
     "workshopper": "~0.3.1",
     "level": "~1.4.0",
-    "rimraf": "~2.2.2",
+    "rimraf": "~2.5.2",
     "after": "~0.8.1",
     "echomunge": "~0.2.0",
     "readable-stream": "~1.0.15",
