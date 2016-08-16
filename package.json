@@ -12,7 +12,7 @@
     "workshopper": "~0.3.1",
     "level": "~1.4.0",
     "rimraf": "~2.2.2",
-    "after": "~0.8.1",
+    "after": "~0.8.2",
     "echomunge": "~0.2.0",
     "readable-stream": "~1.0.15",
     "through2-map": "~1.1.0",
