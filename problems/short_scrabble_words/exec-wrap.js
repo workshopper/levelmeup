@@ -5,12 +5,12 @@ const path     = require('path')
     , fs       = require('fs')
     , level    = require('level')
     , wrapped  = require('../../lib/wrapped-level')
-    , db       = level(process.argv[4])
     , file     = process.argv[3]
     , solution = require(path.resolve(process.cwd(), file))
     , through2 = require('through2')
 
 var streamedEntries
+  , db       = level(process.argv[4])
   , words = fs.readFileSync(path.join(__dirname, '../../data/sowpods_2.dat'), 'utf8')
       .split(/(?:\+| ) .+$\n?/m)
       .concat(fs.readFileSync(path.join(__dirname, '../../data/sowpods_3.dat'), 'utf8').split(/\s|\n/g))
