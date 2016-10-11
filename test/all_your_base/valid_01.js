@@ -1,1 +1,3 @@
-console.log("ALL YOUR " + process.argv[2] + " ARE BELONG TO " + process.argv[3])
+module.exports = function (x, y, cb) {
+  cb("ALL YOUR " + x + " ARE BELONG TO " + y)
+}
