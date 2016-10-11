@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "after": "~0.8.1",
+    "diff": "^3.0.1",
     "echomunge": "~0.2.0",
     "level-sublevel": "~6.2.1",
     "multilevel": "~5.5.0",
