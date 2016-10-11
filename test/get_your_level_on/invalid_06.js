@@ -2,11 +2,13 @@ var level = require('level')
 
 module.exports = function (dir, key, callback) {
   var db = level(dir)
+  setTimeout(function () {
+  	callback(null, {})
+ 	})/*
   db.get(key, function (err, value) {
-    if (err) {
+    if (err)
       throw err
-    }
 
-    db.close(callback.bind(null, value))
-  })
+    console.log(value)
+  })*/
 }
