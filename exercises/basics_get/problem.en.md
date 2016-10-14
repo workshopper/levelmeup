@@ -1,22 +1,31 @@
-Write a program that opens a LevelDB data-store using `{bold}level{/bold}`.
+Write a module with one argument that opens a LevelDB data-store using
+**`level`**.
 
 The store will contain up to 10 entries with keys in the form:
 
-  key{italic}X{/italic}
+    key[X]
 
-Where '{italic}X{/italic}' is an integer between 0 and 100.
+Where _'[X]'_ is an integer between 0 and 100.
 
-You must find those entries and print them out to the console, ordered
-by '{italic}X{/italic}', ascending. You should print them out with:
+You must find those entries and return them in the callback as an, ordered
+by _'[X]'_, ascending. Your module could look like:
 
-  console.log(key + '=' + value)
-  // will output "key12=here is that random text"
+```javascript
+module.exports = function (databaseDir, obj, callback) {
+  var result = []
+  // your code...
+  result.push()
+  // more code...
+  callback(result)
+}
+```
 
 The full path to the data-store will be provided to your program as
-the first command-line argument.
+the first argument.
 
-----------------------------------------------------------------------
-HINTS:
+---
+
+## Hints:
 
 When you perform a `.get()` operation, if the entry does not exist
 your callback will receive an error object as the first argument.

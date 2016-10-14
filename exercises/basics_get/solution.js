@@ -1,18 +1,29 @@
 var level = require('level')
-var db = level(process.argv[2])
 
-function fetchNext (i) {
-  var key = 'key' + i
-  db.get(key, function (err, data) {
-    if (err) {
-      if (!err.notFound)
-        throw err
-    } else
-      console.log(key + '=' + data)
+module.exports = function (dir, callback) {
 
-    if (i < 100)
-      fetchNext(i + 1)
-  })
+  var db = level(dir)
+  var result = []
+  
+  var fetchNext = function fetchNext (i) {
+    var key = 'key' + i
+    db.get(key, function (err, value) {
+      if (err) {
+        if (!err.notFound) {
+          throw err
+        }
+      } else {
+        result.push(value)
+      }
+
+      if (i < 100) {
+        fetchNext(i + 1)
+      } else {
+        db.close(function () {
+          callback(result)
+        })
+      }
+    })
+  }    
+  fetchNext(0)
 }
-
-fetchNext(0)
