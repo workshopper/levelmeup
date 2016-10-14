@@ -42,9 +42,9 @@ All LevelUP methods are asynchronous. To _get_ a value out of
 the data-store, use the `.get(key, callback)` method:
 
 ```javascript
-    var level = require('level')
-    var db = level('/path/to/db/')
-    db.get('foo', function (err, value) {
-      console.log('foo =', value)
-    })
+var level = require('level')
+var db = level('/path/to/db/')
+db.get('foo', function (err, value) {
+  console.log('foo =', value)
+})
 ```
