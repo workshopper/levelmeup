@@ -22,6 +22,7 @@
       "not_function": "The module doesn't return a function",
       "unexpected": "An error occured while executing the module"
     },
+    "timeout": "Timeout: The module didn't respond after 10 seconds.",
     "not_same": "The output of the module doesn't match the expected output",
     "db": {
       "not_closed": "The database directory is still locked!\n\nClose it with `db.close(function () {})`"
