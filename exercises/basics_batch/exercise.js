@@ -1,94 +1,41 @@
-var exercise      = require('workshopper-exercise')()
-  , filecheck     = require('workshopper-exercise/filecheck')
-  , execute       = require('workshopper-exercise/execute')
-  , comparestdout = require('workshopper-exercise/comparestdout')
+var path = require('path')
+var shuffle = require('lodash.shuffle')
+var gibberish = require('../../lib/gibberish')
+var generate = require('../../lib/generate')
+var del = generate(5 + (Math.random() * 20 | 0))
+var mod = generate(5 + (Math.random() * 20 | 0))
+var put = generate(5 + (Math.random() * 20 | 0))
+var ops = []
+Object.keys(del).forEach(function (key) {
+  ops.push({
+    type: 'put',
+    key: key,
+    value: del[key]
+  })
+})
+Object.keys(mod).forEach(function (key) {
+  ops.push({
+    type: 'put',
+    key: key,
+    value: gibberish()
+  })
+  put[key] = mod[key]
+})
 
-
-// checks that the submission file actually exists
-exercise = filecheck(exercise)
-
-// execute the solution and submission in parallel with spawn()
-exercise = execute(exercise)
-
-// compare stdout of solution and submission
-exercise = comparestdout(exercise)
-
-var path        = require('path')
-  , fs          = require('fs')
-  , os          = require('os')
-  , level       = require('level')
-  , after       = require('after')
-  , gibberish   = require('echomunge/dir2gibberish').bind(null, path.join(__dirname, '../..'))
-  , existing    = require('../../lib/setup-existing')
-  , PassThrough = require('stream').PassThrough || require('readable-stream/passthrough')
-  , through2Map = require('through2-map')
-  , dataFile    = path.join(os.tmpDir(), '~levelmeup_3_' + process.pid)
-
-
-function streamTo (dir, out, done) {
-  console.log(out)
-  return level(dir)
-    .readStream()
-    .on("error", done)
-    .pipe(through2Map({objectMode: true}, function (data) {
-      return data.key + ' = ' + data.value + '\n'
-    }) )
-    .on("end", done)
-    .pipe(out, {end: false})
+var changes = {
+  del: Object.keys(del),
+  put: put
 }
 
-exercise.addSetup(function setup (mode, callback) {
-  existing.setup(mode)
-
-  var i             = Math.ceil(Math.random() * 10) + 5
-    , fileContents  = 'del,!existing1\n'
-    , self          = this
-
-
-  while (i-- >= 1) {
-    fileContents +=
-        'put,batchable'
-        + Math.floor(Math.random() * 100)
-        + ','
-        + gibberish().replace(/,/g, '')
-        + '\n'
+module.exports = require('../../lib/setup-existing')({
+  dir: __dirname,
+  prepare: function (db, callback) {
+    db.batch(ops, callback)
+  },
+  process: function (dir, result, callback) {
+    require('../../lib/read-db')(dir, callback)
+  },
+  exec: function (dir, mod, callback) {
+    mod(dir, changes, callback)
   }
-
-  fileContents += 'del,~existing2'
-
-  fs.writeFileSync(dataFile, fileContents, 'utf8')
-
-  this.submissionArgs = [ existing.dir1, dataFile ]
-  this.solutionArgs = [ existing.dir2, dataFile ]
-  
-  this.submissionOut = new PassThrough()
-  if (mode === 'verify')
-    this.solutionOut   = new PassThrough()
-  
-  this.longCompareOutput = true
-
-  existing.writeAndClose(
-      function (db, callback) {
-        db.batch([
-            { type: 'put', key: '!existing1', value: 'THIS ENTRY SHOULD BE DELETED!' }
-          , { type: 'put', key: '~existing2', value: 'THIS ENTRY SHOULD BE DELETED ALSO!' }
-        ], callback)
-      }
-    , callback
-  )
 })
-
-exercise.addProcessor(function (mode, callback) {
-  var done = after(mode === "verify" ? 2 : 1, setTimeout.bind(null, function () {
-    console.log("anyhow")
-    callback()
-  }, 100))
-
-  ;streamTo(existing.dir1, this.submissionStdout, done)
-  if (mode === "verify")
-    streamTo(existing.dir2, this.solutionStdout, done)
-})
-
-exercise.addCleanup(existing.cleanup)
-
-module.exports = exercise

@@ -1,22 +1,16 @@
-var fs = require('fs')
 var level = require('level')
-var inputFile = process.argv[3]
-var dbFile = process.argv[2]
 
-fs.readFile(inputFile, 'utf8', function (error, data) {
-  if (error) throw error
-
-  level(dbFile, function (error, db) {
-    if (error) throw error
-
+module.exports = function (databaseDir, input, callback) {
+  var db = level(databaseDir, function () {
     var batch = db.batch()
-    data.split('\n').forEach(function (line) {
-      var delValue = /^del\,(.*)$/.exec(line)
-      if (delValue !== null)
-        return batch.del(delValue[1])
-      var parts = /^([^,]+)\,(.*)$/.exec(line)
-      batch.put(parts[1], parts[2])
+    Object.keys(input.put).forEach(function (key) {
+      batch.put(key, input.put[key])
     })
-    batch.write()
+    input.del.forEach(function (key) {
+      batch.del(key)
+    })
+    batch.write(function () {
+      db.close(callback)
+    })
   })
-})
+}
