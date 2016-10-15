@@ -1,19 +1,14 @@
-module.exports = function (db, date, callback) {
+var level = require('level')
+module.exports = function (dir, date, callback) {
   var tweets = 0
+  var db = level(dir)
   db.createReadStream({ start: date })
     .on('data', function (data) {
       tweets++
     })
-    .on('error', function (err) {
-      if (callback) {
-        callback(err)
-        callback = null
-      }
-    })
     .on('end', function () {
-      if (callback) {
-        callback(null, tweets)
-        callback = null
-      }
+      db.close(function () {
+        callback(tweets)
+      })
     })
 }

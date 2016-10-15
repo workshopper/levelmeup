@@ -8,7 +8,8 @@
     "url": "https://github.com/rvagg/levelmeup.git"
   },
   "scripts": {
-    "test": "workshopper-adventure-test"
+    "test": "workshopper-adventure-test",
+    "fetch-horse": "./scripts/fetch_horse.js"
   },
   "license": "MIT",
   "dependencies": {
