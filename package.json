@@ -23,12 +23,14 @@
     "lodash.shuffle": "^4.2.0",
     "multilevel": "^7.3.0",
     "workshopper-adventure": "^4.3.1",
-    "workshopper-adventure-test": "^1.0.0",
     "workshopper-exercise": "^2.1.0"
     "readable-stream": "^2.1.5",
     "rimraf": "~2.5.4",
     "through2": "^2.0.1",
     "through2-map": "^2.0.0",
+  },
+  "devDependencies": {
+    "workshopper-adventure-test": "^1.0.0"
   },
   "bin": {
     "levelmeup": "./bin/levelmeup"
