@@ -20,7 +20,10 @@
       "broken": "An error occured while loading the module",
       "not_long_enough": "The module doesn't have enough arguments, it has to look like:\n\n    function (db, key, callback) {...}",
       "not_function": "The module doesn't return a function",
-      "unexpected": "An error occured while executing the module"
+      "unexpected": "An error occured while executing the module",
+      "not_object": "The module doesn't return an object",
+      "init_missing": "'init' is not a function",
+      "query_missing": "'query' is not a function"
     },
     "timeout": "Timeout: The module didn't respond after 10 seconds.",
     "not_same": "The output of the module doesn't match the expected output",

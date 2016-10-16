@@ -25,8 +25,13 @@ module.exports = require('../../lib/setup-existing')({
     callback(result)
   },
   exec: function (dbDir, mod, callback) {
+    if (typeof mod !== 'function') {
+      throw '{error.mod.not_function}'
+    }
+    if (mod.length < 3) {
+      throw '{error.mod.not_long_enough}'
+    }
     var dates = startDates.concat()
-    console.log('dates: ', dates)
     var result = []
     var call = function () {
       mod(dbDir, dates.shift(), function (data) {

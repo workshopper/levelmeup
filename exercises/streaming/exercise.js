@@ -29,6 +29,12 @@ module.exports = require('../../lib/setup-existing')({
     })
   },
   exec: function (dir, mod, callback) {
+    if (typeof mod !== 'function') {
+      throw '{error.mod.not_function}'
+    }
+    if (mod.length < 1) {
+      throw '{error.mod.not_long_enough}'
+    }
     callback(mod(dir))
   }
 })

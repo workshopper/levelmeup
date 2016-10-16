@@ -4,7 +4,7 @@ a file path that points to a JSON file and a callback function.
 
 ## The **module** should 
 
-Write a program that reads in a JSON file containing mappings of
+Write a module that reads in a JSON file containing mappings of
 usernames to their GitHub repositories and store them in a LevelUP
 data-store such that they can be searched.
 

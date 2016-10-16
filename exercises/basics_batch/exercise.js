@@ -36,6 +36,12 @@ module.exports = require('../../lib/setup-existing')({
     require('../../lib/read-db')(dir, 'utf8', callback)
   },
   exec: function (dir, mod, callback) {
+    if (typeof mod !== 'function') {
+      throw '{error.mod.not_function}'
+    }
+    if (mod.length < 3) {
+      throw '{error.mod.not_long_enough}'
+    }
     mod(dir, changes, callback)
   }
 })
