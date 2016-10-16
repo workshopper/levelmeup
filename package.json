@@ -19,7 +19,7 @@
     "level-sublevel": "^6.6.1",
     "lodash.sample": "^4.2.1",
     "lodash.shuffle": "^4.2.0",
-    "multilevel": "~5.5.0",
+    "multilevel": "^7.3.0",
     "readable-stream": "~1.0.15",
     "rimraf": "~2.2.2",
     "through2": "^0.2.3",
