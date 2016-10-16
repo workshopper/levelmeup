@@ -1,9 +1,15 @@
 var level = require('level')
-var sub = require('level-sublevel')
-var db = sub(level(process.argv[2]))
+module.exports = function (databaseDir, callback) {
+  var sub = require('level-sublevel')
+  var db = sub(level(databaseDir))
 
-var robots = db.sublevel('robots');
-robots.put('slogan', 'beep boop');
+  var robots = db.sublevel('robots');
+  robots.put('slogan', 'beep boop');
 
-var dinosaurs = db.sublevel('dinosaurs');
-dinosaurs.put('slogan', 'rawr');
+  var dinosaurs = db.sublevel('dinosaurs');
+  dinosaurs.put('slogan', 'rawr');
+
+  db.close(function () {
+    callback()
+  })
+}

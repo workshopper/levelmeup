@@ -16,7 +16,7 @@
     "after": "~0.8.1",
     "diff": "^3.0.1",
     "echomunge": "~0.2.0",
-    "level-sublevel": "~6.2.1",
+    "level-sublevel": "^6.6.1",
     "lodash.sample": "^4.2.1",
     "lodash.shuffle": "^4.2.0",
     "multilevel": "~5.5.0",
