@@ -22,7 +22,7 @@ _Note: You have to close the database before returning the key!_
 data-store API and **`leveldown`**, the low-level LevelDB binding.
 
 Read more about Level and LevelUP:   
-  http://npm.im/levelup
+  http://npmjs.com/levelup
 
 Or off-line on your local filesystem:
   {rootdir}/docs/levelup.html

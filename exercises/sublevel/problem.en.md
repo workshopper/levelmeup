@@ -19,7 +19,7 @@ var wizards = db.sublevel('wizards')
 ```
 
 To level up on this adventure, you will get a database path as the
-first command-line argument. Create 2 sublevels, one called "robots"
+first module argument. Create 2 sublevels, one called "robots"
 and the other called "dinosaurs".
 
 For each sublevel, create a key called "slogan". Set the _slogan_ for
@@ -32,7 +32,7 @@ sublevel to `'beep boop'`.
 
 Read more about sublevel here:
 
-    http://npm.im/level-sublevel
+    http://npmjs.com/level-sublevel
 
 Or off-line on your local filesystem:
 
