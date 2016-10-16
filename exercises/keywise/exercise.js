@@ -5,9 +5,6 @@ module.exports = require('../../lib/exercise')({
   prepare: function (db, callback) {
     callback()
   },
-  process: function (dbDir, result, callback) {
-    require('../../lib/read-db')(dbDir, 'json', callback)
-  },
   exec: function (dbDir, mod, callback) {
     if (typeof mod !== 'function') {
       throw '{error.mod.not_function}'
@@ -15,6 +12,8 @@ module.exports = require('../../lib/exercise')({
     if (mod.length < 3) {
       throw '{error.mod.not_long_enough}'
     }
-    mod(dbDir, keywiseFileName, callback)
+    mod(dbDir, keywiseFileName, function () {
+      require('../../lib/read-db')(dbDir, 'json', callback)
+    })
   }
 })

@@ -21,9 +21,6 @@ module.exports = require('../../lib/exercise')({
     }
     db.batch(horseJs, callback)
   },
-  process: function (dbDir, result, callback) {
-    callback(result)
-  },
   exec: function (dbDir, mod, callback) {
     if (typeof mod !== 'function') {
       throw '{error.mod.not_function}'

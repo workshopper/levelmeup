@@ -16,7 +16,14 @@ module.exports = require('../../lib/exercise')({
   prepare: function (db, callback) {
     db.batch(ops, callback)
   },
-  process: function (dir, result, callback) {
+  exec: function (dir, mod, callback) {
+    if (typeof mod !== 'function') {
+      throw '{error.mod.not_function}'
+    }
+    if (mod.length < 1) {
+      throw '{error.mod.not_long_enough}'
+    }
+    var result = mod(dir)
     if (!isStream(result)) {
       throw new Error('{error.result_no_stream}')
     }
@@ -27,14 +34,5 @@ module.exports = require('../../lib/exercise')({
     result.on('end', function () {
       callback(data)
     })
-  },
-  exec: function (dir, mod, callback) {
-    if (typeof mod !== 'function') {
-      throw '{error.mod.not_function}'
-    }
-    if (mod.length < 1) {
-      throw '{error.mod.not_long_enough}'
-    }
-    callback(mod(dir))
   }
 })

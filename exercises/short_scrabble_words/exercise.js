@@ -35,9 +35,6 @@ module.exports = require('../../lib/exercise')({
   prepare: function (db, callback) {
     callback()
   },
-  process: function (dbDir, result, callback) {
-    callback(result)
-  },
   exec: function (dbDir, mod, callback) {
     if (typeof mod !== 'object') {
       throw '{error.mod.not_object}'

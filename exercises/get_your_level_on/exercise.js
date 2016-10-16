@@ -23,9 +23,6 @@ module.exports = require('../../lib/exercise')({
     db.put(key, value)
     setImmediate(callback)
   },
-  process: function (dir, result, callback) {
-    callback(result)
-  },
   exec: function (dir, mod, callback) {
     if (typeof mod !== 'function') {
       throw '{error.mod.not_function}'

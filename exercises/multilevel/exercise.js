@@ -7,9 +7,6 @@ module.exports = require('../../lib/exercise')({
   prepare: function (db, callback) {
     db.put('multilevelmeup', '`Twas brillig, and the slithy toves\n\tDid gyre and gimble in the wabe:\nAll mimsy were the borogoves,\n\tAnd the mome raths outgrabe.', callback)
   },
-  process: function (dbDir, result, callback) {
-    callback(result)
-  },
   exec: function (dbDir, mod, callback) {
     if (typeof mod !== 'function') {
       throw '{error.mod.not_function}'

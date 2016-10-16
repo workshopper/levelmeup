@@ -16,9 +16,6 @@ module.exports = require('../../lib/exercise')({
   prepare: function (db, callback) {
     db.batch(ops, callback)
   },
-  process: function (dir, result, callback) {
-    callback(result)
-  },
   exec: function (dir, mod, callback) {
     if (typeof mod !== 'function') {
       throw '{error.mod.not_function}'
