@@ -23,7 +23,6 @@
     "lodash.shuffle": "^4.2.0",
     "multilevel": "^7.3.0",
     "workshopper-adventure": "^4.3.1",
-    "workshopper-exercise": "^2.1.0"
     "readable-stream": "^2.1.5",
     "rimraf": "~2.5.4",
     "through2": "^2.0.1",
