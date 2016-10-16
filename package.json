@@ -29,6 +29,7 @@
     "workshopper-adventure": "^5.0.3"
   },
   "devDependencies": {
+    "twitter": "^1.4.0",
     "workshopper-adventure-test": "^1.0.0"
   },
   "bin": {
