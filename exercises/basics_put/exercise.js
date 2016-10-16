@@ -9,7 +9,7 @@ module.exports = require('../../lib/setup-existing')({
     callback()
   },
   process: function (dir, result, callback) {
-    require('../../lib/read-db')(dir, callback)
+    require('../../lib/read-db')(dir, 'utf8', callback)
   },
   exec: function (dir, mod, callback) {
     mod(dir, data, callback)
