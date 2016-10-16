@@ -12,7 +12,7 @@ function newDate () {
 var horseJs
 var startDates
 
-module.exports = require('../../lib/setup-existing')({
+module.exports = require('../../lib/exercise')({
   dir: __dirname,
   prepare: function (db, callback) {
     if (!horseJs) {

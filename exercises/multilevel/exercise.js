@@ -2,7 +2,7 @@ const level      = require('level')
     , net        = require('net')
     , multilevel = require('multilevel')
 
-module.exports = require('../../lib/setup-existing')({
+module.exports = require('../../lib/exercise')({
   dir: __dirname,
   prepare: function (db, callback) {
     db.put('multilevelmeup', '`Twas brillig, and the slithy toves\n\tDid gyre and gimble in the wabe:\nAll mimsy were the borogoves,\n\tAnd the mome raths outgrabe.', callback)

@@ -11,7 +11,7 @@ Object.keys(data).forEach(function (key) {
   })
 })
 
-module.exports = require('../../lib/setup-existing')({
+module.exports = require('../../lib/exercise')({
   dir: __dirname,
   prepare: function (db, callback) {
     db.batch(ops, callback)

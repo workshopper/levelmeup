@@ -1,6 +1,6 @@
 var keywiseFileName = require.resolve('../../data/keywise.json')
 
-module.exports = require('../../lib/setup-existing')({
+module.exports = require('../../lib/exercise')({
   dir: __dirname,
   prepare: function (db, callback) {
     callback()

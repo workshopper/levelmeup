@@ -17,7 +17,7 @@ var value = sample([
   'LEVELED you up for the win!'
 ])
 
-module.exports = require('../../lib/setup-existing')({
+module.exports = require('../../lib/exercise')({
   dir: __dirname,
   prepare: function (db, callback) {
     db.put(key, value)

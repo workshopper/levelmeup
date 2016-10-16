@@ -8,7 +8,7 @@ var value = sample([
   , [ 'TICKS', 'LIBUV' ]
 ])
 
-module.exports = require('../../lib/setup-existing')({
+module.exports = require('../../lib/exercise')({
   dir: __dirname,
   prepare: function (db, callback) {
     setImmediate(callback)
