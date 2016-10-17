@@ -14,5 +14,8 @@ module.exports = function (databaseDir) {
       result.push(null)
     })
   })
+  stream.on('error', function (err) {
+    result.emit('error', err)
+  })
   return result
 }

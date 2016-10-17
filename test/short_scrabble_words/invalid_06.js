@@ -11,20 +11,15 @@ module.exports.init = function (db, words, callback) {
 module.exports.query = function (db, word, callback) {
   var words = []
   var key = word.length + '!' + word
+  var error
   db.createReadStream({ start: key, end: key + '\xff' })
     .on('data', function (data) {
       words.push(data.key)
     })
     .on('error', function (err) {
-      if (callback) {
-        callback(err)
-      }
-      callback = null
+      error = err
     })
     .on('end', function () {
-      if (callback) {
-        callback(null, words)
-      }
-      callback = null
+      callback(error, words)
     })
 }

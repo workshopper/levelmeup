@@ -1,7 +1,11 @@
 var level = require('level')
 
-module.exports = function (dir, callback) {
-  var db = level(dir)
+module.exports = function (databaseDir, callback) {
+  var db = level(databaseDir)
+  var error
+  db.on('error', function (err) {
+    error = err
+  })
   var result = []
 
   var fetchNext = function fetchNext (i) {
@@ -9,17 +13,17 @@ module.exports = function (dir, callback) {
     db.get(key, function (err, value) {
       if (err) {
         if (!err.notFound) {
-          throw err
+          error = err
         }
       } else {
         result.push(value)
       }
 
-      if (i < 100) {
+      if (i < 100 && !error) {
         fetchNext(i + 1)
       } else {
-        db.close(function () {
-          callback(result)
+        db.close(function (err) {
+          callback(error || err, result)
         })
       }
     })

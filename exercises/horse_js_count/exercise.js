@@ -26,16 +26,16 @@ module.exports = require('../../lib/exercise')({
     }
     var dates = startDates.concat()
     var result = []
-    var call = function () {
-      mod(dbDir, dates.shift(), function (data) {
+    var next = function () {
+      mod(dbDir, dates.shift(), function (err, data) {
         result.push(data)
-        if (dates.length === 0) {
-          callback(result)
+        if (dates.length === 0 || err) {
+          callback(err, result)
         } else {
-          call()
+          next()
         }
       })
     }
-    call()
+    next()
   }
 })

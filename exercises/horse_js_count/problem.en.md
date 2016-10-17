@@ -30,8 +30,9 @@ The output will include the number of "streamed entries".
 Use this boilerplate to get started with your module file:
 
 ```javascript
-module.exports = function (db, date, callback) {
+module.exports = function (databaseDir, date, callback) {
   // .. your code here
+  callback(error, tweetCount)
 }
 ```
 

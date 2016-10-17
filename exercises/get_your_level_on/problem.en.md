@@ -5,7 +5,7 @@ Your program should be written as Node.js module with 3 arguments.
 ```javascript
 module.exports = function (databaseDir, key, callback) {
   // your code...
-  callback(value)
+  callback(error, value)
 }
 ```
 
@@ -21,18 +21,19 @@ _Note: You have to close the database before returning the key!_
 **`level`** is a package that bundles both **`levelup`**, the Node-friendly
 data-store API and **`leveldown`**, the low-level LevelDB binding.
 
-Read more about Level and LevelUP:   
-  http://npmjs.com/levelup
+Read more about Level and LevelUP: http://npmjs.com/levelup
 
 Or off-line on your local filesystem:
-  {rootdir}/docs/levelup.html
+
+    {rootdir}/docs/levelup.html
 
 You will need to `npm install level` to get started with this
 exercise.
 
 If you don't have an Internet connection, simply make a `node_modules`
 directory and copy the following directory into it:
-  {rootdir}/node_modules/level/
+
+    {rootdir}/node_modules/level/
 
 You can open an existing data-store, or create a new one, by invoking
 `level()` and passing in a path to a directory. The function returns

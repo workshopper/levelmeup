@@ -8,11 +8,15 @@ module.exports.init = function (db, words, callback) {
 module.exports.query = function (db, word, callback) {
   var words = []
   var key = word.length + '!' + word.replace(/\*/g, '')
+  var error
   db.createReadStream({ start: key, end: key + '\xff' })
     .on('data', function (data) {
       words.push(data.value)
     })
+    .on('error', function (err) {
+      error = err
+    })
     .on('end', function () {
-      callback(null, words)
+      callback(error, words)
     })
 }

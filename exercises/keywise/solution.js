@@ -18,7 +18,9 @@ module.exports = function (databaseDir, keywiseFile, callback) {
     }
   })
 
-  db.batch(operations, function () {
-    db.close(callback)
+  db.batch(operations, function (error) {
+    db.close(function (err) {
+      callback(error || err)
+    })
   })
 }

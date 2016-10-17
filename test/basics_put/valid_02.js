@@ -6,9 +6,7 @@ module.exports = function (databaseDir, obj, callback) {
     var key = keys.shift()
     db.put(key, obj[key], function () {
       if (keys.length === 0) {
-        return db.close(function () {
-          return callback()
-        })
+        return db.close(callback)
       }
       next()
     })

@@ -46,7 +46,10 @@ module.exports = require('../../lib/exercise')({
       throw String('{error.mod.query_missing}')
     }
     var db = level(dbDir)
-    mod.init(db, words, function () {
+    mod.init(db, words, function (error) {
+      if (error) {
+        return db.close(callback.bind(null, error))
+      }
       var _createReadStream = db.createReadStream
       db.createReadStream = function () {
         return _createReadStream.apply(db, arguments).pipe(through2({ objectMode: true },
@@ -65,12 +68,11 @@ module.exports = require('../../lib/exercise')({
           count: 0
         }
         mod.query(db, query, function (err, data) {
-          if (err) {
-            throw err
+          if (!err) {
+            result.data[query] = data
           }
-          result.data[query] = data
-          if (runQueries.length === 0) {
-            return db.close(callback.bind(null, result))
+          if (err || runQueries.length === 0) {
+            return db.close(callback.bind(null, err, result))
           }
           next()
         })

@@ -4,12 +4,13 @@ Write a Node module with three arguments:
 
 ```javascript
 module.exports = function (X, Y, callback) {
-  callback(/* your code here */)
+  /* your code here */
+  callback(error, result)
 }
 ```
 
 This module should use **X** and **Y** and call the `callback` with the 
-following text:
+following result:
 
     ALL YOUR {X} ARE BELONG TO {Y}
 

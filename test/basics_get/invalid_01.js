@@ -12,7 +12,7 @@ module.exports = function (dir, callback) {
       result.push(data)
 
       if (i === 100) {
-        return db.close(callback.bind(null, result))
+        return db.close(callback.bind(null, null, result))
       }
 
       fetchNext(i + 1)

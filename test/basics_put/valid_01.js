@@ -4,7 +4,5 @@ module.exports = function (databaseDir, obj, callback) {
   Object.keys(obj).forEach(function (key) {
     db.put(key, obj[key])
   })
-  db.close(function () {
-    callback()
-  })
+  db.close(callback)
 }

@@ -5,7 +5,7 @@ Your program should be written as Node.js module with 3 arguments.
 ```javascript
 module.exports = function (databaseDir, changes, callback) {
   // your code...
-  callback(values)
+  callback(error, values)
 }
 ```
 

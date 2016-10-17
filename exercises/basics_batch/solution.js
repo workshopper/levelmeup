@@ -2,6 +2,10 @@ var level = require('level')
 
 module.exports = function (databaseDir, changes, callback) {
   var db = level(databaseDir)
+  var error
+  db.on('error', function (err) {
+    error = err
+  })
   var ops = changes.del.map(function (key) {
     return {
       type: 'del',
@@ -14,7 +18,12 @@ module.exports = function (databaseDir, changes, callback) {
       value: changes.put[key]
     }
   }))
-  db.batch(ops, function () {
-    db.close(callback)
+  db.batch(ops, function (err) {
+    if (err) {
+      error = err
+    }
+    db.close(function (err) {
+      callback(error || err)
+    })
   })
 }

@@ -7,7 +7,7 @@ module.exports = function (databaseDir, key, callback) {
       return callback(err)
     }
     db.close(function () {
-      callback('abcd')
+      callback(null, 'abcd')
     })
   })
 }

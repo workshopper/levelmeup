@@ -6,10 +6,16 @@ module.exports = function (databaseDir, day, callback) {
     end: day
   })
   var result = []
+  var error
   stream.on('data', function (data) {
     result.push(data.value)
   })
+  stream.on('error', function (err) {
+    error = err
+  })
   stream.on('end', function () {
-    db.close(callback.bind(null, result))
+    db.close(function (err) {
+      callback(error || err, result)
+    })
   })
 }

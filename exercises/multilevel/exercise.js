@@ -20,10 +20,10 @@ module.exports = require('../../lib/exercise')({
         con.pipe(multilevel.server(db)).pipe(con)
       })
       .listen(4545, function (conn) {
-        mod(function (data) {
+        mod(function (error, data) {
           server.close(function () {
-            db.close(function () {
-              callback(data)
+            db.close(function (err) {
+              callback(error || err, data)
             })
           })
         })

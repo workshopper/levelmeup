@@ -5,6 +5,7 @@ Your module should be written as Node.js module with 3 arguments.
 ```javascript
 module.exports = function (databaseDir, obj, callback) {
   // your code...
+  callback(error)
 }
 ```
 
@@ -26,9 +27,9 @@ properly catch any errors (otherwise errors will be thrown):
 ```javascript
 var db = level('/path/to/db/')
 db.put('foo', 'bar', function (err) {
-  if (err)
-    return console.error('Error in put():', err)
-  console.error('put foo = bar')
+  if (err) {
+    return callback(error)
+  }
 })
 ```
 

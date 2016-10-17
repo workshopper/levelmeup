@@ -12,5 +12,9 @@ module.exports = function (databaseDir, keywiseFile, callback) {
       key: key,
       value: JSON.stringify(row)
     }
-  }), db.close.bind(db, callback))
+  }), function (error) {
+    db.close(function (err) {
+      callback(error || err)
+    })
+  })
 }

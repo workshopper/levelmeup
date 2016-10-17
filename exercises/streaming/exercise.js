@@ -28,11 +28,15 @@ module.exports = require('../../lib/exercise')({
       throw String('{error.result_no_stream}')
     }
     var data = []
+    var error
     result.on('data', function (entry) {
       data.push(entry)
     })
+    result.on('error', function (err) {
+      error = err
+    })
     result.on('end', function () {
-      callback(data)
+      callback(error, data)
     })
   }
 })
