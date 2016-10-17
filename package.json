@@ -5,7 +5,7 @@
   "author": "Rod Vagg <rod@vagg.org> (https://github.com/rvagg)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rvagg/levelmeup.git"
+    "url": "https://github.com/workshopper/levelmeup.git"
   },
   "scripts": {
     "test": "standard && workshopper-adventure-test",
