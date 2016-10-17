@@ -1,5 +1,4 @@
 var workshopper = require('workshopper-adventure')
-var path = require('path')
 var levelMeUp = workshopper({
   appDir: __dirname,
   menu: {
@@ -8,7 +7,7 @@ var levelMeUp = workshopper({
   header: require('workshopper-adventure/default/header'),
   footer: require('workshopper-adventure/default/footer'),
   help: {
-    file: path.join(__dirname, 'i18n/help/{lang}.md')
+    file: './i18n/help/{lang}.md'
   }
 })
 
