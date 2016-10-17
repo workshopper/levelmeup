@@ -1,6 +1,5 @@
 var sample = require('lodash.sample')
-var key = 'levelmeup_' + Date.now().toString(32) + '_' + (Math.random() * 1000 | 0)
-var value = sample([
+var values = [
   'You have been LEVELED UP!',
   'A LEVEL UP for you!',
   'More LEVELS for you!',
@@ -15,21 +14,27 @@ var value = sample([
   'You are a LEVEL explorer!',
   'Here is a bag of LEVELS!',
   'LEVELED you up for the win!'
-])
+]
 
 module.exports = require('../../lib/exercise')({
   dir: __dirname,
-  prepare: function (db, callback) {
-    db.put(key, value)
-    setImmediate(callback)
-  },
-  exec: function (dir, mod, callback) {
-    if (typeof mod !== 'function') {
-      throw String('{error.mod.not_function}')
+  init: function () {
+    var key = 'levelmeup_' + Date.now().toString(32) + '_' + (Math.random() * 1000 | 0)
+    var value = sample(values)
+    return {
+      prepare: function (db, callback) {
+        db.put(key, value)
+        setImmediate(callback)
+      },
+      exec: function (dir, mod, callback) {
+        if (typeof mod !== 'function') {
+          throw String('{error.mod.not_function}')
+        }
+        if (mod.length < 3) {
+          throw String('{error.mod.not_long_enough}')
+        }
+        mod(dir, key, callback)
+      }
     }
-    if (mod.length < 3) {
-      throw String('{error.mod.not_long_enough}')
-    }
-    mod(dir, key, callback)
   }
 })

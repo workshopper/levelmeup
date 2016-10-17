@@ -17,67 +17,70 @@ var words = []
   .concat(fourLetter)
   .filter(Boolean)
 
-var queries = [
-  sample(twoLetter).substr(0, 1) + '*',
-  sample(twoLetter),
-  sample(threeLetter).substr(0, 1) + '**',
-  sample(threeLetter).substr(0, 2) + '*',
-  sample(threeLetter),
-  sample(fourLetter).substr(0, 1) + '***',
-  sample(fourLetter).substr(0, 2) + '**',
-  sample(fourLetter).substr(0, 3) + '*',
-  sample(fourLetter),
-  'NODE'
-]
-
 module.exports = require('../../lib/exercise')({
   dir: __dirname,
-  prepare: function (db, callback) {
-    callback()
-  },
-  exec: function (dbDir, mod, callback) {
-    if (typeof mod !== 'object') {
-      throw String('{error.mod.not_object}')
-    }
-    if (typeof mod.init !== 'function') {
-      throw String('{error.mod.init_missing}')
-    }
-    if (typeof mod.query !== 'function') {
-      throw String('{error.mod.query_missing}')
-    }
-    var db = level(dbDir)
-    mod.init(db, words, function (error) {
-      if (error) {
-        return db.close(callback.bind(null, error))
-      }
-      var _createReadStream = db.createReadStream
-      db.createReadStream = function () {
-        return _createReadStream.apply(db, arguments).pipe(through2({ objectMode: true },
-          function (chunk, enc, callback) {
-            result.count += 1
-            callback(null, chunk)
-          }
-        ))
-      }
-      var result
-      var runQueries = queries.concat()
-      var next = function () {
-        var query = runQueries.shift()
-        result = {
-          data: {},
-          count: 0
+  init: function () {
+    var queries = [
+      sample(twoLetter).substr(0, 1) + '*',
+      sample(twoLetter),
+      sample(threeLetter).substr(0, 1) + '**',
+      sample(threeLetter).substr(0, 2) + '*',
+      sample(threeLetter),
+      sample(fourLetter).substr(0, 1) + '***',
+      sample(fourLetter).substr(0, 2) + '**',
+      sample(fourLetter).substr(0, 3) + '*',
+      sample(fourLetter),
+      'NODE'
+    ]
+    return {
+      prepare: function (db, callback) {
+        callback()
+      },
+      exec: function (dbDir, mod, callback) {
+        if (typeof mod !== 'object') {
+          throw String('{error.mod.not_object}')
         }
-        mod.query(db, query, function (err, data) {
-          if (!err) {
-            result.data[query] = data
+        if (typeof mod.init !== 'function') {
+          throw String('{error.mod.init_missing}')
+        }
+        if (typeof mod.query !== 'function') {
+          throw String('{error.mod.query_missing}')
+        }
+        var db = level(dbDir)
+        mod.init(db, words, function (error) {
+          if (error) {
+            return db.close(callback.bind(null, error))
           }
-          if (err || runQueries.length === 0) {
-            return db.close(callback.bind(null, err, result))
+          var _createReadStream = db.createReadStream
+          db.createReadStream = function () {
+            return _createReadStream.apply(db, arguments).pipe(through2({ objectMode: true },
+              function (chunk, enc, callback) {
+                result.count += 1
+                callback(null, chunk)
+              }
+            ))
+          }
+          var result
+          var runQueries = queries.concat()
+          var next = function () {
+            var query = runQueries.shift()
+            result = {
+              data: {},
+              count: 0
+            }
+            mod.query(db, query, function (err, data) {
+              if (!err) {
+                result.data[query] = data
+              }
+              if (err || runQueries.length === 0) {
+                return db.close(callback.bind(null, err, result))
+              }
+              next()
+            })
           }
           next()
         })
       }
-      next()
-    })
+    }
   }
 })
