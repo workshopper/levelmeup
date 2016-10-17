@@ -18,14 +18,14 @@ module.exports = require('../../lib/exercise')({
   },
   exec: function (dir, mod, callback) {
     if (typeof mod !== 'function') {
-      throw '{error.mod.not_function}'
+      throw String('{error.mod.not_function}')
     }
     if (mod.length < 1) {
-      throw '{error.mod.not_long_enough}'
+      throw String('{error.mod.not_long_enough}')
     }
     var result = mod(dir)
     if (!isStream(result)) {
-      throw new Error('{error.result_no_stream}')
+      throw String('{error.result_no_stream}')
     }
     var data = []
     result.on('data', function (entry) {

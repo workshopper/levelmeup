@@ -1,3 +1,3 @@
 module.exports = {
-	init: 1
+  init: 1
 }

@@ -14,7 +14,7 @@ module.exports = function (dir, callback) {
       if (i === 100) {
         return db.close(callback.bind(null, result))
       }
-      
+
       fetchNext(i + 1)
     })
   }

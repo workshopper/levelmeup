@@ -1,5 +1,3 @@
-var path = require('path')
-var shuffle = require('lodash.shuffle')
 var gibberish = require('../../lib/gibberish')
 var generate = require('../../lib/generate')
 var del = generate(5 + (Math.random() * 20 | 0))
@@ -34,10 +32,10 @@ module.exports = require('../../lib/exercise')({
   },
   exec: function (dir, mod, callback) {
     if (typeof mod !== 'function') {
-      throw '{error.mod.not_function}'
+      throw String('{error.mod.not_function}')
     }
     if (mod.length < 3) {
-      throw '{error.mod.not_long_enough}'
+      throw String('{error.mod.not_long_enough}')
     }
     mod(dir, changes, function () {
       require('../../lib/read-db')(dir, 'utf8', callback)

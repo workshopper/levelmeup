@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 var Twitter = require('twitter')
 var client = new Twitter({
-  consumer_key:        process.env.CONSUMER_KEY,
-  consumer_secret:     process.env.CONSUMER_SECRET,
-  access_token_key:    process.env.TOKEN_KEY,
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  access_token_key: process.env.TOKEN_KEY,
   access_token_secret: process.env.TOKEN_SECRET
-});
+})
 
 var all = []
 var fs = require('fs')
@@ -45,14 +45,14 @@ function more (formerId) {
     })
     all = all.concat(tweets)
     if (all.length < 5000 && tweets.length > 0) {
-      var id = tweets[tweets.length-1].id
+      var id = tweets[tweets.length - 1].id
       console.log('Continuing from ' + id)
       more(id)
     } else {
       out.write('\n]')
       out.end()
     }
-  });
+  })
 }
 
 more()

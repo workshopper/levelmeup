@@ -1,3 +1,1 @@
-module.exports = function (db, key, callback) {
-	
-}
+module.exports = function (db, key, callback) {}

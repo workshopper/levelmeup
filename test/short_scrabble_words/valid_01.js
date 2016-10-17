@@ -13,6 +13,6 @@ module.exports.query = function (db, word, callback) {
       words.push(data.value)
     })
     .on('end', function () {
-    	callback(null, words)
+      callback(null, words)
     })
 }

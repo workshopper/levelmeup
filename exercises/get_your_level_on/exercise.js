@@ -11,7 +11,7 @@ var value = sample([
   'LEVEL increased!',
   'You have got another LEVEL!',
   'Your LEVEL was just a raised!',
-  'Hey you\'ve made it to the next LEVEL!',
+  "Hey you've made it to the next LEVEL!",
   'You are a LEVEL explorer!',
   'Here is a bag of LEVELS!',
   'LEVELED you up for the win!'
@@ -25,10 +25,10 @@ module.exports = require('../../lib/exercise')({
   },
   exec: function (dir, mod, callback) {
     if (typeof mod !== 'function') {
-      throw '{error.mod.not_function}'
+      throw String('{error.mod.not_function}')
     }
     if (mod.length < 3) {
-      throw '{error.mod.not_long_enough}'
+      throw String('{error.mod.not_long_enough}')
     }
     mod(dir, key, callback)
   }

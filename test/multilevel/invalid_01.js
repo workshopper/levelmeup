@@ -7,6 +7,9 @@ module.exports = function (callback) {
   con.pipe(db.createRpcStream()).pipe(con)
 
   db.get('multilevelmeup', function (err, value) {
+    if (err) {
+      throw err
+    }
     con.end(callback.bind(null, value + 1))
   })
 }

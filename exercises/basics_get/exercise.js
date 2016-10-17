@@ -1,12 +1,10 @@
-var path = require('path')
-var shuffle = require('lodash.shuffle')
 var gibberish = require('../../lib/gibberish')
 
 var ops = []
 for (var i = 0; i < 10; ++i) {
   ops.push({
     type: 'put',
-    key: 'key' + Math.floor(Math.random() * (i == 1 ? 10 : 100)),
+    key: 'key' + Math.floor(Math.random() * (i === 1 ? 10 : 100)),
     value: gibberish()
   })
 }
@@ -18,10 +16,10 @@ module.exports = require('../../lib/exercise')({
   },
   exec: function (dir, mod, callback) {
     if (typeof mod !== 'function') {
-      throw '{error.mod.not_function}'
+      throw String('{error.mod.not_function}')
     }
     if (mod.length < 2) {
-      throw '{error.mod.not_long_enough}'
+      throw String('{error.mod.not_long_enough}')
     }
     mod(dir, callback)
   }

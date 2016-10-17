@@ -1,6 +1,6 @@
-const level      = require('level')
-    , net        = require('net')
-    , multilevel = require('multilevel')
+var level = require('level')
+var net = require('net')
+var multilevel = require('multilevel')
 
 module.exports = require('../../lib/exercise')({
   dir: __dirname,
@@ -9,10 +9,10 @@ module.exports = require('../../lib/exercise')({
   },
   exec: function (dbDir, mod, callback) {
     if (typeof mod !== 'function') {
-      throw '{error.mod.not_function}'
+      throw String('{error.mod.not_function}')
     }
     if (mod.length < 1) {
-      throw '{error.mod.not_long_enough}'
+      throw String('{error.mod.not_long_enough}')
     }
     var db = level(dbDir)
     var server = net

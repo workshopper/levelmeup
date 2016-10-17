@@ -12,7 +12,7 @@ module.exports = function (dir, callback) {
       if (i === 0) {
         return db.close(callback.bind(null, result))
       }
-      
+
       fetchNext(i - 1)
     })
   }

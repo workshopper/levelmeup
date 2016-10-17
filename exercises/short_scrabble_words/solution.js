@@ -16,13 +16,15 @@ module.exports.query = function (db, word, callback) {
       words.push(data.value)
     })
     .on('error', function (err) {
-      if (callback)
+      if (callback) {
         callback(err)
+      }
       callback = null
     })
     .on('end', function () {
-      if (callback)
+      if (callback) {
         callback(null, words)
+      }
       callback = null
     })
 }

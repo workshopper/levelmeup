@@ -1,5 +1,4 @@
 module.exports = {
-	init: function () {
-	},
-	query: 1
+  init: function () {},
+  query: 1
 }

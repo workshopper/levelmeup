@@ -1,12 +1,8 @@
-var generate = require('../../lib/generate')
-
 function newDate () {
   var start = new Date(horseJs[0].key)
-    , end   = new Date(horseJs[horseJs.length - 1].key)
-    , mark  = new Date(start.getTime() + Math.floor(Math.random() * (end.getTime() - start.getTime())))
-    , marks = mark.getFullYear() + '-' + (mark.getUTCMonth() < 9 ? '0' : '') + (mark.getUTCMonth() + 1) + '-' + (mark.getUTCDate() < 9 ? '0' : '') + (mark.getUTCDate() + 1)
-
-  return marks
+  var end = new Date(horseJs[horseJs.length - 1].key)
+  var mark = new Date(start.getTime() + Math.floor(Math.random() * (end.getTime() - start.getTime())))
+  return mark.getFullYear() + '-' + (mark.getUTCMonth() < 9 ? '0' : '') + (mark.getUTCMonth() + 1) + '-' + (mark.getUTCDate() < 9 ? '0' : '') + (mark.getUTCDate() + 1)
 }
 
 var horseJs
@@ -23,10 +19,10 @@ module.exports = require('../../lib/exercise')({
   },
   exec: function (dbDir, mod, callback) {
     if (typeof mod !== 'function') {
-      throw '{error.mod.not_function}'
+      throw String('{error.mod.not_function}')
     }
     if (mod.length < 3) {
-      throw '{error.mod.not_long_enough}'
+      throw String('{error.mod.not_long_enough}')
     }
     var dates = startDates.concat()
     var result = []

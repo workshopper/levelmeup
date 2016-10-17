@@ -4,7 +4,7 @@ module.exports = function (databaseDir, date, callback) {
     var stream = db.createReadStream({start: date})
     var i = 0
     stream.on('data', function () {
-      i ++
+      i++
     })
     stream.on('end', function () {
       db.close(callback.bind(null, i))

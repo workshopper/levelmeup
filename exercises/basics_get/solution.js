@@ -1,10 +1,9 @@
 var level = require('level')
 
 module.exports = function (dir, callback) {
-
   var db = level(dir)
   var result = []
-  
+
   var fetchNext = function fetchNext (i) {
     var key = 'key' + i
     db.get(key, function (err, value) {
@@ -24,6 +23,6 @@ module.exports = function (dir, callback) {
         })
       }
     })
-  }    
+  }
   fetchNext(0)
 }
