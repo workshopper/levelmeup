@@ -12,6 +12,16 @@
     "fetch-horse": "./scripts/fetch_horse.js",
     "lint": "standard"
   },
+  "contributors": [
+    "Rod Vagg (https://github.com/rvagg)",
+    "Eugene Ware (https://github.com/eugeneware)",
+    "James Halliday (https://github.com/substack)",
+    "Jake Verbaten (https://github.com/raynos)",
+    "Julian Gruber (https://github.com/juliangruber)",
+    "Robert Kowalski (https://github.com/robertkowalski)",
+    "Lars-Magnus Skog (https://github.com/ralphtheninja)",
+    "Martin Heidegger (https://github.com/martinheidegger)"
+  ],
   "license": "MIT",
   "dependencies": {
     "diff": "^3.0.1",
