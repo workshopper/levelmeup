@@ -6,8 +6,8 @@ var levelMeUp = workshopper({
     bg: 'green'
   },
   header: require('workshopper-adventure/default/header'),
-  helpFile: {
-    file: path.join(__dirname, 'help.txt')
+  help: {
+    file: path.join(__dirname, 'i18n/help/{lang}.md')
   }
 })
 
