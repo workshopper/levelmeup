@@ -1,0 +1,34 @@
+{
+  "title": "テストです",
+  "subtitle": "Learn You Some Node.js Databases",
+  "exercise": {
+    "all_your_base":        "ALL YOUR BASE",
+    "get_your_level_on":    "Get Your Level On!",
+    "basics_get":           "Basics: GET",
+    "basics_put":           "Basics: PUT",
+    "basics_batch":         "Basics: BATCH",
+    "streaming":            "Streaming",
+    "horse_js_count":       "@horse_js Count",
+    "horse_js_tweets":      "@horse_js Tweets",
+    "keywise":              "Keywise",
+    "short_scrabble_words": "Short Scrabble Words",
+    "sublevel":             "Sublevel",
+    "multilevel":           "Multilevel"
+  },
+  "error": {
+    "mod": {
+      "broken": "An error occured while loading the module",
+      "not_long_enough": "The module doesn't have enough arguments, it has to look like:\n\n    function (db, key, callback) {...}",
+      "not_function": "The module doesn't return a function",
+      "unexpected": "An error occured while executing the module",
+      "not_object": "The module doesn't return an object",
+      "init_missing": "'init' is not a function",
+      "query_missing": "'query' is not a function"
+    },
+    "timeout": "Timeout: The module didn't respond after 10 seconds.",
+    "not_same": "The output of the module doesn't match the expected output",
+    "db": {
+      "not_closed": "The database directory is still locked!\n\nClose it with `db.close(function () {})`"
+    }
+  }
+}
