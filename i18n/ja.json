@@ -2,7 +2,7 @@
   "title": "LEVEL ME UP SCOTTY!",
   "subtitle": "Node.jsでのデータベースについて",
   "exercise": {
-    "all_your_base":        "まずは基本から",
+    "all_your_base":        "ALL YOUR BASE",
     "get_your_level_on":    "Get Your Level On!",
     "basics_get":           "基礎: GET",
     "basics_put":           "基礎: PUT",
