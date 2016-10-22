@@ -1,8 +1,7 @@
-Write a program that opens a LevelDB data-store using **`level`** and reads a 
-few keys.
+**`level`**をつかって、LevelDBのデータストアをオープンし、キーをいくつか読みだす
+モジュールを書きましょう。
 
-Your program should be written as Node.js module with 1 argument that returns 
-a stream. 
+引数を１つだけ取り、ストリームを返すNodeモジュールとしてプログラムを書いて下さい。
 
 ```javascript
 module.exports = function (databaseDir) {
@@ -12,23 +11,23 @@ module.exports = function (databaseDir) {
 }
 ```
 
-
-The resulting stream should be transformed to a stream of strings with one chunk per entry formatted as `{key}={value}`.
+LevelDB中のエントリをそれぞれ`{key}={value}`の形式でチャンクに分けた
+ストリームを作成して下さい。
 
 ---
 
-## Hints:
+## ヒント:
 
-Since you don't know what the keys are in this exercise you can't
-use `get()`. Instead, you'll need to query the data store using
-a ReadStream.
+今回あなたはキーが分からない状態ですので、`get()`を使うことは出来ません。
+その代わり、ReadStreamを使ってデータストアに問い合わせることになります。
 
-The `createReadStream()` method creates a standard Node object-
-stream where each chunk, or `data` event, is an entry in the data
-store. Each data object has both `key` and `value` properties for
-the entry.
+`createReadStream()`メソッドはNodeの標準的なオブジェクトストリームを
+作成します。このオブジェクトストリームのチャンク（あるいはデータイベント）
+はLevelDBのデータストアの各エントリとなります。データオブジェクトはエントリ
+に対応する`key`プロパティと`value`プロバティを持ちます。
 
-You can therefore stream the entire contents of the data store with:
+あなたは以下のようなコードでデータストアの全コンテンツのストリームを
+作成することが出来ます。
 
 ```javascript
     db.createReadStream().on('data', function (data) {
@@ -36,16 +35,15 @@ You can therefore stream the entire contents of the data store with:
     })
 ```
 
-There is still the need to `.close` the database after the stream has
-ended!
+ストリームが終了したあと、データベースを`.close`する必要があることを
+忘れないで下さい！
 
-You can use `through2` to process the stream. 
+`through2`を使用すると良いでしょう。
 
     npm i through2
 
-or if you have no connection to 
+もしオフラインであれば、以下のパスのものを使用して下さい。
 
     file://{rootdir}/node_modules/through2
 
-Also note that the 'error' event may also be emitted if there is an
-I/O error.
+I/Oエラーにより'error'イベントが発生する可能性があることに注意して下さい。
