@@ -55,8 +55,6 @@ db.get('rvagg', function (err, user) { ... })
 
 ## ヒント:
 
-To simplify the use of JSON here you can open your LevelUP store
-with the option: `valueEncoding: 'json'`, i.e.
 JSONの扱いを簡単にするために、`valueEncoding: 'json'`のオプションを使用しLevelUPストアを
 開くことができます。以下のような例です。
 

@@ -47,9 +47,6 @@ ReadStreamを使い、問い合わせクエリに正確にマッチする結果*
 あなたは異なる文字数を持つ単語を含めすに正確な文字数の単語だけを検索できるキー構造を
 を導きださなければいけません。
 
-Your `init()` function should translate words into appropriate keys,
-and your `query()` function should be able to translate a query into
-a `start` and `end` for your ReadStream.
 `init()`関数は単語を適切なキーに解釈し、
 `query()`関数は問い合わせクエリをReadStreamの`start`と`end`に解釈するように
 してください。
