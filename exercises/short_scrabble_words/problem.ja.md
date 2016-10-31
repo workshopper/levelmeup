@@ -1,0 +1,55 @@
+２、3、4文字が混在した単語を保存し、基本的な接頭辞問合せにしたがって保存した言葉を取り出す
+モジュールを書いてください。
+
+3つの引数を持つ`init()`関数がエクスポートされたモジュールを書いてください。
+1つ目の引数は空のデータベースのLevelUP`db`オブジェクト、2つ目の引数は2、3、4文字が混在している単語の配列、
+最後の引数はデータベースを初期化した後に一度だけ呼ばれるコールバック関数です。
+
+同様に3つの引数を持つ`query()`関数がエクスポートされたモジュールを書いてください。
+1つ目の引数は`init()`関数で初期化されたデータベースと同じ`db`オブジェクト、
+2つ目の引数は問い合わせクエリを含む`word`文字列、
+最後の引数は2つの引数を持つコールバック関数です。
+コールバック関数の最初の引数はnullまたはエラーが発生した場合のエラーオブジェクトです。
+コールバック関数の2つ目の引数は問い合わせクエリに合致するデータベース内のすべての単語の配列です。
+
+以下のボイラーテンプレートを拡張して答えを書いてください。
+
+```javascript
+module.exports.init = function (db, words, callback) {
+  // insert each word in the words array here
+  // then call `callback()` when you are done inserting words
+}
+
+module.exports.query = function (db, word, callback) {
+  // `word` may have '*' chars to denote single-letter wildcards
+  // call callback(err, results) with an array of matching words
+}
+```
+
+`word`に設定するクエリは'RUN'のような完全な単語でなければいけません。
+または`RU*`や`R**`のように前方一致するために接頭辞と`*`を組み合わせた単語でなければいけません。
+`.length`はその単語の文字数を教えてくれ、その文字数の単語のみを含む結果を返さなければいけません。
+`*`はいかなる文字にもマッチするワイルドカードです。
+
+わかりやすくするために、ワイルドカードはクエリの**最後**にのみ付加します。
+常に完全一致の単語または接頭辞のどちらかを与えられます。
+同じ文字数で同じ接頭辞を持つ単語のみ結果としてください。
+
+あなたの解答はオフィシャルな解答に対してテストされます。
+ReadStreamを使い、問い合わせクエリに正確にマッチする結果**だけ**を返し、それ以上は返さないでください。
+
+---
+
+## ヒント:
+
+このエクササイズはあなたが予測する問い合わせクエリにしたがって結果を受け取るのに役立つ
+であろうキースキーマを導き出すでしょう。
+あなたは異なる文字数を持つ単語を含めすに正確な文字数の単語だけを検索できるキー構造を
+を導きださなければいけません。
+
+Your `init()` function should translate words into appropriate keys,
+and your `query()` function should be able to translate a query into
+a `start` and `end` for your ReadStream.
+`init()`関数は単語を適切なキーに解釈し、
+`query()`関数は問い合わせクエリをReadStreamの`start`と`end`に解釈するように
+してください。
