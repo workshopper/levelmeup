@@ -6,6 +6,8 @@ var levelMeUp = workshopper({
   },
   header: require('workshopper-adventure/default/header'),
   footer: require('workshopper-adventure/default/footer'),
+  fail: require('workshopper-adventure/default/fail'),
+  pass: require('workshopper-adventure/default/pass'),
   help: {
     file: './i18n/help/{lang}.md'
   }
