@@ -28,7 +28,7 @@ LevelとLevelUPについての詳しい情報はここを読んで下さい。: 
 
     {rootdir}/docs/levelup.html
 
-このエクササイズを始めるために、 `npm install level`を実行する必要が
+このエクササイズを始める前に、 `npm install level`を実行する必要が
 あります。
 
 もしインターネットに接続されていないのであれば、`node_modules`

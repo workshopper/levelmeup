@@ -10,7 +10,7 @@ module.exports = function (X, Y, callback) {
 ```
 
 **X**と**Y**を使い、Callbackを下記のような結果を使って実行
-するようにこのモジュールを作って下さい。
+するようにして下さい。
 
     ALL YOUR {X} ARE BELONG TO {Y}
 
@@ -20,7 +20,7 @@ module.exports = function (X, Y, callback) {
 
     {appname} run program.js
 
-もし結果に満足すれば、以下を実行しましょう。
+もし結果に問題が無ければ、以下を実行しましょう。
 
     {appname} verify program.js
 

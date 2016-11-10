@@ -3,7 +3,7 @@
 
 ローカルホスト上でポート番号**4545**を使用する`net`モジュールを使用してTCPコネクションを作成してください。
 このコネクションをmultilevelのRPCストリームにパイプでつなぎ、コネクションに返してください。
-以下のようなコードを書いてください。
+以下のようなコードになるでしょう。
 
 ```javascript
 var db = multilevel.client()
@@ -11,7 +11,7 @@ var connection = net.connect(4545)
 connection.pipe(db.createRpcStream()).pipe(connection)
 ```
 
-あなたはLevelUPオブジェクトのように相互作用できる`db`オブジェクトを持つことになります。
+`db`オブジェクトはLevelUPオブジェクトのように使用できるものになります。
 
 `multilelvelmeup`というキーを使用してデータストアから値を取得し、コンソール上に表示してください。
 

@@ -38,5 +38,5 @@ I/Oエラーが渡される可能性もありますが、`NotFoundError`かど�
 * `err.notFound`のBool値をチェックする
 
 
-`.get()`メソッドを使用することを推奨します。ReadStreamを使用したい
+`.get()`メソッドを使用することを推奨します。ReadStreamを使用する
 場合はソートの問題に注意して下さい。
