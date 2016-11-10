@@ -15,6 +15,13 @@
     "sublevel":             "Sublevel",
     "multilevel":           "Multilevel"
   },
+  "diff": {
+    "unexpected": "Unexpected property",
+    "missing":   "Missing",
+    "expected": "Expected",
+    "expected_tobe": "to be",
+    "expected_got": "but got"
+  },
   "error": {
     "mod": {
       "broken": "An error occured while loading the module",

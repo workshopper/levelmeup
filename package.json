@@ -24,7 +24,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "diff": "^3.0.1",
+    "deep-diff": "^0.3.4",
     "echomunge": "~0.2.0",
     "is-stream": "^1.1.0",
     "level": "^1.5.0",
@@ -33,7 +33,8 @@
     "multilevel": "^7.3.0",
     "rimraf": "~2.5.4",
     "through2": "^2.0.1",
-    "workshopper-adventure": "^5.0.3"
+    "exec-module": "^2.0.0",
+    "workshopper-adventure": "^5.1.1"
   },
   "devDependencies": {
     "standard": "^8.4.0",
