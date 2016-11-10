@@ -32,7 +32,7 @@ sublevel to `'beep boop'`.
 
 Read more about sublevel here:
 
-    http://npmjs.com/level-sublevel
+http://npmjs.com/level-sublevel
 
 Or off-line on your local filesystem:
 
@@ -44,7 +44,7 @@ exercise.
 If you don't have an Internet connection, simply make a `node_modules`
 directory and copy the following directory into it:
 
-    {appdir}/node_modules/level-sublevel/
+    {appDir}/node_modules/level-sublevel/
 
 To get output for debugging when running `{appname} run program.js`
 you should use console.error instead of console.log.
