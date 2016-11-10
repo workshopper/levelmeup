@@ -8,27 +8,27 @@
     "basics_put":           "基礎: PUT",
     "basics_batch":         "基礎: BATCH",
     "streaming":            "ストリーミング",
-    "horse_js_count":       "@horse_js Count",
-    "horse_js_tweets":      "@horse_js Tweets",
-    "keywise":              "Keywise",
-    "short_scrabble_words": "Short Scrabble Words",
+    "horse_js_count":       "@horse_js カウント",
+    "horse_js_tweets":      "@horse_js ツイート",
+    "keywise":              "キー的な話",
+    "short_scrabble_words": "スクラブルワード",
     "sublevel":             "Sublevel",
     "multilevel":           "Multilevel"
   },
   "error": {
     "mod": {
-      "broken": "An error occured while loading the module",
-      "not_long_enough": "The module doesn't have enough arguments, it has to look like:\n\n    function (db, key, callback) {...}",
-      "not_function": "The module doesn't return a function",
-      "unexpected": "An error occured while executing the module",
-      "not_object": "The module doesn't return an object",
-      "init_missing": "'init' is not a function",
-      "query_missing": "'query' is not a function"
+      "broken": "モジュールのロード中にエラーが発生しました",
+      "not_long_enough": "モジュールの引数の数が不足しています。以下の形式にして下さい。\n\n    function (db, key, callback) {...}",
+      "not_function": "モジュールが関数を返していません",
+      "unexpected": "モジュールの実行中にエラーが発生しました",
+      "not_object": "モジュールがオブジェクトを返していません",
+      "init_missing": "'init'関数がありません",
+      "query_missing": "'query'関数がありません"
     },
-    "timeout": "Timeout: The module didn't respond after 10 seconds.",
-    "not_same": "The output of the module doesn't match the expected output",
+    "timeout": "タイムアウト: １０秒以上モジュールから反応がありません",
+    "not_same": "モジュールの出力が期待する結果と一致しません",
     "db": {
-      "not_closed": "The database directory is still locked!\n\nClose it with `db.close(function () {})`"
+      "not_closed": "データベースディレクトリがロックされたままです！\n\n`db.close(function () {})`を使ってクローズして下さい。"
     }
   }
 }
