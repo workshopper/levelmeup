@@ -13,7 +13,7 @@
 モジュールは下記のようなものになるでしょう。
 
 ```javascript
-module.exports = function (databaseDir, obj, callback) {
+module.exports = function (databaseDir, callback) {
   var result = []
   // your code...
   result.push()
