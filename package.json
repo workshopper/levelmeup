@@ -16,7 +16,7 @@
     "echomunge": "~0.2.0",
     "readable-stream": "~1.0.15",
     "through2-map": "~1.1.0",
-    "through2": "~0.2.1",
+    "through2": "~2.0.2",
     "level-sublevel": "~6.2.1",
     "multilevel": "~5.5.0"
   },
