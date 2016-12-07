@@ -5,21 +5,44 @@
   "author": "Rod Vagg <rod@vagg.org> (https://github.com/rvagg)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rvagg/levelmeup.git"
+    "url": "https://github.com/workshopper/levelmeup.git"
   },
+  "scripts": {
+    "test": "standard && workshopper-adventure-test",
+    "fetch-horse": "./scripts/fetch_horse.js",
+    "lint": "standard"
+  },
+  "contributors": [
+    "Rod Vagg (https://github.com/rvagg)",
+    "Eugene Ware (https://github.com/eugeneware)",
+    "James Halliday (https://github.com/substack)",
+    "Jake Verbaten (https://github.com/raynos)",
+    "Julian Gruber (https://github.com/juliangruber)",
+    "Robert Kowalski (https://github.com/robertkowalski)",
+    "Lars-Magnus Skog (https://github.com/ralphtheninja)",
+    "Martin Heidegger (https://github.com/martinheidegger)"
+  ],
   "license": "MIT",
   "dependencies": {
-    "workshopper": "~0.3.1",
-    "level": "~1.4.0",
-    "rimraf": "~2.2.2",
-    "after": "~0.8.1",
+    "deep-diff": "^0.3.4",
     "echomunge": "~0.2.0",
-    "readable-stream": "~1.0.15",
-    "through2-map": "~1.1.0",
-    "through2": "~0.2.1",
-    "level-sublevel": "~6.2.1",
-    "multilevel": "~5.5.0"
+    "is-stream": "^1.1.0",
+    "level": "^1.5.0",
+    "level-sublevel": "^6.6.1",
+    "lodash.sample": "^4.2.1",
+    "multilevel": "^7.3.0",
+    "rimraf": "~2.5.4",
+    "through2": "^2.0.1",
+    "exec-module": "^2.0.0",
+    "workshopper-adventure": "^5.1.3"
   },
-  "bin": "./levelmeup.js",
+  "devDependencies": {
+    "standard": "^8.4.0",
+    "twitter": "^1.4.0",
+    "workshopper-adventure-test": "^1.0.0"
+  },
+  "bin": {
+    "levelmeup": "./bin/levelmeup"
+  },
   "preferGlobal": true
 }
