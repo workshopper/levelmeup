@@ -11,7 +11,7 @@ You must find those entries and return them in the callback as an, ordered
 by _'[X]'_, ascending. Your module could look like:
 
 ```javascript
-module.exports = function (databaseDir, obj, callback) {
+module.exports = function (databaseDir, callback) {
   var result = []
   // your code...
   result.push()
