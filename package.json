@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "standard": "^8.4.0",
-    "twitter": "^1.4.0",
+    "twitter": "^1.7.0",
     "workshopper-adventure-test": "^1.0.0"
   },
   "bin": {
