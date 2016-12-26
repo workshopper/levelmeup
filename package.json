@@ -34,7 +34,7 @@
     "lodash.sample": "^4.2.1",
     "multilevel": "^7.3.0",
     "rimraf": "~2.5.4",
-    "through2": "^2.0.1",
+    "through2": "^2.0.3",
     "exec-module": "^2.0.0",
     "workshopper-adventure": "^5.1.3"
   },
