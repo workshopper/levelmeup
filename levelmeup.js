@@ -4,6 +4,7 @@ var levelMeUp = workshopper({
   menu: {
     bg: 'green'
   },
+  languages: ['en', 'ja'],
   header: require('workshopper-adventure/default/header'),
   footer: require('workshopper-adventure/default/footer'),
   fail: require('workshopper-adventure/default/fail'),

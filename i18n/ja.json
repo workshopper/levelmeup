@@ -1,0 +1,34 @@
+{
+  "title": "LEVEL ME UP SCOTTY!",
+  "subtitle": "Node.jsでのデータベースについて",
+  "exercise": {
+    "all_your_base":        "ALL YOUR BASE",
+    "get_your_level_on":    "Get Your Level On!",
+    "basics_get":           "基礎: GET",
+    "basics_put":           "基礎: PUT",
+    "basics_batch":         "基礎: BATCH",
+    "streaming":            "ストリーミング",
+    "horse_js_count":       "@horse_js カウント",
+    "horse_js_tweets":      "@horse_js ツイート",
+    "keywise":              "キー的な話",
+    "short_scrabble_words": "スクラブルワード",
+    "sublevel":             "Sublevel",
+    "multilevel":           "Multilevel"
+  },
+  "error": {
+    "mod": {
+      "broken": "モジュールのロード中にエラーが発生しました",
+      "not_long_enough": "モジュールの引数の数が不足しています。以下の形式にして下さい。\n\n    function (db, key, callback) {...}",
+      "not_function": "モジュールが関数を返していません",
+      "unexpected": "モジュールの実行中にエラーが発生しました",
+      "not_object": "モジュールがオブジェクトを返していません",
+      "init_missing": "'init'関数がありません",
+      "query_missing": "'query'関数がありません"
+    },
+    "timeout": "タイムアウト: １０秒以上モジュールから反応がありません",
+    "not_same": "モジュールの出力が期待する結果と一致しません",
+    "db": {
+      "not_closed": "データベースディレクトリがロックされたままです！\n\n`db.close(function () {})`を使ってクローズして下さい。"
+    }
+  }
+}
