@@ -5,7 +5,7 @@ module.exports = function (databaseDir, callback) {
   var dinosaurs = db.sublevel('dinosaurs')
 
   ;[robots, dinosaurs].map(function (lev, i) {
-    lev.put('slogan', 1 === i ? 'rawr' : 'beep boop');
+    lev.put('slogan', i === 1 ? 'rawr' : 'beep boop')
   })
   setImmediate(callback)
 }
