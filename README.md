@@ -3,6 +3,7 @@
 **An intro to Node.js databases via a set of self-guided workshops.**
 
 [![NPM](https://nodei.co/npm/levelmeup.png?downloads=true&stars=true)](https://nodei.co/npm/levelmeup/) [![NPM](https://nodei.co/npm-dl/levelmeup.png?months=3)](https://nodei.co/npm/levelmeup/)
+[![Build Status](https://travis-ci.org/workshopper/levelmeup.svg?branch=master)](https://travis-ci.org/workshopper/levelmeup)
 
 ![Level Me Up Scotty!](https://github.com/rvagg/levelmeup/raw/master/levelmeup.png)
 
