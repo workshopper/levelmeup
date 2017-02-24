@@ -16,7 +16,7 @@ module.exports = function (databaseDir, callback) {
   // your code...
   result.push()
   // more code...
-  callback(err,result)
+  callback(null,result)
 }
 ```
 
