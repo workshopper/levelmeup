@@ -3,12 +3,12 @@ Write a module with one argument that opens a LevelDB data-store using
 
 The store will contain up to 10 entries with keys in the form:
 
-    key[X]
+    'key' + i
 
-Where _'[X]'_ is an integer between 0 and 100.
+Where _'i'_ is an integer between 0 and 100.
 
 You must find those entries and return them in the callback as an, ordered
-by _'[X]'_, ascending. Your module could look like:
+by _'i'_, ascending. Your module could look like:
 
 ```javascript
 module.exports = function (databaseDir, callback) {
@@ -16,7 +16,7 @@ module.exports = function (databaseDir, callback) {
   // your code...
   result.push()
   // more code...
-  callback(result)
+  callback(err,result)
 }
 ```
 
