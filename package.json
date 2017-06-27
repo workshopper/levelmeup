@@ -36,7 +36,7 @@
     "rimraf": "~2.5.4",
     "through2": "^2.0.1",
     "exec-module": "^2.0.0",
-    "workshopper-adventure": "^5.1.8"
+    "workshopper-adventure": "^6.0.1"
   },
   "devDependencies": {
     "standard": "^8.4.0",
