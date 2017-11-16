@@ -35,12 +35,12 @@
     "lodash.sample": "^4.2.1",
     "multilevel": "^7.3.0",
     "rimraf": "^2.6.2",
-    "through2": "^2.0.1",
+    "through2": "^2.0.3",
     "workshopper-adventure": "^6.0.3"
   },
   "devDependencies": {
     "standard": "^10.0.3",
-    "twitter": "^1.7.0",
+    "twitter": "^1.7.1",
     "workshopper-adventure-test": "^1.1.2"
   },
   "bin": {
