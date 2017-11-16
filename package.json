@@ -28,6 +28,7 @@
   "dependencies": {
     "deep-diff": "^0.3.4",
     "echomunge": "~0.2.0",
+    "exec-module": "^2.0.0",
     "is-stream": "^1.1.0",
     "level": "^1.5.0",
     "level-sublevel": "^6.6.1",
@@ -35,8 +36,7 @@
     "multilevel": "^7.3.0",
     "rimraf": "~2.5.4",
     "through2": "^2.0.1",
-    "exec-module": "^2.0.0",
-    "workshopper-adventure": "^5.1.8"
+    "workshopper-adventure": "^6.0.3"
   },
   "devDependencies": {
     "standard": "^10.0.3",
