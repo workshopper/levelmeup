@@ -28,7 +28,6 @@ function more (formerId) {
         console.log(error)
       }
       process.exit(1)
-      return
     }
     console.log('Found tweets: ' + all.length + '〜' + (all.length + tweets.length))
     tweets.forEach(function (tweet, nr) {

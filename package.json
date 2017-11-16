@@ -39,7 +39,7 @@
     "workshopper-adventure": "^5.1.8"
   },
   "devDependencies": {
-    "standard": "^8.4.0",
+    "standard": "^10.0.3",
     "twitter": "^1.7.0",
     "workshopper-adventure-test": "^1.0.0"
   },
