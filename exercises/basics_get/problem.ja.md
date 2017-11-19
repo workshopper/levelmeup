@@ -18,7 +18,7 @@ module.exports = function (databaseDir, callback) {
   // your code...
   result.push()
   // more code...
-  callback(result)
+  callback(null, result)
 }
 ```
 
