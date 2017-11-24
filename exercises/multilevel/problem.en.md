@@ -6,20 +6,27 @@ on localhost. Pipe this connection through a multilevel RPC stream and
 back to the connection. Your code should look like:
 
 ```javascript
-var db = multilevel.client()
-var connection = net.connect(4545)
-connection.pipe(db.createRpcStream()).pipe(connection)
+var multilevel = require('multilevel')
+var net = require('net')
+
+module.exports = function (callback) {
+  var db = multilevel.client()
+  var connection = net.connect(4545)
+  connection.pipe(db.createRpcStream()).pipe(connection)
+
+  // your code ...
+  callback(null, value)
+}
 ```
 
 You will then have a `db` object that you can interact with like a
 LevelUP object.
 
 Fetch the value from the data store with the key `multilevelmeup`
-and print it to the console.
+and return it to the provided callback.
 
-**You must close the connection after you have fetched the value!**
-
-    connection.end()
+**You must close the connection using `connection.end(..)` after you
+have fetched the value but before you execute the callback!**
 
 ---
 

@@ -6,18 +6,26 @@
 以下のようなコードになるでしょう。
 
 ```javascript
-var db = multilevel.client()
-var connection = net.connect(4545)
-connection.pipe(db.createRpcStream()).pipe(connection)
+var multilevel = require('multilevel')
+var net = require('net')
+
+module.exports = function (callback) {
+  var db = multilevel.client()
+  var connection = net.connect(4545)
+  connection.pipe(db.createRpcStream()).pipe(connection)
+
+  // あなたのコード ...
+  callback(null, value)
+}
 ```
 
 `db`オブジェクトはLevelUPオブジェクトのように使用できるものになります。
 
-`multilelvelmeup`というキーを使用してデータストアから値を取得し、コンソール上に表示してください。
+`multilevelmeup`というキーを使用してデータストアから値を取得し、
+コールバックに渡してください。
 
-**値を取得した後は必ずコネクションを閉じてください！**
-
-    connection.end()
+**値を取得した後コールバックを呼ぶ前に必ずコネクションを
+`connection.end(..)`で閉じてください！**
 
 ---
 
