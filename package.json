@@ -10,7 +10,8 @@
   "scripts": {
     "test": "standard && workshopper-adventure-test",
     "fetch-horse": "./scripts/fetch_horse.js",
-    "lint": "standard"
+    "lint": "standard",
+    "release": "./node_modules/.bin/standard-version"
   },
   "contributors": [
     "Rod Vagg (https://github.com/rvagg)",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "standard": "^10.0.3",
+    "standard-version": "^4.2.0",
     "twitter": "^1.7.1",
     "workshopper-adventure-test": "^1.1.2"
   },
